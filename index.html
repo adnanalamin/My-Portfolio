@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AL AMIN — Full-Stack Developer &amp; Creative Designer</title>
+  <meta name="description" content="AL AMIN — Full-Stack and MERN Stack Developer crafting scalable web applications, modern UI systems, and fast digital products.">
+  <meta name="keywords" content="AL AMIN, Full-Stack Developer, MERN Stack Developer, React Developer, Node.js Developer, Creative Designer, Portfolio, Bangladesh">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/">
+  <meta property="og:title" content="AL AMIN — Full-Stack Developer &amp; Creative Designer">
+  <meta property="og:description" content="I build modern, scalable and user-focused web applications combining clean backend engineering with thoughtful UI design.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AL AMIN — Full-Stack Developer &amp; Creative Designer">
+  <meta name="twitter:description" content="Modern, scalable and user-focused full-stack web applications and creative UI systems by AL AMIN.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "AL AMIN",
+        "jobTitle": "Full-Stack Developer & Creative Designer",
+        "description": "Full-Stack and MERN Stack Developer building scalable web applications and modern interfaces.",
+        "url": "https://example.com/",
+        "image": "assets/images/profile.jpg",
+        "knowsAbout": ["HTML5", "CSS3", "JavaScript", "React", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL", "UI/UX Design"]
+      },
+      {
+        "@type": "WebSite",
+        "name": "AL AMIN Portfolio",
+        "url": "https://example.com/",
+        "description": "Portfolio of AL AMIN — Full-Stack Developer & Creative Designer.",
+        "author": {
+          "@type": "Person",
+          "name": "AL AMIN"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <!-- ================================================================
+         1. Full-Screen Futuristic Hero Section
+         ================================================================ -->
+    <section id="hero-section" class="hero-section">
+      <div id="hero-mouse-glow" class="hero-mouse-glow" aria-hidden="true"></div>
+      <div class="hero-orb hero-orb-indigo animate-orb-drift" aria-hidden="true"></div>
+      <div class="hero-orb hero-orb-cyan animate-orb-drift" aria-hidden="true"></div>
+
+      <div class="container relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-12 items-center">
+          <!-- Hero Left: Typography, Role Animation & CTAs -->
+          <div class="lg:col-span-6 min-w-0 space-y-5 sm:space-y-6 animate-fade-in-up">
+            <div id="hero-kicker-row" class="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-medium text-[var(--text-secondary)]">
+              <span class="badge">Hi, I'm AL AMIN</span>
+              <span class="hidden sm:inline text-[var(--muted)]" aria-hidden="true">·</span>
+              <span class="hidden sm:inline text-[var(--muted)]" data-config="location">Bangladesh</span>
+            </div>
+
+            <div class="space-y-3 sm:space-y-4">
+              <h1 id="hero-headline" class="hero-title">
+                Full-Stack Developer &amp; <span class="gradient-text">Creative Designer</span>
+              </h1>
+
+              <div class="flex items-center gap-2 min-h-[2rem] text-sm sm:text-base md:text-lg font-semibold text-cyan-400">
+                <i data-lucide="terminal" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-indigo-400"></i>
+                <span class="sr-only">Current focus role:</span>
+                <span id="hero-role-cycler" class="font-mono-tech">Full-Stack Developer</span><span class="role-caret" aria-hidden="true"></span>
+              </div>
+
+              <p id="hero-subtitle" class="section-subtitle">
+                I build modern, scalable and user-focused web applications that combine powerful technology with beautiful design.
+              </p>
+            </div>
+
+            <!-- Mobile: stacked buttons; Tablet/Desktop: inline row -->
+            <div id="hero-cta-group" class="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 pt-1">
+              <a href="#featured-projects" class="primary-button w-full sm:w-auto">
+                <span>View My Work</span>
+                <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+              </a>
+              <a href="contact.html" class="secondary-button w-full sm:w-auto">
+                <span>Hire Me</span>
+                <i data-lucide="send" class="w-4 h-4"></i>
+              </a>
+              <a
+                href="assets/documents/resume.pdf"
+                download="AL_AMIN_Resume.pdf"
+                data-resume-download
+                class="outline-button w-full sm:w-auto"
+              >
+                <i data-lucide="download" class="w-4 h-4"></i>
+                <span>Download Resume</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Right: Futuristic Developer Workspace -->
+          <div class="lg:col-span-6 min-w-0 animate-fade-in-up delay-100">
+            <div id="hero-tilt-stage" class="hero-tilt-stage space-y-4">
+              <!-- Compact Profile + Workspace Header Card -->
+              <div class="glass-card glow-effect p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" data-parallax-depth="8">
+                <div class="flex items-center gap-3.5 sm:gap-4 min-w-0">
+                  <div class="profile-frame-gradient shrink-0 w-16 h-16 sm:w-20 sm:h-20">
+                    <div class="profile-frame-inner w-full h-full">
+                      <img
+                        src="assets/images/profile.jpg"
+                        alt="AL AMIN portrait"
+                        class="w-full h-full object-cover"
+                        onerror="this.src='assets/images/profile-placeholder.svg'"
+                      >
+                    </div>
+                  </div>
+                  <div class="min-w-0 space-y-1">
+                    <h2 class="text-base sm:text-lg font-bold text-[var(--text)] truncate" data-config="name">AL AMIN</h2>
+                    <p class="text-xs sm:text-sm text-[var(--muted)] truncate" data-config="role">Full-Stack Developer &amp; Creative Designer</p>
+                  </div>
+                </div>
+                <div class="profile-floating-badge shrink-0">
+                  <i data-lucide="code-2" class="w-3.5 h-3.5 text-indigo-400"></i>
+                  <span>MERN Stack</span>
+                </div>
+              </div>
+
+              <!-- Animated Code Window -->
+              <div class="ide-window" data-parallax-depth="12">
+                <div class="ide-window-bar">
+                  <div class="ide-dots" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <span class="font-mono-tech text-xs text-slate-400">server/architecture.js</span>
+                  <span class="text-[11px] font-mono-tech text-cyan-400">ES2024</span>
+                </div>
+
+                <pre class="ide-code-body m-0"><code><span class="text-violet-400">const</span> <span class="text-cyan-300">stack</span> = [<span class="text-emerald-300">'MongoDB'</span>, <span class="text-emerald-300">'Express'</span>, <span class="text-emerald-300">'React'</span>, <span class="text-emerald-300">'Node.js'</span>];
+
+<span class="text-violet-400">export async function</span> <span class="text-indigo-300">buildProduct</span>(vision) {
+  <span class="text-violet-400">return</span> {
+    <span class="text-slate-300">architecture</span>: <span class="text-emerald-300">'Scalable &amp; Modular'</span>,
+    <span class="text-slate-300">interface</span>: <span class="text-emerald-300">'Responsive 320px - 2560px'</span>,
+    <span class="text-slate-300">stack</span>,
+    <span class="text-slate-300">shippedBy</span>: <span class="text-emerald-300">'AL AMIN'</span>
+  };
+}</code></pre>
+
+                <!-- Terminal Strip -->
+                <div class="px-4 pb-4">
+                  <div class="terminal-panel space-y-1">
+                    <p class="text-slate-400"><span class="text-cyan-400">$</span> npm run verify:build</p>
+                    <p class="text-emerald-400">✓ Bundle compiled · Zero layout overflow · Ready to ship</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Technology Badges Grid (wraps cleanly on 320px, floats neatly on desktop) -->
+              <div class="grid grid-cols-3 sm:grid-cols-6 gap-2" data-parallax-depth="16">
+                <div class="glass-card px-2.5 py-2 text-center text-xs font-semibold text-[var(--text-secondary)]">HTML</div>
+                <div class="glass-card px-2.5 py-2 text-center text-xs font-semibold text-[var(--text-secondary)]">CSS</div>
+                <div class="glass-card px-2.5 py-2 text-center text-xs font-semibold text-[var(--text-secondary)]">JavaScript</div>
+                <div class="glass-card px-2.5 py-2 text-center text-xs font-semibold text-[var(--text-secondary)]">React</div>
+                <div class="glass-card px-2.5 py-2 text-center text-xs font-semibold text-[var(--text-secondary)]">Node.js</div>
+                <div class="glass-card px-2.5 py-2 text-center text-xs font-semibold text-[var(--text-secondary)]">MongoDB</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="homepage-sections-flow" class="homepage-sections-flow" data-active-mode="default">
+    <!-- ================================================================
+         2. Animated Stats Strip
+         ================================================================ -->
+    <section data-home-section="stats" class="py-8 sm:py-10 border-y border-[var(--border)] bg-[var(--surface)]/50">
+      <div class="container">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div class="card p-5 sm:p-6 space-y-1 reveal">
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tabular-nums gradient-text" data-counter-target="25" data-counter-suffix="+">25+</p>
+            <p class="text-xs sm:text-sm font-medium text-[var(--muted)]">Projects</p>
+          </div>
+          <div class="card p-5 sm:p-6 space-y-1 reveal delay-100">
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tabular-nums gradient-text" data-counter-target="18" data-counter-suffix="+">18+</p>
+            <p class="text-xs sm:text-sm font-medium text-[var(--muted)]">Technologies</p>
+          </div>
+          <div class="card p-5 sm:p-6 space-y-1 reveal delay-200">
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tabular-nums gradient-text" data-counter-target="3" data-counter-suffix="+ Yrs">3+ Yrs</p>
+            <p class="text-xs sm:text-sm font-medium text-[var(--muted)]">Experience</p>
+          </div>
+          <div class="card p-5 sm:p-6 space-y-1 reveal delay-300">
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tabular-nums gradient-text" data-counter-target="15" data-counter-suffix="+">15+</p>
+            <p class="text-xs sm:text-sm font-medium text-[var(--muted)]">Clients</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         Phase 18: Visitor Experience Selector (Client Mode / Recruiter Mode)
+         ================================================================ -->
+    <section id="mode-selector-section" data-home-section="selector" class="section border-b border-[var(--border)]">
+      <div class="container">
+        <div id="mode-selector-mount"></div>
+      </div>
+    </section>
+
+    <!-- Phase 18: Mode-Specific Dynamic Homepage Spotlight -->
+    <div id="mode-dynamic-experience" data-home-section="dynamic" class="hidden"></div>
+
+    <!-- ================================================================
+         3. Services Preview
+         ================================================================ -->
+    <section data-home-section="services" class="section">
+      <div class="container space-y-8 sm:space-y-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 reveal">
+          <div class="space-y-3">
+            <h2 class="section-title">Services <span class="gradient-text">Preview</span></h2>
+            <p class="section-subtitle">
+              End-to-end engineering and visual craft tailored for fast-moving startups and digital products.
+            </p>
+          </div>
+          <a href="services.html" class="outline-button self-start md:self-auto">
+            <span>All Services</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          <article class="glass-card hover-lift p-6 space-y-4 reveal">
+            <div class="w-11 h-11 rounded-xl border border-indigo-500/30 bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+              <i data-lucide="globe" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-2">
+              <h3 class="text-lg font-bold text-[var(--text)]">Web Development</h3>
+              <p class="text-sm text-[var(--muted)]">
+                High-performance, SEO-ready websites and responsive web applications engineered with clean semantic code.
+              </p>
+            </div>
+          </article>
+
+          <article class="glass-card hover-lift p-6 space-y-4 reveal delay-100">
+            <div class="w-11 h-11 rounded-xl border border-cyan-500/30 bg-cyan-500/10 flex items-center justify-center text-cyan-400">
+              <i data-lucide="database" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-2">
+              <h3 class="text-lg font-bold text-[var(--text)]">MERN Development</h3>
+              <p class="text-sm text-[var(--muted)]">
+                Full-stack applications powered by MongoDB, Express, React, and Node.js with secure RESTful APIs.
+              </p>
+            </div>
+          </article>
+
+          <article class="glass-card hover-lift p-6 space-y-4 reveal delay-200">
+            <div class="w-11 h-11 rounded-xl border border-violet-500/30 bg-violet-500/10 flex items-center justify-center text-violet-400">
+              <i data-lucide="layout-template" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-2">
+              <h3 class="text-lg font-bold text-[var(--text)]">UI Implementation</h3>
+              <p class="text-sm text-[var(--muted)]">
+                Pixel-accurate, accessible interfaces with structured design tokens, micro-interactions, and smooth motion.
+              </p>
+            </div>
+          </article>
+
+          <article class="glass-card hover-lift p-6 space-y-4 reveal delay-300">
+            <div class="w-11 h-11 rounded-xl border border-pink-500/30 bg-pink-500/10 flex items-center justify-center text-pink-400">
+              <i data-lucide="rocket" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-2">
+              <h3 class="text-lg font-bold text-[var(--text)]">SaaS Development</h3>
+              <p class="text-sm text-[var(--muted)]">
+                Scalable multi-tenant dashboards, subscription workflows, and reliable cloud-ready product foundations.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         4. Featured Projects (Powered by js/projects.js)
+         ================================================================ -->
+    <section id="featured-projects" data-home-section="projects" class="section border-t border-[var(--border)]">
+      <div class="container space-y-8 sm:space-y-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 reveal">
+          <div class="space-y-3">
+            <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+            <p class="section-subtitle">
+              Selected full-stack platforms and interactive products focused on clarity, speed, and developer craft.
+            </p>
+          </div>
+          <a href="projects.html" class="outline-button self-start md:self-auto">
+            <span>View All Projects</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <div id="featured-projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         5. About Preview (Profile Showcase + Intro)
+         ================================================================ -->
+    <section data-home-section="about" class="section border-t border-[var(--border)]">
+      <div class="container">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          <div class="lg:col-span-5 flex flex-col justify-center items-center lg:items-start reveal">
+            <div class="relative w-full max-w-[260px] sm:max-w-[320px] lg:max-w-[380px]">
+              <div class="profile-frame-gradient glow-effect">
+                <div class="profile-frame-inner aspect-square">
+                  <img
+                    src="assets/images/profile.jpg"
+                    alt="AL AMIN — Full-Stack Developer & Creative Designer"
+                    class="w-full h-full object-cover"
+                    onerror="this.src='assets/images/profile-placeholder.svg'"
+                  >
+                </div>
+              </div>
+
+              <div class="profile-floating-badge absolute -bottom-3 right-3 sm:right-5">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-cyan-400"></i>
+                <span>Available for Projects</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 flex flex-col justify-center space-y-6 reveal delay-100">
+            <div class="space-y-3">
+              <span class="badge">About Preview</span>
+              <h2 class="section-title">Engineering Reliable Systems with <span class="gradient-text">Design Precision</span></h2>
+              <p class="section-subtitle">
+                I am <strong class="text-[var(--text)]" data-config="name">AL AMIN</strong>, a Full-Stack &amp; MERN Stack Developer and Creative Designer from <span data-config="location">Bangladesh</span>. I bridge backend architecture and frontend usability to deliver fast, maintainable web software.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div class="card p-4 sm:p-5 space-y-1.5">
+                <h3 class="text-sm font-bold text-[var(--text)]">Clean Full-Stack Architecture</h3>
+                <p class="text-xs sm:text-sm text-[var(--muted)]">
+                  Modular APIs, structured schemas, and predictable client state built for long-term scale.
+                </p>
+              </div>
+              <div class="card p-4 sm:p-5 space-y-1.5">
+                <h3 class="text-sm font-bold text-[var(--text)]">User-Focused Interfaces</h3>
+                <p class="text-xs sm:text-sm text-[var(--muted)]">
+                  Accessible, mobile-first layouts tuned across every screen from 320px phones to 4K monitors.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
+              <a href="about.html" class="primary-button w-full sm:w-auto">
+                <span>Read More About Me</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+              <a href="experience.html" class="secondary-button w-full sm:w-auto">
+                <span>View Experience</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         6. Animated Tech Stack Section
+         ================================================================ -->
+    <section data-home-section="tech" class="section border-t border-[var(--border)]">
+      <div class="container space-y-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 reveal">
+          <div class="space-y-3">
+            <h2 class="section-title">Technology <span class="gradient-text">Stack</span></h2>
+            <p class="section-subtitle">
+              Core languages, frameworks, and tools powering production applications.
+            </p>
+          </div>
+          <a href="skills.html" class="outline-button self-start md:self-auto">
+            <span>Explore Full Skills</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <div class="space-y-4 reveal delay-100">
+          <!-- Row 1 -->
+          <div class="marquee-viewport">
+            <div class="marquee-track animate-marquee-left">
+              <div class="tech-marquee-item"><i data-lucide="code" class="w-4 h-4 text-orange-400"></i><span>HTML5</span></div>
+              <div class="tech-marquee-item"><i data-lucide="palette" class="w-4 h-4 text-sky-400"></i><span>CSS3</span></div>
+              <div class="tech-marquee-item"><i data-lucide="braces" class="w-4 h-4 text-amber-400"></i><span>JavaScript</span></div>
+              <div class="tech-marquee-item"><i data-lucide="atom" class="w-4 h-4 text-cyan-400"></i><span>React</span></div>
+              <div class="tech-marquee-item"><i data-lucide="wind" class="w-4 h-4 text-teal-400"></i><span>Tailwind CSS</span></div>
+              <div class="tech-marquee-item"><i data-lucide="server" class="w-4 h-4 text-emerald-400"></i><span>Node.js</span></div>
+              <div class="tech-marquee-item"><i data-lucide="database" class="w-4 h-4 text-green-400"></i><span>MongoDB</span></div>
+              <div class="tech-marquee-item"><i data-lucide="git-branch" class="w-4 h-4 text-rose-400"></i><span>Git</span></div>
+              <!-- Duplicate set for seamless loop -->
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="code" class="w-4 h-4 text-orange-400"></i><span>HTML5</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="palette" class="w-4 h-4 text-sky-400"></i><span>CSS3</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="braces" class="w-4 h-4 text-amber-400"></i><span>JavaScript</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="atom" class="w-4 h-4 text-cyan-400"></i><span>React</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="wind" class="w-4 h-4 text-teal-400"></i><span>Tailwind CSS</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="server" class="w-4 h-4 text-emerald-400"></i><span>Node.js</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="database" class="w-4 h-4 text-green-400"></i><span>MongoDB</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="git-branch" class="w-4 h-4 text-rose-400"></i><span>Git</span></div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="marquee-viewport">
+            <div class="marquee-track animate-marquee-right">
+              <div class="tech-marquee-item"><i data-lucide="cpu" class="w-4 h-4 text-indigo-400"></i><span>Express.js</span></div>
+              <div class="tech-marquee-item"><i data-lucide="file-code" class="w-4 h-4 text-blue-400"></i><span>TypeScript</span></div>
+              <div class="tech-marquee-item"><i data-lucide="layers" class="w-4 h-4 text-violet-400"></i><span>Next.js</span></div>
+              <div class="tech-marquee-item"><i data-lucide="webhook" class="w-4 h-4 text-cyan-400"></i><span>REST APIs</span></div>
+              <div class="tech-marquee-item"><i data-lucide="figma" class="w-4 h-4 text-pink-400"></i><span>UI/UX Design</span></div>
+              <div class="tech-marquee-item"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i><span>JWT Auth</span></div>
+              <div class="tech-marquee-item"><i data-lucide="cloud" class="w-4 h-4 text-sky-400"></i><span>Cloud Deploy</span></div>
+              <div class="tech-marquee-item"><i data-lucide="terminal" class="w-4 h-4 text-slate-300"></i><span>Vite &amp; Tooling</span></div>
+              <!-- Duplicate set for seamless loop -->
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="cpu" class="w-4 h-4 text-indigo-400"></i><span>Express.js</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="file-code" class="w-4 h-4 text-blue-400"></i><span>TypeScript</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="layers" class="w-4 h-4 text-violet-400"></i><span>Next.js</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="webhook" class="w-4 h-4 text-cyan-400"></i><span>REST APIs</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="figma" class="w-4 h-4 text-pink-400"></i><span>UI/UX Design</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i><span>JWT Auth</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="cloud" class="w-4 h-4 text-sky-400"></i><span>Cloud Deploy</span></div>
+              <div class="tech-marquee-item" aria-hidden="true"><i data-lucide="terminal" class="w-4 h-4 text-slate-300"></i><span>Vite &amp; Tooling</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         7. Final Call-to-Action Section
+         ================================================================ -->
+    <section data-home-section="cta" class="section border-t border-[var(--border)]">
+      <div class="container">
+        <div class="glass-card glow-effect p-6 sm:p-10 lg:p-14 text-center space-y-6 reveal">
+          <div class="space-y-3 max-w-2xl mx-auto">
+            <h2 class="section-title">Have an idea? <span class="gradient-text">Let's build something great.</span></h2>
+            <p class="section-subtitle mx-auto">
+              Whether you need a full-stack MERN platform, a high-converting SaaS interface, or a scalable frontend architecture, I'm ready to collaborate.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-1">
+            <a href="contact.html?intent=project" class="primary-button w-full sm:w-auto">
+              <span>Start a Project</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="contact.html" class="secondary-button w-full sm:w-auto">
+              <span>Contact Me</span>
+              <i data-lucide="mail" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/projects.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

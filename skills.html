@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Skills &amp; Stack — AL AMIN</title>
+  <meta name="description" content="Explore AL AMIN's technical skills across Frontend, Backend APIs, MongoDB & PostgreSQL databases, developer tooling, UI/UX design, and web optimization.">
+  <meta name="keywords" content="React Skills, Node.js, MongoDB, PostgreSQL, JavaScript, Next.js, Tailwind CSS, Full-Stack Tech Stack, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/skills.html">
+  <meta property="og:title" content="Technical Skills &amp; Stack — AL AMIN">
+  <meta property="og:description" content="Interactive skills matrix covering MERN stack, UI design systems, databases, and developer tooling.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/skills.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Technical Skills &amp; Stack — AL AMIN">
+  <meta name="twitter:description" content="Frontend, Backend, Database, Tools, Design, and Performance optimization capabilities.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Technical Skills & Stack — AL AMIN",
+    "url": "https://example.com/skills.html",
+    "about": {
+      "@type": "Person",
+      "name": "AL AMIN",
+      "knowsAbout": ["HTML5", "CSS3", "Tailwind CSS", "JavaScript", "React", "Redux", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL", "Figma"]
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="skills-root">
+      <div class="container space-y-10 sm:space-y-12">
+        <!-- Header & Breadcrumb -->
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Skills</span>
+          </nav>
+
+          <div class="space-y-4 animate-fade-in-up">
+            <span class="badge">Technical Capabilities</span>
+            <h1 class="hero-title">
+              Skills &amp; <span class="gradient-text">Engineering Stack</span>
+            </h1>
+            <p class="section-subtitle">
+              A structured overview of the technologies, frameworks, databases, and design practices I use to ship fast, scalable web applications.
+            </p>
+          </div>
+        </div>
+
+        <!-- Circular Domain Indicators -->
+        <div id="skills-circular-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5"></div>
+
+        <!-- Interactive Category Filter Bar & Skill Cards -->
+        <div class="space-y-6">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 reveal">
+            <div id="skills-category-tabs" class="skill-tabs-bar"></div>
+            <p id="skills-active-count" class="text-xs sm:text-sm font-mono-tech text-[var(--muted)] tabular-nums shrink-0"></p>
+          </div>
+
+          <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+        </div>
+
+        <!-- Technology Badges Overview -->
+        <div class="glass-card glow-effect p-6 sm:p-8 space-y-5 reveal">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="space-y-1">
+              <h2 class="text-xl sm:text-2xl font-bold text-[var(--text)]">Technology &amp; Workflow Badges</h2>
+              <p class="text-sm text-[var(--muted)]">Core stack, developer tools, and web quality standards across projects.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2.5 self-start sm:self-auto">
+              <a href="explorer.html" class="secondary-button text-xs sm:text-sm">
+                <i data-lucide="git-compare" class="w-4 h-4"></i>
+                <span>Tech &amp; Project Explorer</span>
+              </a>
+              <a href="projects.html" class="outline-button text-xs sm:text-sm">
+                <span>See In Projects</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <div id="skills-tech-badges" class="flex flex-wrap gap-2.5"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/skills.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

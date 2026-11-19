@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Development &amp; Design Services — AL AMIN</title>
+  <meta name="description" content="Explore 12 engineering services by AL AMIN: Full-Stack Web Development, MERN Apps, SaaS Platforms, Admin Dashboards, E-commerce, and UI/UX Design.">
+  <meta name="keywords" content="Web Development Services, MERN Stack Services, SaaS Development, Admin Dashboard, E-commerce Development, UI/UX Implementation, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/services.html">
+  <meta property="og:title" content="Web Development &amp; Design Services — AL AMIN">
+  <meta property="og:description" content="Full-stack MERN development, responsive UI engineering, SaaS architecture, and custom quote inquiries.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/services.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Web Development &amp; Design Services — AL AMIN">
+  <meta name="twitter:description" content="Scalable web development, SaaS builds, REST APIs, and responsive UI engineering.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "AL AMIN Full-Stack Development & Creative Design",
+    "description": "Full-stack web development, MERN stack applications, SaaS platforms, admin dashboards, e-commerce systems, and responsive UI/UX implementation.",
+    "url": "https://example.com/services.html",
+    "areaServed": "Worldwide",
+    "provider": {
+      "@type": "Person",
+      "name": "AL AMIN",
+      "jobTitle": "Full-Stack Developer & Creative Designer"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <!-- ================================================================
+         1. Services Hero & 12-Service Grid
+         ================================================================ -->
+    <section class="section" id="services-root">
+      <div class="container space-y-10 sm:space-y-12">
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Services</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 animate-fade-in-up">
+            <div class="space-y-4">
+              <span class="badge">Engineering &amp; Design Services</span>
+              <h1 class="hero-title">
+                Scalable <span class="gradient-text">Development Services</span> Built for Modern Products
+              </h1>
+              <p class="section-subtitle">
+                From full-stack MERN applications and SaaS dashboards to pixel-accurate UI implementation and performance tuning—click any service for full deliverables and workflow details.
+              </p>
+            </div>
+
+            <div class="shrink-0">
+              <a href="contact.html?intent=quote" class="primary-button w-full sm:w-auto">
+                <span>Request a Quote</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1 col mobile / 2 col tablet / 3 col desktop / 4 col large desktop -->
+        <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-6"></div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         2. 7-Step Work Process Animated Timeline
+         ================================================================ -->
+    <section class="section border-t border-[var(--border)]">
+      <div class="container space-y-10">
+        <div class="space-y-3 reveal">
+          <span class="badge">Delivery Workflow</span>
+          <h2 class="section-title">How We Go From Idea to <span class="gradient-text">Production</span></h2>
+          <p class="section-subtitle">
+            A structured seven-stage engineering process designed for clarity, predictable milestones, and long-term maintainability.
+          </p>
+        </div>
+
+        <div id="work-process-timeline" class="process-timeline"></div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         3. Custom Quote CTA (No Fake Fixed Pricing)
+         ================================================================ -->
+    <section class="section border-t border-[var(--border)]">
+      <div class="container">
+        <div class="glass-card glow-effect p-6 sm:p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center reveal">
+          <div class="lg:col-span-8 space-y-4">
+            <span class="badge">Custom Scoping</span>
+            <h2 class="section-title">Every Product Is Unique — <span class="gradient-text">Let's Scope Yours</span></h2>
+            <p class="section-subtitle">
+              Instead of rigid cookie-cutter pricing tiers, estimates are tailored to your exact feature scope, timeline, integrations, and architectural complexity.
+            </p>
+          </div>
+
+          <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col items-stretch gap-3">
+            <a href="contact.html?intent=quote" class="primary-button w-full">
+              <span>Request a Quote</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="projects.html" class="secondary-button w-full">
+              <span>Explore Case Studies</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Accessible Service Details Modal -->
+  <div
+    id="service-modal-backdrop"
+    class="service-modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="service-modal-title"
+    aria-hidden="true"
+  >
+    <div class="service-modal-panel p-5 sm:p-7 space-y-5">
+      <div class="flex items-start justify-between gap-4 pb-4 border-b border-[var(--border)]">
+        <div class="space-y-1 min-w-0">
+          <span class="text-xs font-mono-tech text-indigo-400">Service Specification</span>
+          <h2 id="service-modal-title" class="text-xl sm:text-2xl font-bold text-[var(--text)]">Service Details</h2>
+        </div>
+        <button
+          type="button"
+          id="service-modal-close"
+          class="icon-button"
+          aria-label="Close service details"
+        >
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div id="service-modal-body"></div>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

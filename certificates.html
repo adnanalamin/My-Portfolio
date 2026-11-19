@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificates &amp; Credentials Gallery — AL AMIN</title>
+  <meta name="description" content="Browse AL AMIN's verified engineering certificates across Full-Stack MERN, Frontend React, Backend APIs, and Responsive UI Systems.">
+  <meta name="keywords" content="Web Development Certificates, MERN Certificate, React Credential, Node.js Backend Certificate, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/certificates.html">
+  <meta property="og:title" content="Certificates &amp; Credentials Gallery — AL AMIN">
+  <meta property="og:description" content="Searchable certificate gallery with category filters, lightbox previews, credential details, and downloads.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/certificates.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Certificates &amp; Credentials Gallery — AL AMIN">
+  <meta name="twitter:description" content="Technical credentials, course completions, and downloadable engineering certificates.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Certificates & Credentials Gallery — AL AMIN",
+    "url": "https://example.com/certificates.html",
+    "about": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="certificates-root">
+      <div class="container space-y-8 sm:space-y-10">
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Certificates</span>
+          </nav>
+
+          <div class="space-y-4 animate-fade-in-up">
+            <span class="badge">Credentials &amp; Training</span>
+            <h1 class="hero-title">
+              Verified <span class="gradient-text">Certificates Gallery</span>
+            </h1>
+            <p class="section-subtitle">
+              Browse technical credentials across Full-Stack, Frontend, Backend, and UI/UX systems. Inspect full previews, view skills covered, or download copies directly.
+            </p>
+          </div>
+        </div>
+
+        <!-- Category Filters & Search -->
+        <div class="space-y-4 reveal">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+            <div class="lg:col-span-8">
+              <div id="cert-filter-tabs" class="skill-tabs-bar"></div>
+            </div>
+            <div class="lg:col-span-4">
+              <div class="project-search-wrap">
+                <i data-lucide="search" class="w-4 h-4 text-[var(--muted)] absolute left-3.5 pointer-events-none"></i>
+                <label for="cert-search-input" class="sr-only">Search certificates</label>
+                <input
+                  id="cert-search-input"
+                  type="search"
+                  class="project-search-input"
+                  placeholder="Search certificates, IDs, skills..."
+                  autocomplete="off"
+                >
+                <button
+                  type="button"
+                  id="cert-search-clear"
+                  class="hidden absolute right-2 w-8 h-8 rounded-md inline-flex items-center justify-center text-[var(--muted)] hover:text-[var(--text)]"
+                  aria-label="Clear certificate search"
+                >
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <p id="cert-results-count" class="text-xs sm:text-sm font-mono-tech text-[var(--muted)] tabular-nums"></p>
+        </div>
+
+        <!-- Responsive Gallery Grid -->
+        <div id="certificates-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Certificate Lightbox Modal -->
+  <div
+    id="cert-lightbox"
+    class="lightbox-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Certificate image viewer"
+    aria-hidden="true"
+  >
+    <div class="lightbox-panel p-4 sm:p-6 space-y-4">
+      <div class="flex items-center justify-between gap-3">
+        <p id="cert-lightbox-caption" class="text-sm font-semibold text-[var(--text)] truncate"></p>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="cert-lightbox-download" href="#" download class="outline-button text-xs py-1.5 px-3 min-h-[38px]">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>Download</span>
+          </a>
+          <button type="button" id="cert-lightbox-close" class="icon-button" aria-label="Close certificate lightbox">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--background)]">
+        <img id="cert-lightbox-image" src="assets/images/certificates/fullstack-mern.svg" alt="Certificate preview" class="w-full max-h-[68dvh] object-contain mx-auto">
+      </div>
+
+      <div class="flex items-center justify-between gap-3">
+        <button type="button" id="cert-lightbox-prev" class="secondary-button text-xs sm:text-sm py-2 px-4 min-h-[40px]">
+          <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          <span>Previous</span>
+        </button>
+        <button type="button" id="cert-lightbox-next" class="secondary-button text-xs sm:text-sm py-2 px-4 min-h-[40px]">
+          <span>Next</span>
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate Details Modal -->
+  <div
+    id="cert-details-modal"
+    class="service-modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cert-details-title"
+    aria-hidden="true"
+  >
+    <div class="service-modal-panel p-5 sm:p-7 space-y-5">
+      <div class="flex items-start justify-between gap-4 pb-4 border-b border-[var(--border)]">
+        <div class="space-y-1 min-w-0">
+          <span class="text-xs font-mono-tech text-indigo-400">Credential Details</span>
+          <h2 id="cert-details-title" class="text-xl sm:text-2xl font-bold text-[var(--text)]">Certificate</h2>
+        </div>
+        <button type="button" id="cert-details-close" class="icon-button" aria-label="Close certificate details">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="cert-details-body"></div>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

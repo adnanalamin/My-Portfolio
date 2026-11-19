@@ -1,0 +1,204 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 19: Project Comparison & Technology Explorer
+   ========================================================================== */
+
+.exp-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.exp-tech-card {
+  width: 100%;
+  text-align: left;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.65rem;
+  transition: transform 180ms var(--ease-out-expo), border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.exp-tech-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+}
+
+.exp-tech-card.is-selected {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(6, 182, 212, 0.1));
+}
+
+.exp-tech-card:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+.exp-filter-select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  transition: border-color var(--transition-fast);
+}
+
+.exp-filter-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.exp-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+  padding: 0.25rem 0.65rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  background-color: rgba(6, 182, 212, 0.1);
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+html.light .exp-filter-chip {
+  color: #0e7490;
+}
+
+.exp-filter-chip:hover {
+  border-color: var(--accent-cyan);
+  background-color: rgba(6, 182, 212, 0.18);
+}
+
+.exp-compare-tray {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface);
+  padding: 1rem 1.25rem;
+}
+
+.exp-compare-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 38px;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--border-strong);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.exp-compare-btn:hover {
+  border-color: var(--accent-cyan);
+  color: var(--text);
+}
+
+.exp-compare-btn.is-selected {
+  color: #ffffff;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-cyan) 100%);
+}
+
+/* Desktop Structured Comparison Table */
+.exp-compare-table-wrap {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  overflow: hidden;
+}
+
+.exp-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.exp-compare-table th,
+.exp-compare-table td {
+  padding: 1rem 1.15rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+
+.exp-compare-table th:last-child,
+.exp-compare-table td:last-child {
+  border-right: 0;
+}
+
+.exp-compare-table tbody tr:last-child th,
+.exp-compare-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.exp-compare-table thead th {
+  background-color: rgba(99, 102, 241, 0.08);
+  color: var(--text);
+}
+
+.exp-compare-table tbody th[scope="row"] {
+  width: 190px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background-color: rgba(148, 163, 184, 0.04);
+}
+
+.exp-tech-shared {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+html.light .exp-tech-shared {
+  color: #0e7490;
+}
+
+.exp-tech-unique {
+  color: var(--text);
+}
+
+@keyframes expPanelFade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.exp-panel-animate {
+  animation: expPanelFade 200ms var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-tech-card,
+  .exp-panel-animate {
+    animation: none !important;
+    transition: none !important;
+  }
+}

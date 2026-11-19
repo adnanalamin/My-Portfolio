@@ -1,0 +1,555 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 16: Live HTML CSS JavaScript Playground Styles
+   ========================================================================== */
+
+.pg-workbench {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface);
+  overflow: hidden;
+  box-shadow: 0 20px 44px -22px rgba(2, 6, 23, 0.55);
+}
+
+/* Top IDE Toolbar */
+.pg-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--background);
+}
+
+@media (min-width: 768px) {
+  .pg-toolbar {
+    padding: 0.95rem 1.25rem;
+  }
+}
+
+.pg-toolbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pg-select {
+  min-height: 40px;
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface);
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pg-select:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* Unsaved Status Indicator */
+.pg-unsaved-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.pg-unsaved-state.is-dirty {
+  color: #F59E0B;
+}
+
+.pg-unsaved-state.is-clean {
+  color: #34D399;
+}
+
+html.light .pg-unsaved-state.is-dirty {
+  color: #B45309;
+}
+
+html.light .pg-unsaved-state.is-clean {
+  color: #047857;
+}
+
+/* Mobile View Switcher (< 1024px) */
+.pg-mobile-view-switch {
+  display: flex;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+@media (min-width: 1024px) {
+  .pg-mobile-view-switch {
+    display: none;
+  }
+}
+
+.pg-view-tab {
+  flex: 1 1 0%;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.pg-view-tab.is-active {
+  background-color: rgba(99, 102, 241, 0.16);
+  border-color: var(--primary);
+  color: var(--text);
+}
+
+/* Split IDE Grid (Mobile tabbed / Desktop split) */
+.pg-split-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .pg-split-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    min-height: 640px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .pg-pane[data-mobile-hidden="true"] {
+    display: none;
+  }
+}
+
+.pg-pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .pg-editor-pane {
+    border-right: 1px solid var(--border);
+  }
+}
+
+/* Pane Header Bars */
+.pg-pane-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background-color: #0B1120;
+  color: #E2E8F0;
+}
+
+html.light .pg-pane-header {
+  background-color: #0F172A;
+  color: #F8FAFC;
+}
+
+.pg-editor-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.pg-lang-tab {
+  min-height: 38px;
+  padding: 0.4rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: #94A3B8;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.pg-lang-tab:hover {
+  color: #F8FAFC;
+  background-color: rgba(148, 163, 184, 0.1);
+}
+
+.pg-lang-tab.is-active {
+  color: #F8FAFC;
+  background-color: #1E293B;
+  border-color: rgba(99, 102, 241, 0.55);
+}
+
+/* Sub-toolbar inside Editor for Copy HTML/CSS/JS */
+.pg-copy-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid #1E293B;
+  background-color: #090E1A;
+  color: #94A3B8;
+  font-size: 0.75rem;
+}
+
+.pg-mini-btn {
+  min-height: 36px;
+  padding: 0.3rem 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background-color: #111827;
+  color: #CBD5E1;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.pg-mini-btn:hover {
+  border-color: var(--accent-cyan);
+  color: #FFFFFF;
+  background-color: #1E293B;
+}
+
+/* Dark IDE Editor Surface + Synchronized Line Numbers */
+.pg-code-stage {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 360px;
+  height: 440px;
+  background-color: #070B14;
+  color: #E2E8F0;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .pg-code-stage {
+    height: 470px;
+  }
+}
+
+.pg-line-gutter {
+  width: 3.1rem;
+  flex-shrink: 0;
+  padding: 0.875rem 0.5rem 0.875rem 0.35rem;
+  border-right: 1px solid #1E293B;
+  background-color: #0B1120;
+  color: #64748B;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+  overflow: hidden;
+  white-space: pre;
+}
+
+.pg-textarea-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+}
+
+.pg-code-textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  border: 0;
+  outline: none;
+  padding: 0.875rem 1rem;
+  background-color: transparent;
+  color: #F1F5F9;
+  caret-color: #22D3EE;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  tab-size: 2;
+  white-space: pre;
+  overflow: auto;
+}
+
+.pg-code-textarea:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(6, 182, 212, 0.55);
+}
+
+.pg-code-textarea.is-hidden {
+  display: none;
+}
+
+/* Editor Keyboard & Line Metrics Footer */
+.pg-editor-statusbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-top: 1px solid #1E293B;
+  background-color: #0B1120;
+  color: #94A3B8;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Preview Surface & Responsive Viewport Switcher */
+.pg-preview-pane {
+  background-color: var(--background);
+}
+
+.pg-preview-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+.pg-device-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+}
+
+.pg-device-btn {
+  min-height: 36px;
+  padding: 0.3rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 0.4rem;
+  border: 0;
+  background-color: transparent;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.pg-device-btn.is-active {
+  background-color: rgba(99, 102, 241, 0.18);
+  color: var(--text);
+}
+
+.pg-iframe-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem;
+  min-height: 320px;
+  height: 340px;
+  background-color: #090D16;
+  overflow: auto;
+}
+
+.pg-iframe-box {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background-color: #FFFFFF;
+  overflow: hidden;
+  transition: width 200ms var(--ease-out-expo);
+}
+
+.pg-iframe-box[data-preview-size="tablet"] {
+  width: min(768px, 100%);
+}
+
+.pg-iframe-box[data-preview-size="mobile"] {
+  width: min(375px, 100%);
+}
+
+.pg-preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background-color: #FFFFFF;
+}
+
+/* Fullscreen Preview Overlay Mode */
+.pg-preview-pane.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  width: 100vw;
+  height: 100dvh;
+  display: flex !important;
+  flex-direction: column;
+  background-color: var(--background);
+}
+
+.pg-preview-pane.is-fullscreen .pg-iframe-stage {
+  flex: 1 1 auto;
+  height: auto;
+  padding: 1rem;
+}
+
+.pg-preview-pane.is-fullscreen .pg-console-panel {
+  max-height: 200px;
+}
+
+/* Console Output Panel */
+.pg-console-panel {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+  background-color: #070B14;
+  color: #E2E8F0;
+  min-height: 170px;
+  max-height: 220px;
+}
+
+.pg-console-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid #1E293B;
+  background-color: #0B1120;
+}
+
+.pg-console-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.pg-console-empty {
+  color: #64748B;
+  padding-block: 0.5rem;
+}
+
+.pg-console-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.4rem 0.45rem;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.75);
+  word-break: break-word;
+}
+
+.pg-console-row:last-child {
+  border-bottom: 0;
+}
+
+.pg-console-row.level-error {
+  background-color: rgba(239, 68, 68, 0.12);
+  color: #FCA5A5;
+}
+
+.pg-console-row.level-warn {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #FCD34D;
+}
+
+.pg-console-row.level-info {
+  color: #67E8F9;
+}
+
+.pg-console-level {
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  min-width: 3.1rem;
+  margin-top: 0.1rem;
+}
+
+.pg-console-time {
+  color: #64748B;
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.pg-console-msg {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: pre-wrap;
+}
+
+/* Auto-Run Toggle Switch */
+.pg-autorun-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 40px;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pg-autorun-checkbox {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-iframe-box,
+  .pg-view-tab,
+  .pg-lang-tab,
+  .pg-mini-btn,
+  .pg-device-btn {
+    transition: none !important;
+  }
+}

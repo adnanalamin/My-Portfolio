@@ -1,0 +1,33 @@
+{
+  "id": "./index.html",
+  "name": "AL AMIN — Full-Stack Developer & Creative Designer",
+  "short_name": "AL AMIN",
+  "description": "Developer portfolio showcasing full-stack MERN projects, case studies, interactive code playground, technology explorer, and technical writing.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#050816",
+  "background_color": "#050816",
+  "categories": ["portfolio", "developer", "technology"],
+  "icons": [
+    {
+      "src": "assets/icons/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

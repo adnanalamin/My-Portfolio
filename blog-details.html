@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Article Reader — AL AMIN Blog</title>
+  <meta name="description" content="Long-form engineering article with reading progress bar, interactive table of contents, code blocks, tags, and related posts by AL AMIN.">
+  <meta name="keywords" content="Engineering Article, Software Tutorial, MERN Guide, React Architecture, JavaScript Deep Dive, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/blog-details.html">
+  <meta property="og:title" content="Engineering Article Reader — AL AMIN Blog">
+  <meta property="og:description" content="Technical engineering article reader on AL AMIN's portfolio blog.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/blog-details.html">
+  <meta property="og:image" content="assets/images/blog/mern-architecture.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Engineering Article Reader — AL AMIN Blog">
+  <meta name="twitter:description" content="In-depth full-stack engineering articles, code patterns, and guides by AL AMIN.">
+  <meta name="twitter:image" content="assets/images/blog/mern-architecture.jpg">
+
+  <script id="blog-posting-jsonld" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Engineering Article — AL AMIN Blog",
+    "description": "Long-form engineering article and software architecture notes by AL AMIN.",
+    "image": "assets/images/blog/mern-architecture.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://example.com/blog-details.html"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern blog-details-page" data-page="blog-details">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <!-- Dedicated Article Reading Progress Indicator -->
+  <div id="blog-reading-progress-track" class="blog-reading-progress-track" aria-hidden="false">
+    <div
+      id="blog-reading-progress-bar"
+      class="blog-reading-progress-bar"
+      role="progressbar"
+      aria-label="Article reading progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+    ></div>
+  </div>
+
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <article class="section" id="blog-details-root">
+      <div class="container space-y-10 sm:space-y-12">
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="blog.html" class="hover:text-[var(--text)] transition-colors">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span id="blog-breadcrumb-title" class="text-[var(--text-secondary)] truncate max-w-[240px] sm:max-w-md">Article</span>
+        </nav>
+
+        <!-- Article Header -->
+        <header id="article-header-mount" class="animate-fade-in-up">
+          <h1 class="text-2xl sm:text-4xl font-extrabold text-[var(--text)]">Engineering Article</h1>
+        </header>
+
+        <!-- Featured Media -->
+        <div id="article-featured-media" class="animate-fade-in-up delay-100"></div>
+
+        <!-- Reader Layout: Table of Contents + Constrained Prose Measure -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <!-- Table of Contents Sidebar -->
+          <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-4">
+            <div class="glass-card p-5 space-y-4">
+              <div class="flex items-center justify-between gap-2 pb-3 border-b border-[var(--border)]">
+                <h2 class="text-sm font-bold text-[var(--text)]">Table of Contents</h2>
+                <span id="reading-progress-percent" class="text-xs font-mono-tech text-cyan-400 tabular-nums">0% read</span>
+              </div>
+              <nav aria-label="Table of contents">
+                <ul id="article-toc-list" class="space-y-1.5 text-sm"></ul>
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Main Prose Column (65-68ch Max Line Width) -->
+          <div class="lg:col-span-8 min-w-0 space-y-10">
+            <div id="article-prose-body" class="blog-prose space-y-8"></div>
+
+            <!-- Tags & Share Section -->
+            <div class="pt-6 border-t border-[var(--border)] space-y-6 blog-prose">
+              <div class="space-y-2.5">
+                <h2 class="text-sm font-bold text-[var(--text)]">Topics &amp; Tags</h2>
+                <div id="article-tags-mount" class="flex flex-wrap gap-2"></div>
+              </div>
+
+              <div class="space-y-2.5">
+                <h2 class="text-sm font-bold text-[var(--text)]">Share This Article</h2>
+                <div id="article-share-mount" class="flex flex-wrap items-center gap-2.5"></div>
+              </div>
+            </div>
+
+            <!-- Previous / Next Article -->
+            <nav aria-label="Adjacent articles" id="article-prev-next-mount" class="grid grid-cols-1 sm:grid-cols-2 gap-4 blog-prose"></nav>
+          </div>
+        </div>
+
+        <!-- Related Posts -->
+        <section class="pt-8 border-t border-[var(--border)] space-y-6 reveal" aria-label="Related articles">
+          <div class="flex items-end justify-between gap-4 flex-wrap">
+            <div class="space-y-1">
+              <h2 class="text-2xl sm:text-3xl font-bold text-[var(--text)]">Related Articles</h2>
+              <p class="text-sm text-[var(--muted)]">Continue exploring related engineering notes and guides.</p>
+            </div>
+            <a href="blog.html" class="secondary-button text-xs sm:text-sm py-2 px-4 min-h-[40px]">
+              <span>All Articles</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+          <div id="article-related-mount" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/blog.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

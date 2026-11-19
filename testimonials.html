@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials &amp; Sample Reviews — AL AMIN</title>
+  <meta name="description" content="Sample demonstration testimonials and interactive touch-enabled review slider showcasing AL AMIN's collaboration workflow.">
+  <meta name="keywords" content="Developer Testimonials, Sample Reviews, Web Development Collaboration, AL AMIN Portfolio">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/testimonials.html">
+  <meta property="og:title" content="Testimonials &amp; Sample Reviews — AL AMIN">
+  <meta property="og:description" content="Interactive testimonial slider featuring clearly marked sample reviews ready for real client updates.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/testimonials.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Testimonials &amp; Sample Reviews — AL AMIN">
+  <meta name="twitter:description" content="Touch-enabled testimonial slider with demonstration collaboration reviews.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Testimonials & Sample Reviews — AL AMIN",
+    "url": "https://example.com/testimonials.html",
+    "description": "Demonstration testimonials showcase for AL AMIN's web development portfolio."
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="testimonials-root">
+      <div class="container space-y-12">
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Testimonials</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 animate-fade-in-up">
+            <div class="space-y-4">
+              <span class="badge">Sample / Demo Endorsements</span>
+              <h1 class="hero-title">
+                Collaboration <span class="gradient-text">Testimonials</span>
+              </h1>
+              <p class="section-subtitle">
+                Interactive review showcase wired to <code class="font-mono-tech text-indigo-400">js/testimonials.js</code>. Entries below are clearly labeled demonstration samples ready to swap with verified client reviews.
+              </p>
+            </div>
+
+            <a href="contact.html" class="primary-button w-full sm:w-auto shrink-0">
+              <span>Start a Conversation</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sample / Demo Notice -->
+        <div class="glass-card p-4 sm:p-5 flex items-start gap-3 text-xs sm:text-sm text-[var(--muted)] animate-fade-in-up delay-100">
+          <i data-lucide="info" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+          <p>
+            <strong class="text-[var(--text)]">Demonstration Placeholders:</strong> These reviews represent sample collaboration formats and are not fabricated real-world clients. Update <code class="font-mono-tech text-indigo-400">testimonialsData</code> in <code class="font-mono-tech text-indigo-400">js/testimonials.js</code> as client engagements complete.
+          </p>
+        </div>
+
+        <!-- Interactive Slider Region -->
+        <div
+          id="testimonial-slider-region"
+          class="glass-card glow-effect p-6 sm:p-8 lg:p-10 space-y-6 animate-fade-in-up delay-200"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Sample client testimonials slider"
+          tabindex="0"
+        >
+          <div id="testimonial-slide-mount" aria-live="polite"></div>
+
+          <!-- Slider Controls -->
+          <div class="pt-5 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                id="testimonial-prev"
+                class="icon-button"
+                aria-label="Previous testimonial"
+              >
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+              </button>
+              <button
+                type="button"
+                id="testimonial-next"
+                class="icon-button"
+                aria-label="Next testimonial"
+              >
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+              </button>
+              <button
+                type="button"
+                id="testimonial-pause-btn"
+                class="outline-button text-xs py-2 px-3 min-h-[40px]"
+                aria-pressed="false"
+              >
+                <i data-lucide="pause" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">Auto-Play</span>
+              </button>
+            </div>
+
+            <div id="testimonial-dots" class="flex items-center gap-2" aria-label="Testimonial slides"></div>
+
+            <div class="flex items-center gap-3 text-xs font-mono-tech text-[var(--muted)]">
+              <span class="hidden md:inline">Swipe on touch · Hover to pause</span>
+              <span id="testimonial-counter" class="tabular-nums font-semibold text-[var(--text-secondary)]">1 / 4</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- All Sample Reviews Overview -->
+        <section class="space-y-6" aria-label="All sample reviews">
+          <div class="space-y-1 reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-[var(--text)]">All Sample Endorsements</h2>
+            <p class="text-sm text-[var(--muted)]">Select Spotlight on any review card to focus it in the slider above.</p>
+          </div>
+          <div id="testimonials-overview-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/testimonials.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

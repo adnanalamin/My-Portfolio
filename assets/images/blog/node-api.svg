@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Node.js REST API Gateway and Middleware Pipeline">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050816"/>
+      <stop offset="100%" stop-color="#0B132B"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <g stroke="#1E293B" stroke-width="1">
+    <path d="M0 120H800M0 240H800M0 360H800M0 480H800"/>
+    <path d="M160 0V600M320 0V600M480 0V600M640 0V600"/>
+  </g>
+  <line x1="185" y1="220" x2="620" y2="220" stroke="url(#line)" stroke-width="3" stroke-dasharray="8 6"/>
+
+  <rect x="64" y="150" width="144" height="140" rx="14" fill="#0B1020" stroke="#06B6D4" stroke-width="1.5"/>
+  <text x="136" y="205" text-anchor="middle" fill="#67E8F9" font-family="monospace" font-size="13">CLIENT HTTP</text>
+  <text x="136" y="232" text-anchor="middle" fill="#F8FAFC" font-family="monospace" font-size="15" font-weight="600">POST /api</text>
+  <text x="136" y="258" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="12">Bearer JWT</text>
+
+  <rect x="252" y="132" width="136" height="176" rx="14" fill="#0B1020" stroke="#6366F1" stroke-width="1.5"/>
+  <text x="320" y="176" text-anchor="middle" fill="#A5B4FC" font-family="monospace" font-size="12">MIDDLEWARE</text>
+  <rect x="272" y="196" width="96" height="28" rx="6" fill="#1E1B4B"/>
+  <text x="320" y="214" text-anchor="middle" fill="#E0E7FF" font-family="monospace" font-size="12">rateLimit</text>
+  <rect x="272" y="234" width="96" height="28" rx="6" fill="#1E1B4B"/>
+  <text x="320" y="252" text-anchor="middle" fill="#E0E7FF" font-family="monospace" font-size="12">zodValidate</text>
+
+  <rect x="432" y="132" width="136" height="176" rx="14" fill="#0B1020" stroke="#8B5CF6" stroke-width="1.5"/>
+  <text x="500" y="176" text-anchor="middle" fill="#C4B5FD" font-family="monospace" font-size="12">SERVICE</text>
+  <rect x="452" y="196" width="96" height="28" rx="6" fill="#2E1065"/>
+  <text x="500" y="214" text-anchor="middle" fill="#EDE9FE" font-family="monospace" font-size="12">controller</text>
+  <rect x="452" y="234" width="96" height="28" rx="6" fill="#2E1065"/>
+  <text x="500" y="252" text-anchor="middle" fill="#EDE9FE" font-family="monospace" font-size="12">errorGuard</text>
+
+  <rect x="612" y="150" width="124" height="140" rx="14" fill="#0B1020" stroke="#10B981" stroke-width="1.5"/>
+  <text x="674" y="205" text-anchor="middle" fill="#6EE7B7" font-family="monospace" font-size="13">STORAGE</text>
+  <text x="674" y="232" text-anchor="middle" fill="#F8FAFC" font-family="monospace" font-size="15" font-weight="600">MongoDB</text>
+  <text x="674" y="258" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="12">Indexed Pool</text>
+
+  <rect x="64" y="392" width="672" height="128" rx="14" fill="#0B1020" stroke="#1E293B"/>
+  <text x="92" y="440" fill="#F8FAFC" font-family="sans-serif" font-size="22" font-weight="700">Resilient Node.js &amp; Express APIs</text>
+  <text x="92" y="476" fill="#94A3B8" font-family="monospace" font-size="14">Validation · Structured Error Envelopes · Graceful Shutdown</text>
+</svg>

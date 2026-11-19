@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Code Playground — AL AMIN | HTML, CSS &amp; JS Sandbox</title>
+  <meta name="description" content="Write HTML, CSS, and JavaScript in a sandboxed browser-based code playground by AL AMIN with live preview, console output, starter templates, and HTML export.">
+  <meta name="keywords" content="HTML CSS JS Playground, Code Sandbox, Live Preview Editor, Interactive Frontend Lab, AL AMIN Portfolio">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/playground.html">
+  <meta property="og:title" content="Live Code Playground — AL AMIN">
+  <meta property="og:description" content="Interactive HTML, CSS, and JavaScript browser playground with sandboxed live preview, console capture, responsive device switcher, and 8 starter examples.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/playground.html">
+  <meta property="og:image" content="assets/images/projects/slideverse.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Live Code Playground — AL AMIN">
+  <meta name="twitter:description" content="Interactive HTML, CSS, and JavaScript editor with isolated iframe sandbox, console capture, and responsive preview modes.">
+  <meta name="twitter:image" content="assets/images/projects/slideverse.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AL AMIN Live Code Playground",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "description": "Browser-based HTML, CSS, and JavaScript code playground with isolated iframe preview, console inspector, and starter templates.",
+    "url": "https://example.com/playground.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/playground.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="playground-root" aria-labelledby="playground-page-title">
+      <div class="container space-y-6 sm:space-y-8">
+        <!-- Breadcrumb & Header -->
+        <div class="space-y-4">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="dashboard.html" class="hover:text-[var(--text)] transition-colors">Dashboard</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Code Playground</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 animate-fade-in-up">
+            <div class="space-y-2.5">
+              <span class="badge">Client-Side Sandbox</span>
+              <h1 id="playground-page-title" class="hero-title">
+                Live <span class="gradient-text">HTML · CSS · JS Playground</span>
+              </h1>
+              <p class="section-subtitle">
+                Experiment with frontend snippets in real time. Everything executes locally in an isolated browser sandbox with zero access to cookies or storage.
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a href="projects.html" class="outline-button text-xs sm:text-sm py-2 px-4 min-h-[40px]">
+                <span>Projects</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+              <a href="dashboard.html" class="secondary-button text-xs sm:text-sm py-2 px-4 min-h-[40px]">
+                <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                <span>Dashboard</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security Notice Strip -->
+        <div class="glass-card p-3.5 sm:px-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-[var(--text-secondary)]">
+          <div class="flex items-center gap-2">
+            <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400 shrink-0" aria-hidden="true"></i>
+            <span>
+              <strong>Local Execution Sandbox:</strong> Code executes purely in your browser inside a cookie-free iframe (<code class="font-mono-tech">sandbox="allow-scripts"</code>).
+            </span>
+          </div>
+          <span class="font-mono-tech text-[11px] text-[var(--muted)]">
+            Shortcuts: Ctrl/Cmd+Enter Run · Ctrl/Cmd+S Download · Tab Indent · Esc Exit Editor
+          </span>
+        </div>
+
+        <!-- IDE Workbench -->
+        <div class="pg-workbench" id="pg-workbench">
+          <!-- Top IDE Toolbar -->
+          <div class="pg-toolbar">
+            <div class="pg-toolbar-group">
+              <label for="pg-template-select" class="text-xs font-semibold text-[var(--muted)] whitespace-nowrap">
+                Example
+              </label>
+              <select id="pg-template-select" class="pg-select" aria-label="Select starter template"></select>
+
+              <span id="pg-unsaved-indicator" class="pg-unsaved-state is-clean" aria-live="polite">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                <span id="pg-unsaved-text">Clean</span>
+              </span>
+            </div>
+
+            <div class="pg-toolbar-group">
+              <label class="pg-autorun-label">
+                <input type="checkbox" id="pg-autorun-toggle" class="pg-autorun-checkbox" checked>
+                <span>Auto-Run</span>
+              </label>
+
+              <button type="button" id="pg-run-btn" class="primary-button text-xs py-2 px-3.5 min-h-[40px]">
+                <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                <span>Run Code</span>
+              </button>
+
+              <button type="button" id="pg-reset-btn" class="outline-button text-xs py-2 px-3 min-h-[40px]">
+                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                <span>Reset Code</span>
+              </button>
+
+              <button type="button" id="pg-clear-btn" class="outline-button text-xs py-2 px-3 min-h-[40px]">
+                <i data-lucide="eraser" class="w-3.5 h-3.5"></i>
+                <span>Clear Editor</span>
+              </button>
+
+              <button type="button" id="pg-download-btn" class="secondary-button text-xs py-2 px-3.5 min-h-[40px]">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                <span>Download HTML File</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Mobile View Tabs (< 1024px) -->
+          <div class="pg-mobile-view-switch" role="tablist" aria-label="Playground workspace view">
+            <button
+              type="button"
+              id="pg-mobile-view-editor"
+              role="tab"
+              aria-selected="true"
+              data-mobile-view="editor"
+              class="pg-view-tab is-active"
+            >
+              <i data-lucide="code-2" class="w-4 h-4"></i>
+              <span>Editor</span>
+            </button>
+            <button
+              type="button"
+              id="pg-mobile-view-preview"
+              role="tab"
+              aria-selected="false"
+              data-mobile-view="preview"
+              class="pg-view-tab"
+            >
+              <i data-lucide="monitor-play" class="w-4 h-4"></i>
+              <span>Preview &amp; Console</span>
+            </button>
+          </div>
+
+          <!-- Main Split Grid -->
+          <div class="pg-split-grid">
+            <!-- Left Pane: Code Editors -->
+            <div class="pg-pane pg-editor-pane" id="pg-editor-pane" data-mobile-hidden="false">
+              <div class="pg-pane-header">
+                <div class="pg-editor-tabs" role="tablist" aria-label="Code language editors">
+                  <button
+                    type="button"
+                    id="pg-tab-html"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="editor-html"
+                    data-editor-tab="html"
+                    class="pg-lang-tab is-active"
+                  >
+                    <i data-lucide="file-code-2" class="w-3.5 h-3.5 text-orange-400"></i>
+                    <span>HTML Editor</span>
+                  </button>
+                  <button
+                    type="button"
+                    id="pg-tab-css"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="editor-css"
+                    data-editor-tab="css"
+                    class="pg-lang-tab"
+                  >
+                    <i data-lucide="palette" class="w-3.5 h-3.5 text-cyan-400"></i>
+                    <span>CSS Editor</span>
+                  </button>
+                  <button
+                    type="button"
+                    id="pg-tab-js"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="editor-js"
+                    data-editor-tab="js"
+                    class="pg-lang-tab"
+                  >
+                    <i data-lucide="braces" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span>JavaScript Editor</span>
+                  </button>
+                </div>
+
+                <span id="pg-line-count" class="text-[11px] font-mono-tech text-slate-400 tabular-nums whitespace-nowrap">
+                  1 line
+                </span>
+              </div>
+
+              <!-- Quick Copy Strip -->
+              <div class="pg-copy-strip">
+                <span class="text-xs text-slate-400">Copy individual source buffers:</span>
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <button type="button" id="pg-copy-html" class="pg-mini-btn">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    <span>Copy HTML</span>
+                  </button>
+                  <button type="button" id="pg-copy-css" class="pg-mini-btn">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    <span>Copy CSS</span>
+                  </button>
+                  <button type="button" id="pg-copy-js" class="pg-mini-btn">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    <span>Copy JavaScript</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Synchronized Gutter + Native Textareas -->
+              <div class="pg-code-stage">
+                <div id="pg-line-gutter" class="pg-line-gutter" aria-hidden="true">1</div>
+                <div class="pg-textarea-wrap">
+                  <label for="editor-html" class="sr-only">HTML Editor</label>
+                  <textarea
+                    id="editor-html"
+                    class="pg-code-textarea"
+                    spellcheck="false"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    wrap="off"
+                    aria-label="HTML code editor"
+                  ></textarea>
+
+                  <label for="editor-css" class="sr-only">CSS Editor</label>
+                  <textarea
+                    id="editor-css"
+                    class="pg-code-textarea is-hidden"
+                    spellcheck="false"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    wrap="off"
+                    aria-label="CSS code editor"
+                  ></textarea>
+
+                  <label for="editor-js" class="sr-only">JavaScript Editor</label>
+                  <textarea
+                    id="editor-js"
+                    class="pg-code-textarea is-hidden"
+                    spellcheck="false"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    wrap="off"
+                    aria-label="JavaScript code editor"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="pg-editor-statusbar">
+                <span id="pg-active-file-label">index.html</span>
+                <span>Native editor · Esc to exit focus · Tab inserts 2 spaces</span>
+              </div>
+            </div>
+
+            <!-- Right Pane: Live Sandboxed Preview & Console -->
+            <div class="pg-pane pg-preview-pane" id="pg-preview-pane" data-mobile-hidden="true">
+              <div class="pg-preview-header">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-[var(--text)]">Live Preview</span>
+                  <span id="pg-preview-dimensions" class="text-[11px] font-mono-tech text-[var(--muted)] tabular-nums">100%</span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2">
+                  <div class="pg-device-group" role="group" aria-label="Responsive preview width">
+                    <button type="button" class="pg-device-btn is-active" data-preview-width="desktop" aria-pressed="true" title="Desktop full width">
+                      <i data-lucide="monitor" class="w-3.5 h-3.5"></i>
+                      <span>Desktop</span>
+                    </button>
+                    <button type="button" class="pg-device-btn" data-preview-width="tablet" aria-pressed="false" title="Tablet width (768px)">
+                      <i data-lucide="tablet" class="w-3.5 h-3.5"></i>
+                      <span>768px</span>
+                    </button>
+                    <button type="button" class="pg-device-btn" data-preview-width="mobile" aria-pressed="false" title="Mobile width (375px)">
+                      <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+                      <span>375px</span>
+                    </button>
+                  </div>
+
+                  <button
+                    type="button"
+                    id="pg-fullscreen-btn"
+                    class="outline-button text-xs py-1.5 px-3 min-h-[38px]"
+                    aria-pressed="false"
+                  >
+                    <i data-lucide="maximize-2" class="w-3.5 h-3.5" id="pg-fullscreen-icon"></i>
+                    <span id="pg-fullscreen-label">Fullscreen Preview</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="pg-iframe-stage">
+                <div id="pg-iframe-box" class="pg-iframe-box" data-preview-size="desktop">
+                  <iframe
+                    id="pg-preview-iframe"
+                    class="pg-preview-iframe"
+                    title="Live code playground preview"
+                    sandbox="allow-scripts"
+                    referrerpolicy="no-referrer"
+                  ></iframe>
+                </div>
+              </div>
+
+              <!-- Console Output Panel -->
+              <div class="pg-console-panel" id="pg-console-panel">
+                <div class="pg-console-header">
+                  <div class="flex items-center gap-2">
+                    <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400" aria-hidden="true"></i>
+                    <span class="text-xs font-bold text-slate-200">Console Output</span>
+                    <span id="pg-console-count" class="text-[11px] font-mono-tech text-slate-400 tabular-nums">0 entries</span>
+                  </div>
+                  <button type="button" id="pg-console-clear-btn" class="pg-mini-btn">
+                    <i data-lucide="trash-2" class="w-3 h-3"></i>
+                    <span>Clear Console</span>
+                  </button>
+                </div>
+
+                <div id="pg-console-output" class="pg-console-list" role="log" aria-live="polite" aria-label="Sandbox console output">
+                  <p class="pg-console-empty">Console ready — output and runtime errors appear here cleanly.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Accessible Reset Confirmation Modal -->
+  <div
+    id="pg-reset-modal"
+    class="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="pg-reset-modal-title"
+    aria-hidden="true"
+  >
+    <div class="modal-panel max-w-md p-6 space-y-5">
+      <div class="flex items-start justify-between gap-3">
+        <div class="space-y-1">
+          <h2 id="pg-reset-modal-title" class="text-lg font-bold text-[var(--text)]">Reset Template Code?</h2>
+          <p class="text-sm text-[var(--muted)]">
+            This will restore the selected example template's default HTML, CSS, and JavaScript and overwrite your unsaved edits.
+          </p>
+        </div>
+        <button type="button" id="pg-reset-close" class="icon-button" aria-label="Cancel reset">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-end gap-2.5 pt-2 border-t border-[var(--border)]">
+        <button type="button" id="pg-reset-cancel" class="secondary-button text-xs sm:text-sm py-2 px-4 min-h-[40px]">
+          Keep Editing
+        </button>
+        <button type="button" id="pg-reset-confirm" class="primary-button text-xs sm:text-sm py-2 px-4 min-h-[40px]">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+          <span>Confirm Reset</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/playground.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

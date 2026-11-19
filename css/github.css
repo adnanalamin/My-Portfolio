@@ -1,0 +1,370 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 14: Live GitHub API Integration Styles
+   ========================================================================== */
+
+.gh-shell {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.gh-surface-card {
+  background-color: var(--glass-card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.gh-surface-card:hover {
+  border-color: var(--border-strong);
+}
+
+/* Profile Card Animation & Layout */
+.gh-profile-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.15rem, 2.5vw, 1.85rem);
+  animation: ghFadeSlideIn 380ms var(--ease-out-expo) both;
+}
+
+.gh-profile-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent-cyan));
+  opacity: 0.85;
+}
+
+.gh-avatar-frame {
+  width: 84px;
+  height: 84px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 2px solid var(--border-strong);
+  background-color: var(--background);
+  flex-shrink: 0;
+  transition: transform 240ms var(--ease-out-expo), border-color var(--transition-fast);
+}
+
+@media (min-width: 640px) {
+  .gh-avatar-frame {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.gh-profile-card:hover .gh-avatar-frame {
+  transform: translateY(-2px);
+  border-color: var(--accent-cyan);
+}
+
+.gh-metric-box {
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+}
+
+/* GitHub Username Control Bar */
+.gh-controls-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+}
+
+@media (min-width: 1024px) {
+  .gh-controls-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.gh-input {
+  width: 100%;
+  min-height: 42px;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.875rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.gh-input::placeholder {
+  color: var(--muted);
+}
+
+.gh-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+}
+
+.gh-select {
+  min-height: 42px;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.gh-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+}
+
+/* Repository Cards & Featured Badges */
+.gh-repo-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 220ms var(--ease-out-expo), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  animation: ghCardIn 320ms var(--ease-out-expo) both;
+  animation-delay: var(--gh-delay, 0ms);
+}
+
+.gh-repo-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.gh-repo-card.is-unavailable {
+  border-style: dashed;
+  background-color: var(--background);
+}
+
+.gh-repo-card.is-unavailable:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.gh-visibility-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background-color: var(--background);
+  white-space: nowrap;
+}
+
+.gh-lang-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background-color: var(--lang-color, #6366f1);
+  flex-shrink: 0;
+}
+
+/* Language Filter Pills — Wrap Cleanly with Zero Horizontal Scroll */
+.gh-filter-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.gh-lang-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 36px;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.gh-lang-pill:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.gh-lang-pill.is-active {
+  color: #ffffff;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+/* Stacked Multi-Language Bar + Interactive Bars */
+.gh-lang-stacked-bar {
+  display: flex;
+  width: 100%;
+  height: 12px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background-color: rgba(148, 163, 184, 0.14);
+  gap: 2px;
+}
+
+html.light .gh-lang-stacked-bar {
+  background-color: rgba(15, 23, 42, 0.08);
+}
+
+.gh-lang-segment {
+  height: 100%;
+  min-width: 6px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: var(--seg-width, 10%);
+  background-color: var(--lang-color, #6366f1);
+  transition: opacity var(--transition-fast);
+}
+
+.gh-lang-row-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.gh-lang-row-btn:hover,
+.gh-lang-row-btn.is-active {
+  background-color: rgba(99, 102, 241, 0.09);
+  border-color: var(--border-strong);
+}
+
+.gh-lang-bar-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: rgba(148, 163, 184, 0.14);
+  overflow: hidden;
+}
+
+html.light .gh-lang-bar-track {
+  background-color: rgba(15, 23, 42, 0.08);
+}
+
+.gh-lang-bar-fill {
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  transform-origin: left center;
+  transform: scaleX(var(--lang-scale, 0.2));
+  background-color: var(--lang-color, #6366f1);
+  transition: transform 550ms var(--ease-out-expo);
+}
+
+/* Recent GitHub Activity Feed */
+.gh-event-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.gh-event-item:first-child {
+  padding-top: 0;
+}
+
+.gh-event-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.gh-event-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+/* Alert & Status Banners */
+.gh-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+@media (min-width: 640px) {
+  .gh-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.gh-banner[data-kind="warning"] {
+  border-color: rgba(245, 158, 11, 0.38);
+  background-color: rgba(245, 158, 11, 0.08);
+}
+
+.gh-banner[data-kind="error"] {
+  border-color: rgba(244, 63, 94, 0.4);
+  background-color: rgba(244, 63, 94, 0.08);
+}
+
+@keyframes ghFadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes ghCardIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-profile-card,
+  .gh-repo-card,
+  .gh-lang-bar-fill {
+    animation: none !important;
+    transition: none !important;
+  }
+}

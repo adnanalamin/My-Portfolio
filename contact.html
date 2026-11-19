@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &amp; Project Inquiry — AL AMIN</title>
+  <meta name="description" content="Contact AL AMIN for Full-Stack MERN development, frontend UI architecture, SaaS platforms, and freelance engineering inquiries.">
+  <meta name="keywords" content="Contact AL AMIN, Hire Full-Stack Developer, Hire MERN Developer, Freelance Web Developer Inquiry">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/contact.html">
+  <meta property="og:title" content="Contact &amp; Project Inquiry — AL AMIN">
+  <meta property="og:description" content="Start a project or send an inquiry to AL AMIN.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/contact.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact &amp; Project Inquiry — AL AMIN">
+  <meta name="twitter:description" content="Get in touch with AL AMIN for full-stack web apps, MERN systems, and UI engineering.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "AL AMIN Full-Stack Engineering Inquiries",
+    "description": "Direct project inquiries for full-stack web development, MERN applications, and UI/UX implementation.",
+    "url": "https://example.com/contact.html",
+    "provider": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="contact-root">
+      <div class="container space-y-10 sm:space-y-12">
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Contact</span>
+          </nav>
+
+          <div class="space-y-4 animate-fade-in-up">
+            <span class="badge">Start a Project</span>
+            <h1 class="hero-title">
+              Get in <span class="gradient-text">Touch</span>
+            </h1>
+            <p class="section-subtitle">
+              Have a web application, SaaS platform, or interface redesign in mind? Reach out using the inquiry form or connect through direct channels.
+            </p>
+          </div>
+        </div>
+
+        <!-- Two-Column Desktop / Single-Column Mobile -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Left Column: Direct Details & Channels -->
+          <div class="lg:col-span-5 space-y-6 animate-fade-in-up delay-100">
+            <div class="glass-card p-6 sm:p-7 space-y-6">
+              <div class="space-y-1.5">
+                <h2 class="text-xl font-bold text-[var(--text)]">Direct Contact</h2>
+                <p class="text-sm text-[var(--muted)]">Available for full-stack development, freelance builds, and remote engineering collaboration.</p>
+              </div>
+
+              <div class="space-y-4 text-sm">
+                <!-- Email + Copy Email -->
+                <div class="p-4 rounded-xl border border-[var(--border)] bg-[var(--background)] space-y-3">
+                  <div class="flex items-start gap-3">
+                    <i data-lucide="mail" class="w-4 h-4 text-indigo-400 shrink-0 mt-1"></i>
+                    <div class="min-w-0 flex-1">
+                      <p class="text-xs text-[var(--muted)]">Email Address</p>
+                      <a
+                        id="contact-email-mailto"
+                        href="mailto:your-email@example.com"
+                        class="font-mono-tech text-sm font-medium text-[var(--text)] hover:text-indigo-400 transition-colors break-all"
+                      >
+                        <span id="contact-email-display">your-email@example.com</span>
+                      </a>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    id="copy-email-btn"
+                    class="secondary-button w-full text-xs sm:text-sm py-2 px-4 min-h-[44px]"
+                  >
+                    <i data-lucide="copy" class="w-4 h-4"></i>
+                    <span data-copy-label>Copy Email</span>
+                  </button>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex items-start gap-3 p-4 rounded-xl border border-[var(--border)] bg-[var(--background)]">
+                  <i data-lucide="phone" class="w-4 h-4 text-cyan-400 shrink-0 mt-1"></i>
+                  <div class="min-w-0">
+                    <p class="text-xs text-[var(--muted)]">Phone</p>
+                    <div id="contact-phone-display" class="text-sm font-medium text-[var(--text)]"></div>
+                  </div>
+                </div>
+
+                <!-- Location -->
+                <div class="flex items-start gap-3 p-4 rounded-xl border border-[var(--border)] bg-[var(--background)]">
+                  <i data-lucide="map-pin" class="w-4 h-4 text-violet-400 shrink-0 mt-1"></i>
+                  <div class="min-w-0">
+                    <p class="text-xs text-[var(--muted)]">Location</p>
+                    <p id="contact-location-display" class="text-sm font-medium text-[var(--text)]">Bangladesh</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Social & Freelance Platforms -->
+              <div class="pt-4 border-t border-[var(--border)] space-y-3">
+                <h3 class="text-sm font-bold text-[var(--text)]">Developer &amp; Freelance Profiles</h3>
+                <div id="contact-social-channels" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Contact Inquiry Form -->
+          <div class="lg:col-span-7 animate-fade-in-up delay-200">
+            <div class="glass-card glow-effect p-6 sm:p-8 space-y-6">
+              <div class="space-y-1.5">
+                <h2 class="text-xl sm:text-2xl font-bold text-[var(--text)]">Send an Inquiry</h2>
+                <p class="text-sm text-[var(--muted)]">
+                  Share your project scope or question. Supports configurable Formspree, EmailJS, or custom Backend API submission via <code class="font-mono-tech text-indigo-400">js/config.js</code>.
+                </p>
+              </div>
+
+              <form id="contact-inquiry-form" class="space-y-5" novalidate>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div class="space-y-1.5">
+                    <label for="contact-name" class="block text-sm font-medium text-[var(--text)]">
+                      Name <span class="text-rose-400" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      id="contact-name"
+                      name="name"
+                      type="text"
+                      required
+                      autocomplete="name"
+                      placeholder="Your full name"
+                      class="contact-input w-full"
+                      aria-describedby="contact-name-error"
+                    >
+                    <p id="contact-name-error" class="field-error hidden" role="alert"></p>
+                  </div>
+
+                  <div class="space-y-1.5">
+                    <label for="contact-email" class="block text-sm font-medium text-[var(--text)]">
+                      Email <span class="text-rose-400" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      required
+                      autocomplete="email"
+                      placeholder="you@example.com"
+                      class="contact-input w-full"
+                      aria-describedby="contact-email-error"
+                    >
+                    <p id="contact-email-error" class="field-error hidden" role="alert"></p>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  <label for="contact-subject" class="block text-sm font-medium text-[var(--text)]">
+                    Subject <span class="text-rose-400" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    id="contact-subject"
+                    name="subject"
+                    type="text"
+                    required
+                    placeholder="Project discussion, MERN build, or collaboration"
+                    class="contact-input w-full"
+                    aria-describedby="contact-subject-error"
+                  >
+                  <p id="contact-subject-error" class="field-error hidden" role="alert"></p>
+                </div>
+
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between gap-2">
+                    <label for="contact-message" class="block text-sm font-medium text-[var(--text)]">
+                      Message <span class="text-rose-400" aria-hidden="true">*</span>
+                    </label>
+                    <span id="contact-message-count" class="text-xs font-mono-tech text-[var(--muted)] tabular-nums">0 / 2000</span>
+                  </div>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="5"
+                    required
+                    maxlength="2000"
+                    placeholder="Tell me about your goals, timeline, and required features (minimum 20 characters)..."
+                    class="contact-textarea w-full"
+                    aria-describedby="contact-message-error"
+                  ></textarea>
+                  <p id="contact-message-error" class="field-error hidden" role="alert"></p>
+                </div>
+
+                <div class="pt-1 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p class="text-xs text-[var(--muted)]">Minimum 20 characters · No private keys exposed client-side</p>
+                  <button
+                    type="submit"
+                    id="contact-submit-btn"
+                    class="primary-button w-full sm:w-auto min-h-[48px] px-7"
+                  >
+                    <span>Send Message</span>
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                  </button>
+                </div>
+
+                <div id="contact-form-status" class="hidden" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/contact.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

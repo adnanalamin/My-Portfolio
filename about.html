@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About AL AMIN — Story, Approach &amp; Engineering Journey</title>
+  <meta name="description" content="Learn about AL AMIN, Full-Stack MERN Developer & Creative Designer, his development story, approach, career goals, and engineering journey.">
+  <meta name="keywords" content="About AL AMIN, Full-Stack Developer Story, MERN Stack Engineer, Web Engineering Journey, Bangladesh Developer">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/about.html">
+  <meta property="og:title" content="About AL AMIN — Story, Approach &amp; Engineering Journey">
+  <meta property="og:description" content="Background, engineering principles, personal journey timeline, and creative design philosophy of AL AMIN.">
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/about.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About AL AMIN — Story, Approach &amp; Engineering Journey">
+  <meta name="twitter:description" content="Full-stack engineering background, principles, and milestone timeline of AL AMIN.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "AL AMIN",
+      "jobTitle": "Full-Stack Developer & Creative Designer",
+      "description": "Full-stack developer building scalable web applications and accessible user interfaces.",
+      "image": "assets/images/profile.jpg",
+      "url": "https://example.com/about.html"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <!-- ================================================================
+         1. About Me & Animated Profile Section
+         ================================================================ -->
+    <section class="section">
+      <div class="container space-y-8">
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">About</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div class="lg:col-span-5 flex justify-center lg:justify-start animate-fade-in-up">
+            <div class="relative w-full max-w-[260px] sm:max-w-[320px] lg:max-w-[380px]">
+              <div class="profile-frame-gradient glow-effect">
+                <div class="profile-frame-inner aspect-square">
+                  <img
+                    src="assets/images/profile.jpg"
+                    alt="AL AMIN — Full-Stack Developer & Creative Designer"
+                    class="w-full h-full object-cover"
+                    onerror="this.src='assets/images/profile-placeholder.svg'"
+                  >
+                </div>
+              </div>
+              <div class="profile-floating-badge absolute -bottom-3 right-3 sm:right-5">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i>
+                <span data-config="location">Bangladesh</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-5 animate-fade-in-up delay-100">
+            <span class="badge">About Me</span>
+            <h1 class="hero-title">
+              Crafting Reliable Software with <span class="gradient-text">Human-Centered Design</span>
+            </h1>
+            <p class="section-subtitle">
+              I'm <strong class="text-[var(--text)]" data-config="name">AL AMIN</strong>, a Full-Stack / MERN Stack Developer and Creative Designer based in <span data-config="location">Bangladesh</span>. I focus on turning complex product ideas into clean, scalable, and responsive web applications.
+            </p>
+            <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
+              <a
+                href="assets/documents/resume.pdf"
+                download="AL_AMIN_Resume.pdf"
+                data-resume-download
+                class="primary-button w-full sm:w-auto"
+              >
+                <i data-lucide="download" class="w-4 h-4"></i>
+                <span>Download Resume</span>
+              </a>
+              <a href="contact.html" class="secondary-button w-full sm:w-auto">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span>Contact Me</span>
+              </a>
+              <a href="skills.html" class="outline-button w-full sm:w-auto">
+                <span>Explore Skills</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         2. Animated Counters Strip
+         ================================================================ -->
+    <section class="py-8 sm:py-10 border-y border-[var(--border)] bg-[var(--surface)]/50">
+      <div class="container">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div class="card p-5 sm:p-6 space-y-1 reveal">
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tabular-nums gradient-text" data-counter-target="25" data-counter-suffix="+">25+</p>
+            <p class="text-xs sm:text-sm font-medium text-[var(--muted)]">Projects</p>
+          </div>
+          <div class="card p-5 sm:p-6 space-y-1 reveal delay-100">
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tabular-nums gradient-text" data-counter-target="18" data-counter-suffix="+">18+</p>
+            <p class="text-xs sm:text-sm font-medium text-[var(--muted)]">Technologies</p>
+          </div>
+          <div class="card p-5 sm:p-6 space-y-1 reveal delay-200">
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tabular-nums gradient-text" data-counter-target="3" data-counter-suffix="+ Yrs">3+ Yrs</p>
+            <p class="text-xs sm:text-sm font-medium text-[var(--muted)]">Learning Experience</p>
+          </div>
+          <div class="card p-5 sm:p-6 space-y-1 reveal delay-300">
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tabular-nums gradient-text" data-counter-target="15" data-counter-suffix="+">15+</p>
+            <p class="text-xs sm:text-sm font-medium text-[var(--muted)]">Clients</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         3. My Story & What I Do
+         ================================================================ -->
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+          <article class="glass-card hover-lift p-6 sm:p-8 lg:col-span-6 space-y-4 reveal">
+            <div class="flex items-center justify-between gap-3">
+              <span class="badge">01. Origin</span>
+              <i data-lucide="book-open-text" class="w-5 h-5 text-indigo-400"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-[var(--text)]">My Story</h2>
+            <p class="text-sm sm:text-base text-[var(--muted)] leading-relaxed">
+              My journey into software engineering started with curiosity about how clean layouts and interactive scripts work together in the browser. That early fascination grew into building full-stack applications from database models to polished user interfaces.
+            </p>
+            <p class="text-sm sm:text-base text-[var(--muted)] leading-relaxed">
+              Through continuous practice, real client projects, and modern MERN stack engineering, I've focused on writing readable, maintainable code that solves genuine user problems without unnecessary complexity.
+            </p>
+          </article>
+
+          <article class="glass-card hover-lift p-6 sm:p-8 lg:col-span-6 space-y-4 reveal delay-100">
+            <div class="flex items-center justify-between gap-3">
+              <span class="badge">02. Craft</span>
+              <i data-lucide="layers" class="w-5 h-5 text-cyan-400"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-[var(--text)]">What I Do</h2>
+            <p class="text-sm sm:text-base text-[var(--muted)] leading-relaxed">
+              I architect and ship complete web applications—combining responsive frontend engineering (HTML5, CSS3, Tailwind CSS, JavaScript, React, Next.js) with reliable backend APIs (Node.js, Express, MongoDB, PostgreSQL).
+            </p>
+            <ul class="space-y-2 text-sm text-[var(--text-secondary)] list-none p-0 m-0 pt-1">
+              <li class="flex items-center gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i><span>Full-stack MERN web platforms &amp; SaaS dashboards</span></li>
+              <li class="flex items-center gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i><span>Mobile-first responsive design systems &amp; UI implementation</span></li>
+              <li class="flex items-center gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i><span>RESTful API design, authentication &amp; performance optimization</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         4. My Approach, Career Goals & Why Work With Me
+         ================================================================ -->
+    <section class="section border-t border-[var(--border)]">
+      <div class="container space-y-8">
+        <div class="space-y-3 reveal">
+          <h2 class="section-title">Principles &amp; <span class="gradient-text">Direction</span></h2>
+          <p class="section-subtitle">
+            How I structure engineering decisions, long-term growth, and collaborative client delivery.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <article class="card hover-lift p-6 sm:p-7 space-y-3 reveal">
+            <div class="w-11 h-11 rounded-xl border border-indigo-500/30 bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+              <i data-lucide="compass" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[var(--text)]">My Approach</h3>
+            <p class="text-sm text-[var(--muted)] leading-relaxed">
+              Every feature begins with clear architecture, mobile-first layout discipline, and clean separation of data, UI, and state—ensuring fast load times and effortless future scaling.
+            </p>
+          </article>
+
+          <article class="card hover-lift p-6 sm:p-7 space-y-3 reveal delay-100">
+            <div class="w-11 h-11 rounded-xl border border-cyan-500/30 bg-cyan-500/10 flex items-center justify-center text-cyan-400">
+              <i data-lucide="target" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[var(--text)]">Career Goals</h3>
+            <p class="text-sm text-[var(--muted)] leading-relaxed">
+              To partner with ambitious product teams and founders on high-impact SaaS platforms, deepen distributed systems expertise, and craft developer-grade web experiences that stand the test of scale.
+            </p>
+          </article>
+
+          <article class="card hover-lift p-6 sm:p-7 space-y-3 md:col-span-2 lg:col-span-1 reveal delay-200">
+            <div class="w-11 h-11 rounded-xl border border-violet-500/30 bg-violet-500/10 flex items-center justify-center text-violet-400">
+              <i data-lucide="handshake" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[var(--text)]">Why Work With Me</h3>
+            <p class="text-sm text-[var(--muted)] leading-relaxed">
+              You get transparent communication, attention to micro-details across every breakpoint, clean documented code, and a developer who cares equally about visual polish and backend reliability.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         5. Personal Journey — Animated Responsive Timeline
+         ================================================================ -->
+    <section class="section border-t border-[var(--border)]">
+      <div class="container space-y-10">
+        <div class="space-y-3 reveal">
+          <span class="badge">Timeline</span>
+          <h2 class="section-title">Personal <span class="gradient-text">Journey</span></h2>
+          <p class="section-subtitle">
+            Key milestones shaping my foundation across computer science, continuous learning, freelancing, and full-stack product development.
+          </p>
+        </div>
+
+        <div class="journey-timeline">
+          <article class="journey-step reveal">
+            <div class="journey-node" aria-hidden="true">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+            </div>
+            <div class="glass-card hover-lift p-5 sm:p-6 space-y-2.5 h-full">
+              <span class="text-xs font-mono-tech text-indigo-400">Phase 01</span>
+              <h3 class="text-lg font-bold text-[var(--text)]">Education</h3>
+              <p class="text-sm text-[var(--muted)] leading-relaxed">
+                Built core foundations in programming logic, web fundamentals, data structures, and software design principles.
+              </p>
+            </div>
+          </article>
+
+          <article class="journey-step reveal delay-100">
+            <div class="journey-node" aria-hidden="true">
+              <i data-lucide="lightbulb" class="w-4 h-4"></i>
+            </div>
+            <div class="glass-card hover-lift p-5 sm:p-6 space-y-2.5 h-full">
+              <span class="text-xs font-mono-tech text-cyan-400">Phase 02</span>
+              <h3 class="text-lg font-bold text-[var(--text)]">Learning</h3>
+              <p class="text-sm text-[var(--muted)] leading-relaxed">
+                Mastered modern JavaScript, responsive CSS systems, React component patterns, Node.js APIs, and MongoDB databases.
+              </p>
+            </div>
+          </article>
+
+          <article class="journey-step reveal delay-200">
+            <div class="journey-node" aria-hidden="true">
+              <i data-lucide="briefcase" class="w-4 h-4"></i>
+            </div>
+            <div class="glass-card hover-lift p-5 sm:p-6 space-y-2.5 h-full">
+              <span class="text-xs font-mono-tech text-violet-400">Phase 03</span>
+              <h3 class="text-lg font-bold text-[var(--text)]">Freelancing</h3>
+              <p class="text-sm text-[var(--muted)] leading-relaxed">
+                Delivered custom web applications, landing architectures, and UI implementations for diverse clients with end-to-end ownership.
+              </p>
+            </div>
+          </article>
+
+          <article class="journey-step reveal delay-300">
+            <div class="journey-node" aria-hidden="true">
+              <i data-lucide="rocket" class="w-4 h-4"></i>
+            </div>
+            <div class="glass-card hover-lift p-5 sm:p-6 space-y-2.5 h-full">
+              <span class="text-xs font-mono-tech text-pink-400">Phase 04</span>
+              <h3 class="text-lg font-bold text-[var(--text)]">Development</h3>
+              <p class="text-sm text-[var(--muted)] leading-relaxed">
+                Engineering scalable MERN &amp; SaaS products like AstraPulse, Nexora, and SLIDEVERSE with modern design systems.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         6. Bottom Navigation CTA
+         ================================================================ -->
+    <section class="section border-t border-[var(--border)]">
+      <div class="container">
+        <div class="glass-card glow-effect p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 reveal">
+          <div class="space-y-2 max-w-xl">
+            <h2 class="text-2xl sm:text-3xl font-bold text-[var(--text)]">Explore My Technical Capabilities</h2>
+            <p class="text-sm sm:text-base text-[var(--muted)]">
+              See the full breakdown of frontend, backend, database, design, and engineering workflow tools.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+            <a href="skills.html" class="primary-button w-full sm:w-auto">
+              <span>View Skills Matrix</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="projects.html" class="secondary-button w-full sm:w-auto">
+              <span>View Projects</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

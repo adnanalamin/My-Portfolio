@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Page Not Found — AL AMIN Portfolio</title>
+  <meta name="description" content="The requested page could not be found on AL AMIN's portfolio website. Navigate back to home, projects, or blog.">
+  <meta name="keywords" content="404, Page Not Found, AL AMIN Portfolio">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://example.com/404.html">
+  <meta property="og:title" content="404 Page Not Found — AL AMIN Portfolio">
+  <meta property="og:description" content="The requested route does not exist on AL AMIN's portfolio.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/404.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="404 Page Not Found — AL AMIN Portfolio">
+  <meta name="twitter:description" content="Return to AL AMIN's portfolio home or projects archive.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "404 Page Not Found — AL AMIN Portfolio",
+    "url": "https://example.com/404.html"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1" class="flex items-center">
+    <section class="section w-full">
+      <div class="container">
+        <div class="glass-card glow-effect max-w-3xl mx-auto p-6 sm:p-10 space-y-6 animate-scale-in">
+          <div class="text-center space-y-4">
+            <span class="badge mx-auto">HTTP 404 · Route Not Found</span>
+            <div aria-hidden="true">
+              <span class="error-404-code gradient-text tabular-nums">404</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[var(--text)]">
+              Page Not Found
+            </h1>
+            <p class="section-subtitle mx-auto">
+              The route <code id="missing-route-path" class="font-mono-tech text-indigo-400 break-all">/unknown</code> does not exist or may have moved. Use the options below or press <kbd class="cmd-kbd">Ctrl</kbd> + <kbd class="cmd-kbd">K</kbd> to jump anywhere.
+            </p>
+          </div>
+
+          <!-- Developer-themed Terminal Recovery Block -->
+          <div class="terminal-panel text-left space-y-2 text-xs sm:text-[13px] leading-relaxed" aria-label="Developer route diagnostic trace">
+            <div class="flex items-center justify-between gap-2 pb-2 mb-2 border-b border-slate-700/60">
+              <div class="flex items-center gap-1.5" aria-hidden="true">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+              </div>
+              <span class="font-mono-tech text-[11px] text-slate-400">router-diagnostic.sh</span>
+            </div>
+            <p><span class="text-cyan-400">$ resolve</span> <span id="missing-route-terminal">/unknown</span></p>
+            <p class="text-rose-300">Error 404: No matching static portfolio route found.</p>
+            <p class="text-slate-300">Suggested recovery targets: <span class="text-indigo-300">index.html</span> · <span class="text-indigo-300">projects.html</span> · <span class="text-indigo-300">explorer.html</span> · <span class="text-indigo-300">contact.html</span></p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 pt-1">
+            <a href="index.html" class="primary-button justify-center">
+              <i data-lucide="home" class="w-4 h-4"></i>
+              <span>Back to Home</span>
+            </a>
+            <a href="projects.html" class="secondary-button justify-center">
+              <i data-lucide="folder-kanban" class="w-4 h-4"></i>
+              <span>View Projects</span>
+            </a>
+            <a href="contact.html" class="outline-button justify-center">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+              <span>Contact Me</span>
+            </a>
+            <button type="button" data-open-command-palette class="outline-button justify-center">
+              <i data-lucide="search" class="w-4 h-4"></i>
+              <span>Search (⌘K)</span>
+            </button>
+          </div>
+
+          <nav aria-label="Helpful recovery routes" class="pt-5 border-t border-[var(--border)] flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="about.html" class="hover:text-[var(--text)] transition-colors">About</a>
+            <a href="skills.html" class="hover:text-[var(--text)] transition-colors">Skills</a>
+            <a href="services.html" class="hover:text-[var(--text)] transition-colors">Services</a>
+            <a href="explorer.html" class="hover:text-[var(--text)] transition-colors">Tech Explorer</a>
+            <a href="blog.html" class="hover:text-[var(--text)] transition-colors">Blog</a>
+            <a href="resume.html" class="hover:text-[var(--text)] transition-colors">Resume</a>
+          </nav>
+        </div>
+        <script>
+          (function () {
+            var routeText = window.location.pathname || "/unknown";
+            var el = document.getElementById("missing-route-path");
+            var termEl = document.getElementById("missing-route-terminal");
+            if (el) el.textContent = routeText;
+            if (termEl) termEl.textContent = routeText;
+          })();
+        </script>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>
