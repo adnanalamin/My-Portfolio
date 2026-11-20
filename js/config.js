@@ -1,9 +1,64 @@
 /**
- * AL AMIN Portfolio — Global Configuration (Phase 1 + Phase 2)
- * Single source of truth for identity, contact, navigation, services, and social channels.
+ * AL AMIN Portfolio — Global Configuration & Central Personal Brand System (Phases 1–21)
+ * Single source of truth for personal brand identity, visual tokens, contact channels,
+ * availability, resume, navigation, services, and integrations.
  */
 
 const portfolioConfig = {
+  brand: {
+    name: "AL AMIN",
+    displayName: "AL AMIN",
+    monogram: "AA",
+    professionalTitle: "Full-Stack Developer & Creative Designer",
+    shortTagline: "Engineering scalable web systems with refined interface craft.",
+    longTagline:
+      "I design and engineer modern full-stack web applications, SaaS architectures, and responsive digital products built for clarity, reliability, and speed.",
+    description:
+      "Personal engineering brand of AL AMIN — specializing in full-stack MERN architecture, Next.js product interfaces, RESTful APIs, and human-centered design systems.",
+    location: "Bangladesh",
+    email: "your-email@example.com",
+    phone: "",
+    profileImage: "assets/images/profile.jpg",
+    profileFallbackImage: "assets/images/profile-placeholder.svg",
+    favicon: "assets/icons/favicon.svg",
+    logo: {
+      ariaLabel: "AL AMIN — Personal Brand Home",
+      badgeText: "Engineer · Designer",
+      showSubtitleInFooter: true
+    },
+    colors: {
+      primary: "#6366F1",
+      secondary: "#8B5CF6",
+      accentCyan: "#06B6D4",
+      accentPink: "#EC4899",
+      lightPrimary: "#4F46E5",
+      lightSecondary: "#7C3AED",
+      lightAccentCyan: "#0891B2",
+      lightAccentPink: "#DB2777"
+    },
+    social: {
+      github: "",
+      linkedin: "",
+      facebook: "",
+      fiverr: "",
+      upwork: "",
+      email: "your-email@example.com"
+    },
+    resume: {
+      url: "assets/documents/resume.pdf",
+      filename: "AL_AMIN_Resume.pdf",
+      label: "Download Resume"
+    },
+    availability: {
+      status: "freelance", // Supported: "freelance" | "projects" | "remote" | "busy"
+      label: "Open to Freelance & Full-Stack Roles",
+      shortLabel: "Open to Freelance",
+      note: "Available for international remote product builds, SaaS systems, and full-stack engineering."
+    },
+    currentFocus: "Full-Stack MERN, Next.js & Design Systems"
+  },
+
+  // Backward-compatible top-level aliases kept synchronized with portfolioConfig.brand
   name: "AL AMIN",
   role: "Full-Stack Developer & Creative Designer",
   location: "Bangladesh",
@@ -51,10 +106,59 @@ const portfolioConfig = {
     mode: "local", // Supported: "local" (rule-based static engine) | "backend" (future server proxy)
     backendEndpoint: "" // Point to your own server route (e.g. "/api/assistant"), never store API keys here
   },
+  architect: {
+    mode: "local", // Supported: "local" (rule-based engine) | "backend" (future server proxy)
+    backendEndpoint: "" // Optional server route (e.g. "/api/architect"), never store API keys here
+  },
+  estimator: {
+    currencySymbol: "$",
+    rangeSpreadFactor: 0.22
+  },
+  projectRequest: {
+    budgetRanges: [
+      { id: "under-1k", label: "Under $1,000", note: "Focused landing page or lean MVP validation" },
+      { id: "1k-2500", label: "$1,000 – $2,500", note: "Custom multi-page site or core web application" },
+      { id: "2500-5k", label: "$2,500 – $5,000", note: "Full-stack platform with auth, database & admin UI" },
+      { id: "5k-10k", label: "$5,000 – $10,000", note: "Comprehensive SaaS, e-commerce, or multi-integration product" },
+      { id: "10k-plus", label: "$10,000+", note: "Scalable multi-phase engineering engagement" },
+      { id: "discuss", label: "Flexible / Need Proposal", note: "Finalize budget tier after discovery call" }
+    ]
+  },
   // Optional: Configure service pricing packages here if you wish to publish rates in Client Mode.
   // Leave empty ([]) to show custom project-based scoping instead of fixed pricing cards.
   pricing: []
 };
+
+// Keep top-level aliases synchronized with portfolioConfig.brand so editing brand.* updates all modules
+(() => {
+  const b = portfolioConfig.brand;
+  if (!b) return;
+
+  portfolioConfig.name = b.displayName || b.name || portfolioConfig.name;
+  portfolioConfig.role = b.professionalTitle || portfolioConfig.role;
+  portfolioConfig.location = b.location || portfolioConfig.location;
+  portfolioConfig.email = b.email || (b.social && b.social.email) || portfolioConfig.email;
+  portfolioConfig.phone = b.phone !== undefined ? b.phone : portfolioConfig.phone;
+  portfolioConfig.bio = b.shortTagline || portfolioConfig.bio;
+  portfolioConfig.profileImage = b.profileImage || portfolioConfig.profileImage;
+  portfolioConfig.resumeUrl = (b.resume && b.resume.url) || portfolioConfig.resumeUrl;
+  portfolioConfig.availabilityStatus =
+    (b.availability && b.availability.status) || portfolioConfig.availabilityStatus;
+
+  if (b.social) {
+    portfolioConfig.socialLinks = {
+      ...portfolioConfig.socialLinks,
+      github: b.social.github ?? portfolioConfig.socialLinks.github,
+      linkedin: b.social.linkedin ?? portfolioConfig.socialLinks.linkedin,
+      facebook: b.social.facebook ?? portfolioConfig.socialLinks.facebook,
+      fiverr: b.social.fiverr ?? portfolioConfig.socialLinks.fiverr,
+      upwork: b.social.upwork ?? portfolioConfig.socialLinks.upwork
+    };
+    if (!b.social.email) {
+      b.social.email = portfolioConfig.email;
+    }
+  }
+})();
 
 const siteRoutes = {
   navLinks: [
@@ -125,9 +229,23 @@ const siteRoutes = {
     { label: "Testimonials", href: "testimonials.html" },
     { label: "Dashboard", href: "dashboard.html" },
     { label: "Tech Explorer", href: "explorer.html" },
+    { label: "Project Architect", href: "project-architect.html" },
+    { label: "Project Estimator", href: "project-estimator.html" },
+    { label: "Project Request", href: "project-request.html" },
+    { label: "Build in Public", href: "build.html" },
+    { label: "Engineering Decisions", href: "decisions.html" },
+    { label: "Security Center", href: "security.html" },
+    { label: "Performance Center", href: "performance.html" },
+    { label: "System Architecture", href: "architecture.html" },
+    { label: "API Explorer", href: "api-explorer.html" },
+    { label: "Component Lab", href: "components.html" },
+    { label: "Design Playground", href: "design-playground.html" },
+    { label: "Proposal Generator", href: "proposal-generator.html" },
     { label: "GitHub", href: "github.html" },
     { label: "Playground", href: "playground.html" },
     { label: "Resume", href: "resume.html" },
+    { label: "Recruiter Search", href: "recruiter-search.html" },
+    { label: "Knowledge Base", href: "knowledge.html" },
     { label: "Contact", href: "contact.html" }
   ],
   detailRoutes: [

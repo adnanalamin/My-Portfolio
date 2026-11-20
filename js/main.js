@@ -1061,11 +1061,14 @@
   }
 
   function bootstrap() {
+    if (typeof window.initTheme === "function") window.initTheme();
+    if (window.PortfolioBrand && typeof window.PortfolioBrand.init === "function") {
+      window.PortfolioBrand.init();
+    }
     if (typeof window.initLoader === "function") window.initLoader();
     if (typeof window.loadNavbar === "function") window.loadNavbar();
     if (typeof window.initMobileMenu === "function") window.initMobileMenu();
     if (typeof window.loadFooter === "function") window.loadFooter();
-    if (typeof window.initTheme === "function") window.initTheme();
     if (typeof window.initScrollProgress === "function") window.initScrollProgress();
     if (typeof window.initBackToTop === "function") window.initBackToTop();
     if (typeof window.initPageTransitions === "function") window.initPageTransitions();
@@ -1073,6 +1076,8 @@
 
     if (window.PortfolioProjects) window.PortfolioProjects.init();
     if (window.PortfolioSkills) window.PortfolioSkills.init();
+    if (window.PortfolioSkillsGraph) window.PortfolioSkillsGraph.init();
+    if (window.PortfolioJourney) window.PortfolioJourney.init();
     if (window.PortfolioBlog) window.PortfolioBlog.init();
     if (window.PortfolioTestimonials) window.PortfolioTestimonials.init();
     if (window.PortfolioContact) window.PortfolioContact.init();
@@ -1080,6 +1085,21 @@
     if (window.PortfolioGitHub) window.PortfolioGitHub.init();
     if (window.PortfolioPlayground) window.PortfolioPlayground.init();
     if (window.PortfolioExplorer) window.PortfolioExplorer.init();
+    if (window.PortfolioArchitect) window.PortfolioArchitect.init();
+    if (window.PortfolioEstimator) window.PortfolioEstimator.init();
+    if (window.PortfolioRequest) window.PortfolioRequest.init();
+    if (window.PortfolioBuild) window.PortfolioBuild.init();
+    if (window.PortfolioDecisions) window.PortfolioDecisions.init();
+    if (window.PortfolioSecurity) window.PortfolioSecurity.init();
+    if (window.PortfolioPerformance) window.PortfolioPerformance.init();
+    if (window.PortfolioSystemArchitecture) window.PortfolioSystemArchitecture.init();
+    if (window.PortfolioApiExplorer) window.PortfolioApiExplorer.init();
+    if (window.PortfolioComponentLab) window.PortfolioComponentLab.init();
+    if (window.PortfolioDesignPlayground) window.PortfolioDesignPlayground.init();
+    if (window.PortfolioProposalGenerator) window.PortfolioProposalGenerator.init();
+    if (window.PortfolioResumeBuilder) window.PortfolioResumeBuilder.init();
+    if (window.PortfolioRecruiterSearch) window.PortfolioRecruiterSearch.init();
+    if (window.PortfolioKnowledge) window.PortfolioKnowledge.init();
     if (window.PortfolioAssistant) window.PortfolioAssistant.init();
     if (window.PortfolioUX) window.PortfolioUX.init();
     initServicesPage();
@@ -1090,6 +1110,14 @@
 
     bindConfigValues();
     bindResumeDownload();
+    if (window.PortfolioBrand) {
+      if (typeof window.PortfolioBrand.bindBrandDom === "function") {
+        window.PortfolioBrand.bindBrandDom(document);
+      }
+      if (typeof window.PortfolioBrand.mountSignatures === "function") {
+        window.PortfolioBrand.mountSignatures(document);
+      }
+    }
     refreshIcons();
 
     if (window.PortfolioAnimations) {

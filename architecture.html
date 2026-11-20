@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive System Architecture — AL AMIN</title>
+  <meta name="description" content="Explore how AL AMIN's portfolio and full-stack software projects are architected across Browser, Frontend, API, Backend, Database, Authentication, Storage, External APIs, and Deployment.">
+  <meta name="keywords" content="System Architecture, Portfolio Architecture, Full-Stack Diagram, Browser, Frontend, API, Backend, Database, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/architecture.html">
+  <meta property="og:title" content="Interactive System Architecture — AL AMIN">
+  <meta property="og:description" content="Clickable SVG system diagrams and stacked mobile architecture views across Portfolio System, AstraPulse, and E-commerce SaaS.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/architecture.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Interactive System Architecture — AL AMIN">
+  <meta name="twitter:description" content="Visual breakdown of frontend, API, backend, database, auth, storage, and deployment architecture.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Interactive System Architecture — AL AMIN",
+    "description": "Visual architecture overview covering Browser, Frontend, API, Backend, Database, Authentication, Storage, External APIs, and Deployment layers.",
+    "url": "https://example.com/architecture.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/architecture.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="architecture-page-root">
+      <div class="container space-y-8 sm:space-y-10">
+        <!-- Breadcrumb & Header -->
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="projects.html" class="hover:text-[var(--text)] transition-colors">Projects</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">System Architecture</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 animate-fade-in-up">
+            <div class="space-y-3 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">Interactive Architecture Blueprint</span>
+                <span aria-hidden="true">·</span>
+                <span>9 Connected System Layers</span>
+              </div>
+              <h1 class="hero-title">
+                System <span class="gradient-text">Architecture</span>
+              </h1>
+              <p class="section-subtitle">
+                Select a portfolio or full-stack project blueprint and click any layer—from Browser and Frontend through API, Backend, Database, and supporting infrastructure—to inspect its role and technologies.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <button type="button" id="arch-reset-view" class="outline-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                <span>Reset View</span>
+              </button>
+              <a href="decisions.html" class="secondary-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="layers" class="w-4 h-4"></i>
+                <span>Decision Log</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blueprint Switcher & Workspace -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+          <div class="lg:col-span-8 arch-diagram-shell">
+            <div class="flex flex-col gap-3 pb-4 border-b border-[var(--border)]">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <p class="text-xs font-semibold text-[var(--text-secondary)]">Select System Blueprint</p>
+                <span class="text-xs font-mono-tech text-[var(--muted)]">Click any layer to inspect</span>
+              </div>
+              <div id="arch-project-bar" class="arch-project-bar" role="group" aria-label="Select system architecture blueprint"></div>
+              <p id="arch-active-subtitle" class="text-xs sm:text-sm text-[var(--muted)]"></p>
+            </div>
+
+            <!-- Responsive Desktop/Tablet Interactive SVG Diagram -->
+            <div id="arch-svg-diagram" class="arch-svg-frame hidden md:block"></div>
+
+            <!-- Mobile Stacked Cards Alternative -->
+            <div id="arch-mobile-stack" class="md:hidden space-y-5"></div>
+          </div>
+
+          <!-- Selected Component Inspector Panel -->
+          <aside class="lg:col-span-4">
+            <div id="arch-inspector-panel" class="arch-inspector" aria-live="polite"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/architecture.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

@@ -342,16 +342,39 @@ const PortfolioContact = (() => {
     });
 
     const urlParams = new URLSearchParams(window.location.search);
-    if (fields.subject && !fields.subject.value) {
-      const svc = urlParams.get("service");
-      const proj = urlParams.get("project");
-      const intent = urlParams.get("intent");
-      const humanize = (slug) =>
-        String(slug)
-          .replace(/[-_]+/g, " ")
-          .replace(/\b\w/g, (ch) => ch.toUpperCase());
+    const svc = urlParams.get("service");
+    const proj = urlParams.get("project");
+    const intent = urlParams.get("intent");
+    const explicitSubject = urlParams.get("subject");
+    const humanize = (slug) =>
+      String(slug)
+        .replace(/[-_]+/g, " ")
+        .replace(/\b\w/g, (ch) => ch.toUpperCase());
 
-      if (svc) {
+    if (intent === "quote" || intent === "project") {
+      try {
+        const rawDraft = window.sessionStorage.getItem("portfolio_quote_draft");
+        if (rawDraft) {
+          const parsedDraft = JSON.parse(rawDraft);
+          if (parsedDraft && typeof parsedDraft === "object") {
+            if (fields.subject && !fields.subject.value && parsedDraft.subject) {
+              fields.subject.value = String(parsedDraft.subject);
+            }
+            if (fields.message && !fields.message.value && parsedDraft.message) {
+              fields.message.value = String(parsedDraft.message).slice(0, 2000);
+            }
+          }
+          window.sessionStorage.removeItem("portfolio_quote_draft");
+        }
+      } catch (_err) {
+        // Ignore storage read issues safely
+      }
+    }
+
+    if (fields.subject && !fields.subject.value) {
+      if (explicitSubject) {
+        fields.subject.value = explicitSubject;
+      } else if (svc) {
         fields.subject.value = `Service Inquiry: ${humanize(svc)}`;
       } else if (proj) {
         fields.subject.value = `Similar Build Inquiry: ${humanize(proj)}`;

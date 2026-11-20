@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build in Public — AL AMIN</title>
+  <meta name="description" content="Follow what AL AMIN is actively building—milestone progress, development statuses, experiments, shipped releases, and build updates.">
+  <meta name="keywords" content="AL AMIN Build in Public, Active Projects, Software Milestones, Developer Changelog, Full-Stack Builds">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/build.html">
+  <meta property="og:title" content="Build in Public — AL AMIN">
+  <meta property="og:description" content="Live progress across active builds, experiments, and completed full-stack projects by AL AMIN.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/build.html">
+  <meta property="og:image" content="assets/images/projects/astrapulse.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Build in Public — AL AMIN">
+  <meta name="twitter:description" content="What AL AMIN is currently building: milestones, tech stacks, progress bars, and visual updates.">
+  <meta name="twitter:image" content="assets/images/projects/astrapulse.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Build in Public — AL AMIN",
+    "description": "Public engineering progress feed tracking current builds, milestone status stages, completed products, and experiments.",
+    "url": "https://example.com/build.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/build.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="build-public-root">
+      <div class="container space-y-10 sm:space-y-12">
+        <!-- Breadcrumb & Hero Header -->
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="projects.html" class="hover:text-[var(--text)] transition-colors">Projects</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Build in Public</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 animate-fade-in-up">
+            <div class="space-y-3 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">Open Engineering Log</span>
+                <span aria-hidden="true">·</span>
+                <span>Active Builds, Milestones &amp; Experiments</span>
+              </div>
+              <h1 class="hero-title">
+                Building <span class="gradient-text">in Public</span>
+              </h1>
+              <p class="section-subtitle">
+                A transparent log of what I am actively engineering right now—tracking current milestones, system architecture progress, experiments, and shipped releases.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a href="projects.html" class="outline-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="folder-kanban" class="w-4 h-4"></i>
+                <span>All Projects</span>
+              </a>
+              <a href="project-request.html" class="primary-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                <span>Start a Project</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             Currently Building — Featured Spotlight Card
+             ============================================================ -->
+        <section aria-label="Currently building featured project">
+          <div id="bip-spotlight-mount"></div>
+        </section>
+
+        <!-- ============================================================
+             Filter Toolbar (All / Active / Completed / Experiments + Status)
+             ============================================================ -->
+        <section class="space-y-4" aria-label="Filter projects and build updates">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div id="bip-category-tabs" class="bip-filter-bar" role="group" aria-label="Filter builds by category"></div>
+
+            <div class="flex flex-wrap items-center gap-2.5">
+              <label for="bip-status-select" class="sr-only">Filter by lifecycle status</label>
+              <select id="bip-status-select" class="bip-select"></select>
+
+              <button type="button" id="bip-reset-btn" class="outline-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                <span>Reset</span>
+              </button>
+            </div>
+          </div>
+
+          <p id="bip-count-label" class="text-xs sm:text-sm font-mono-tech text-[var(--muted)] tabular-nums"></p>
+        </section>
+
+        <!-- ============================================================
+             Tracked Projects & Status Overview
+             ============================================================ -->
+        <section class="space-y-5" aria-labelledby="bip-projects-heading">
+          <div class="space-y-1">
+            <h2 id="bip-projects-heading" class="text-xl sm:text-2xl font-bold text-[var(--text)]">Tracked Builds &amp; Status</h2>
+            <p class="text-xs sm:text-sm text-[var(--muted)]">Select any build card to isolate its changelog entries below, or inspect its full case study.</p>
+          </div>
+          <div id="bip-projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" aria-live="polite"></div>
+        </section>
+
+        <!-- ============================================================
+             Chronological Project Updates Feed
+             ============================================================ -->
+        <section class="space-y-5" aria-labelledby="bip-updates-heading">
+          <div class="space-y-1">
+            <h2 id="bip-updates-heading" class="text-xl sm:text-2xl font-bold text-[var(--text)]">Project Updates</h2>
+            <p class="text-xs sm:text-sm text-[var(--muted)]">Detailed milestone updates including date, technologies applied, progress percentage, and visual snapshots.</p>
+          </div>
+          <div id="bip-updates-list" class="space-y-5" aria-live="polite"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- Screenshot Inspection Modal -->
+  <div
+    id="bip-screenshot-modal"
+    class="ux-modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="bip-modal-title"
+    aria-hidden="true"
+  >
+    <div class="ux-modal-panel p-5 sm:p-6 space-y-4">
+      <div class="flex items-start justify-between gap-4 pb-3 border-b border-[var(--border)]">
+        <div class="space-y-0.5 min-w-0">
+          <h2 id="bip-modal-title" class="text-base sm:text-lg font-bold text-[var(--text)] truncate">Build Screenshot</h2>
+          <p id="bip-modal-meta" class="text-xs font-mono-tech text-[var(--muted)] tabular-nums"></p>
+        </div>
+        <button type="button" id="bip-modal-close" class="icon-button shrink-0" aria-label="Close screenshot preview">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="rounded-lg overflow-hidden border border-[var(--border)] bg-[var(--background)]">
+        <img id="bip-modal-image" src="assets/images/profile-placeholder.svg" alt="Build screenshot preview" class="w-full h-auto max-h-[72vh] object-contain">
+      </div>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/build.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

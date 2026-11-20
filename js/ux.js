@@ -263,9 +263,25 @@ const PortfolioUX = (() => {
     const pageList = [
       ...(routes.navLinks || []),
       { label: "Tech & Project Comparison Explorer", href: "explorer.html" },
+      { label: "Interactive Project Architect", href: "project-architect.html" },
+      { label: "Project Scope & Cost Estimator", href: "project-estimator.html" },
+      { label: "Smart Project Request Wizard", href: "project-request.html" },
+      { label: "Interactive Skills Graph", href: "skills.html#skills-graph-section" },
+      { label: "Interactive Developer Journey", href: "experience.html#developer-journey-section" },
+      { label: "Build in Public", href: "build.html" },
+      { label: "Engineering Decision Log", href: "decisions.html" },
+      { label: "Security Center", href: "security.html" },
+      { label: "Performance Center", href: "performance.html" },
+      { label: "Interactive System Architecture", href: "architecture.html" },
+      { label: "Interactive API Explorer", href: "api-explorer.html" },
+      { label: "UI Component Lab", href: "components.html" },
+      { label: "Visual Design Playground", href: "design-playground.html" },
+      { label: "Client Proposal Generator", href: "proposal-generator.html" },
       { label: "GitHub Explorer", href: "github.html" },
       { label: "HTML/CSS/JS Code Playground", href: "playground.html" },
-      { label: "Interactive Resume / CV", href: "resume.html" }
+      { label: "Interactive Resume / CV", href: "resume.html" },
+      { label: "Recruiter Search System", href: "recruiter-search.html" },
+      { label: "Personal Knowledge Base", href: "knowledge.html" }
     ];
 
     const seenPages = new Set();
@@ -1184,7 +1200,7 @@ const PortfolioUX = (() => {
       window.isSecureContext
     ) {
       try {
-        navigator.serviceWorker.register("./sw.js").catch(() => {});
+        navigator.serviceWorker.register("/sw.js").catch(() => {});
       } catch (_err) {
         // Service worker optional — site continues normally if blocked
       }

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Proposal Generator — AL AMIN</title>
+  <meta name="description" content="Generate a structured, non-binding client project proposal outline with cover details, overview, objectives, scope, features, technology stack, timeline milestones, estimated pricing, terms placeholder, and contact info.">
+  <meta name="keywords" content="Client Proposal Generator, Project Proposal Builder, Software Proposal Outline, Full-Stack Scope Proposal, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/proposal-generator.html">
+  <meta property="og:title" content="Client Proposal Generator — AL AMIN">
+  <meta property="og:description" content="Create, preview, print, download, and copy structured project proposal outlines tailored to client requirements.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/proposal-generator.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Client Proposal Generator — AL AMIN">
+  <meta name="twitter:description" content="Generate responsive project proposals with preview, print, download, and copy actions.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AL AMIN Client Proposal Generator",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "description": "Structured non-binding client proposal builder generating Cover, Overview, Objectives, Scope, Features, Technology, Timeline, Pricing, Terms Placeholder, and Contact Info.",
+    "url": "https://example.com/proposal-generator.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/proposal-generator.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="proposal-generator-root">
+      <div class="container space-y-8 sm:space-y-10">
+        <!-- Breadcrumb & Header (Hidden in Print) -->
+        <div class="space-y-5 prop-no-print">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="project-estimator.html" class="hover:text-[var(--text)] transition-colors">Project Estimator</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Proposal Generator</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 animate-fade-in-up">
+            <div class="space-y-3 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">Draft Proposal Builder</span>
+                <span aria-hidden="true">·</span>
+                <span>Non-Binding Outline</span>
+                <span aria-hidden="true">·</span>
+                <span>Print &amp; Export Ready</span>
+              </div>
+              <h1 class="hero-title">
+                Client Proposal <span class="gradient-text">Generator</span>
+              </h1>
+              <p class="section-subtitle">
+                Enter client details, project scope, features, timeline, tech stack, and estimated budget to generate a clean proposal outline with non-binding terms placeholders.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <button type="button" id="prop-action-preview" class="outline-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+                <span>Preview</span>
+              </button>
+              <button type="button" id="prop-action-print" class="secondary-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="printer" class="w-4 h-4"></i>
+                <span>Print</span>
+              </button>
+              <button type="button" id="prop-action-download" class="secondary-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="download" class="w-4 h-4"></i>
+                <span>Download</span>
+              </button>
+              <button type="button" id="prop-action-copy" class="primary-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+                <span>Copy</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-semibold text-[var(--muted)]">Sample Presets:</span>
+              <div id="prop-presets-row" class="prop-chip-grid"></div>
+            </div>
+            <button type="button" id="prop-action-reset" class="prop-chip-btn">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 mr-1"></i>
+              <span>Reset Fields</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Split Workspace: Proposal Inputs + Live Document Preview -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+          <!-- Input Builder -->
+          <div id="prop-builder-col" class="lg:col-span-5">
+            <form id="prop-builder-form" class="prop-builder-panel" novalidate>
+              <h2 class="text-base font-bold text-[var(--text)]">Project Information</h2>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div class="space-y-1">
+                  <label for="prop-client-name" class="block text-xs font-semibold text-[var(--text-secondary)]">Client Name</label>
+                  <input id="prop-client-name" type="text" class="prop-input" placeholder="e.g. Jordan Vance">
+                </div>
+                <div class="space-y-1">
+                  <label for="prop-company" class="block text-xs font-semibold text-[var(--text-secondary)]">Company</label>
+                  <input id="prop-company" type="text" class="prop-input" placeholder="e.g. Northwind Digital">
+                </div>
+              </div>
+
+              <div class="space-y-1">
+                <label for="prop-project-title" class="block text-xs font-semibold text-[var(--text-secondary)]">Project</label>
+                <input id="prop-project-title" type="text" class="prop-input" placeholder="e.g. Customer Analytics Portal">
+              </div>
+
+              <div class="space-y-1">
+                <label for="prop-scope" class="block text-xs font-semibold text-[var(--text-secondary)]">Scope</label>
+                <textarea id="prop-scope" class="prop-textarea" placeholder="Summarize primary deliverables and product boundaries..."></textarea>
+              </div>
+
+              <div class="space-y-1">
+                <label for="prop-features" class="block text-xs font-semibold text-[var(--text-secondary)]">Features (comma or newline separated)</label>
+                <textarea id="prop-features" class="prop-textarea" placeholder="Authentication, Admin Dashboard, REST API, Search &amp; Filters..."></textarea>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div class="space-y-1">
+                  <label for="prop-timeline" class="block text-xs font-semibold text-[var(--text-secondary)]">Timeline</label>
+                  <select id="prop-timeline" class="prop-select">
+                    <option value="3–4 Weeks (Focused Launch)">3–4 Weeks (Focused Launch)</option>
+                    <option value="6–8 Weeks (Full-Stack Build)" selected>6–8 Weeks (Full-Stack Build)</option>
+                    <option value="8–12 Weeks (SaaS / Enterprise)">8–12 Weeks (SaaS / Enterprise)</option>
+                  </select>
+                </div>
+
+                <div class="space-y-1">
+                  <label for="prop-budget" class="block text-xs font-semibold text-[var(--text-secondary)]">Estimated Budget</label>
+                  <input id="prop-budget" type="text" class="prop-input" placeholder="e.g. $1,600 – $2,400">
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <p class="text-xs font-semibold text-[var(--text-secondary)]">Technology Stack</p>
+                <div id="prop-tech-chips" class="prop-chip-grid" role="group" aria-label="Select proposal technologies"></div>
+                <label for="prop-custom-tech" class="sr-only">Additional comma-separated technologies</label>
+                <input id="prop-custom-tech" type="text" class="prop-input" placeholder="Optional extra tech (e.g. Redis, Stripe Webhook)">
+              </div>
+
+              <div class="space-y-1">
+                <label for="prop-maintenance" class="block text-xs font-semibold text-[var(--text-secondary)]">Maintenance</label>
+                <select id="prop-maintenance" class="prop-select">
+                  <option value="Launch Handoff Only (No Ongoing Retainer)">Launch Handoff Only (No Ongoing Retainer)</option>
+                  <option value="Standard Monthly Support (Monitoring, Bug Fixes &amp; Dependency Updates)" selected>Standard Monthly Support (Monitoring &amp; Updates)</option>
+                  <option value="Retainer Engineering &amp; Priority Iterations">Retainer Engineering &amp; Priority Iterations</option>
+                </select>
+              </div>
+            </form>
+          </div>
+
+          <!-- Generated Proposal Output Document -->
+          <div class="lg:col-span-7 min-w-0">
+            <article id="prop-document-preview" class="prop-document" aria-live="polite" aria-label="Generated client proposal preview"></article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/proposal-generator.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

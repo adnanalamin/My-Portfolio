@@ -60,6 +60,7 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/skills-graph.css">
 </head>
 <body class="ambient-backdrop bg-grid-pattern">
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
@@ -89,6 +90,61 @@
 
         <!-- Circular Domain Indicators -->
         <div id="skills-circular-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5"></div>
+
+        <!-- ============================================================
+             Phase 25: Interactive Skills Graph (SVG + Mobile Flow + Accessible List)
+             ============================================================ -->
+        <section id="skills-graph-section" aria-labelledby="skills-graph-heading" class="sg-shell">
+          <div class="sg-toolbar">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">Interactive Knowledge Map</span>
+                <span aria-hidden="true">·</span>
+                <span>Click any node to explore connections</span>
+              </div>
+              <h2 id="skills-graph-heading" class="text-xl sm:text-2xl font-bold text-[var(--text)]">Interactive <span class="gradient-text">Skills Graph</span></h2>
+            </div>
+
+            <div class="hidden md:flex flex-wrap items-center gap-2.5">
+              <div class="sg-view-toggle" role="group" aria-label="Skills graph display mode">
+                <button type="button" id="sg-mode-graph" class="sg-toggle-btn is-active" aria-pressed="true">
+                  <i data-lucide="network" class="w-3.5 h-3.5"></i>
+                  <span>Visual Graph (SVG)</span>
+                </button>
+                <button type="button" id="sg-mode-list" class="sg-toggle-btn" aria-pressed="false">
+                  <i data-lucide="list" class="w-3.5 h-3.5"></i>
+                  <span>Accessible List</span>
+                </button>
+              </div>
+
+              <div id="sg-zoom-controls" class="inline-flex items-center gap-1.5">
+                <button type="button" id="sg-zoom-out" class="outline-button py-1.5 px-2.5 min-h-[38px]" aria-label="Zoom out graph">
+                  <i data-lucide="zoom-out" class="w-4 h-4"></i>
+                </button>
+                <span id="sg-zoom-label" class="text-xs font-mono-tech text-[var(--muted)] tabular-nums px-1.5 min-w-[44px] text-center">100%</span>
+                <button type="button" id="sg-zoom-in" class="outline-button py-1.5 px-2.5 min-h-[38px]" aria-label="Zoom in graph">
+                  <i data-lucide="zoom-in" class="w-4 h-4"></i>
+                </button>
+                <button type="button" id="sg-reset-view" class="outline-button py-1.5 px-3 min-h-[38px] text-xs">
+                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                  <span>Reset View</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop / Tablet Interactive SVG Graph & Accessible List Switch -->
+          <div class="hidden md:block space-y-4">
+            <div id="sg-svg-container" class="sg-canvas-wrap"></div>
+            <div id="sg-list-container" class="hidden"></div>
+          </div>
+
+          <!-- Mobile Hierarchy Flow: Technology -> Related Technologies -> Projects -->
+          <div id="sg-mobile-container" class="block md:hidden"></div>
+
+          <!-- Shared Selected Technology Detail Inspector -->
+          <div id="sg-inspector-mount" aria-live="polite"></div>
+        </section>
 
         <!-- Interactive Category Filter Bar & Skill Cards -->
         <div class="space-y-6">
@@ -129,10 +185,13 @@
 
   <script defer src="js/config.js"></script>
   <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
   <script defer src="js/modes.js"></script>
   <script defer src="js/components.js"></script>
   <script defer src="js/animations.js"></script>
   <script defer src="js/skills.js"></script>
+  <script defer src="js/projects.js"></script>
+  <script defer src="js/skills-graph.js"></script>
   <script defer src="js/assistant.js"></script>
   <script defer src="js/ux.js"></script>
   <script defer src="js/main.js"></script>

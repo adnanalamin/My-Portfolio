@@ -666,8 +666,10 @@ const PortfolioModes = (() => {
 
     captureHeroSnapshot();
     const cfg = window.portfolioConfig || {};
-    const resumeHref = cfg.resumeUrl || "assets/documents/resume.pdf";
-    const location = cfg.location || "Bangladesh";
+    const brandName = (cfg.brand && cfg.brand.displayName) || cfg.name || "AL AMIN";
+    const resumeHref = (cfg.brand && cfg.brand.resume && cfg.brand.resume.url) || cfg.resumeUrl || "assets/documents/resume.pdf";
+    const resumeFilename = (cfg.brand && cfg.brand.resume && cfg.brand.resume.filename) || "AL_AMIN_Resume.pdf";
+    const location = (cfg.brand && cfg.brand.location) || cfg.location || "Bangladesh";
 
     if (state.currentMode === "client") {
       kicker.innerHTML = `
@@ -698,11 +700,11 @@ const PortfolioModes = (() => {
         <span class="hidden sm:inline text-[var(--muted)]" aria-hidden="true">·</span>
         <span class="hidden sm:inline text-[var(--muted)]">${escHtml(location)}</span>
       `;
-      headline.innerHTML = `AL AMIN — <span class="gradient-text">Full-Stack MERN Engineer</span>`;
+      headline.innerHTML = `${escHtml(brandName)} — <span class="gradient-text">Full-Stack MERN Engineer</span>`;
       subtitle.textContent =
         "Computer Science & Engineering graduate specializing in React, Next.js, Node.js, Express, MongoDB, and PostgreSQL—focused on clean architecture, maintainable code, and accessible responsive interfaces.";
       ctaGroup.innerHTML = `
-        <a href="${escHtml(resumeHref)}" download="AL_AMIN_Resume.pdf" data-resume-download class="primary-button w-full sm:w-auto">
+        <a href="${escHtml(resumeHref)}" download="${escHtml(resumeFilename)}" data-resume-download class="primary-button w-full sm:w-auto">
           <i data-lucide="download" class="w-4 h-4" aria-hidden="true"></i>
           <span>Download Resume</span>
         </a>
@@ -1121,6 +1123,15 @@ const PortfolioModes = (() => {
 
     // Ensure footer or custom mode triggers update
     bindModeActionTriggers(document);
+
+    if (window.PortfolioBrand) {
+      if (typeof window.PortfolioBrand.bindBrandDom === "function") {
+        window.PortfolioBrand.bindBrandDom(document);
+      }
+      if (typeof window.PortfolioBrand.mountSignatures === "function") {
+        window.PortfolioBrand.mountSignatures(document);
+      }
+    }
 
     // Ensure reordered homepage sections remain immediately visible across mode switches
     if (state.currentMode !== "default") {

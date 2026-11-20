@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Project Architect — AL AMIN</title>
+  <meta name="description" content="Describe a web or software project idea and generate a structured technical architecture, security specification, interactive diagram, and 7-phase development roadmap.">
+  <meta name="keywords" content="Project Architect, System Architecture Planner, Full-Stack Architecture, Database Schema, Security Blueprint, Development Roadmap, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/project-architect.html">
+  <meta property="og:title" content="Interactive Project Architect — AL AMIN">
+  <meta property="og:description" content="Frontend demonstration tool generating tailored Frontend, Backend, Database, Infrastructure, Security, and 7-Phase Roadmap blueprints.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/project-architect.html">
+  <meta property="og:image" content="assets/images/projects/astrapulse.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Interactive Project Architect — AL AMIN">
+  <meta name="twitter:description" content="Interactive software project architecture planner powered by a client-side rule engine.">
+  <meta name="twitter:image" content="assets/images/projects/astrapulse.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Interactive Project Architect — AL AMIN",
+    "description": "Client-side rule-based architecture planning tool that produces structured Frontend, Backend, Database, Infrastructure, Security, and 7-Phase Roadmap blueprints.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "url": "https://example.com/project-architect.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/architect.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="architect-root">
+      <div class="container space-y-10 sm:space-y-12">
+        <!-- Breadcrumb & Hero Header -->
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="services.html" class="hover:text-[var(--text)] transition-colors">Services</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Project Architect</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 animate-fade-in-up">
+            <div class="space-y-3 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">Interactive Architecture Planner</span>
+                <span aria-hidden="true">·</span>
+                <span>Rule-Based Recommendation Engine</span>
+              </div>
+              <h1 class="hero-title">
+                Interactive <span class="gradient-text">Project Architect</span>
+              </h1>
+              <p class="section-subtitle">
+                Configure your software idea through a guided 4-step wizard to generate a structured technical architecture, database entities, security hardening plan, and 7-phase roadmap.
+              </p>
+              <p class="text-xs text-[var(--muted)]">
+                Client-side demonstration engine powered by deterministic engineering rules — no client API keys exposed; built with a clean adapter for future backend AI proxy integration.
+              </p>
+            </div>
+
+            <div id="arch-hero-actions" class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a href="explorer.html" class="outline-button text-xs sm:text-sm">
+                <i data-lucide="cpu" class="w-4 h-4"></i>
+                <span>Tech Explorer</span>
+              </a>
+              <a href="contact.html" class="secondary-button text-xs sm:text-sm">
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                <span>Hire AL AMIN</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             Guided 4-Step Input Wizard
+             ============================================================ -->
+        <section id="arch-wizard-panel" aria-labelledby="arch-wizard-heading" class="glass-card p-5 sm:p-7 space-y-6">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-[var(--border)]">
+            <div class="space-y-1">
+              <h2 id="arch-wizard-heading" class="text-xl sm:text-2xl font-bold text-[var(--text)]">01. Project Requirements Wizard</h2>
+              <p class="text-xs sm:text-sm text-[var(--muted)]">Load a quick starter template or customize each requirement step by step.</p>
+            </div>
+            <button type="button" id="arch-reset-btn" class="outline-button self-start lg:self-auto text-xs sm:text-sm shrink-0">
+              <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+              <span>Reset Wizard</span>
+            </button>
+          </div>
+
+          <!-- Sample Blueprint Presets -->
+          <div class="space-y-2">
+            <p class="text-xs font-semibold text-[var(--text-secondary)]">Quick Starter Blueprints</p>
+            <div id="arch-presets-row" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <!-- Progress Indicator & Step Buttons -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-3 text-xs">
+              <span class="font-semibold text-[var(--text-secondary)]">Wizard Progress</span>
+              <span id="arch-progress-text" class="font-mono-tech text-cyan-400 tabular-nums">Step 1 of 4 · 25% Complete</span>
+            </div>
+            <div class="arch-progress-track" aria-hidden="true">
+              <div id="arch-progress-fill" class="arch-progress-fill" style="width: 25%;"></div>
+            </div>
+            <div id="arch-stepper" class="arch-stepper" role="navigation" aria-label="Architecture wizard steps"></div>
+          </div>
+
+          <!-- Active Step Inputs -->
+          <div id="arch-step-body" class="pt-2"></div>
+
+          <!-- Inline Validation Feedback -->
+          <p id="arch-validation-msg" class="hidden text-xs sm:text-sm font-medium text-rose-400" role="alert"></p>
+
+          <!-- Step Navigation Footer -->
+          <div class="pt-5 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3">
+            <button type="button" id="arch-prev-btn" class="outline-button text-xs sm:text-sm min-h-[44px]" disabled>
+              <i data-lucide="arrow-left" class="w-4 h-4"></i>
+              <span>Previous Step</span>
+            </button>
+
+            <div class="flex flex-wrap items-center gap-2.5">
+              <button type="button" id="arch-next-btn" class="primary-button text-xs sm:text-sm min-h-[44px]">
+                <span>Next Step</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+              <button type="button" id="arch-generate-btn" class="primary-button text-xs sm:text-sm min-h-[44px] hidden">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Generate Architecture</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             Architecture Output (Diagram, 5 Stack Cards, 7-Phase Roadmap)
+             ============================================================ -->
+        <div id="arch-output-root" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/architect.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

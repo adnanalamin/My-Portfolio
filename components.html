@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Component Lab — AL AMIN</title>
+  <meta name="description" content="Explore AL AMIN's interactive UI Component Lab featuring 16 reusable frontend component categories built on the portfolio design system—live previews, inspectable code, copy tools, and state reset across 320px to 2560px.">
+  <meta name="keywords" content="UI Component Lab, Reusable Components, Design System, Buttons, Cards, Forms, Modals, Tabs, Accordion, Toast, Pricing Cards, Dashboard Cards, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/components.html">
+  <meta property="og:title" content="UI Component Lab — AL AMIN">
+  <meta property="og:description" content="Live interactive component showcase with code snippets, clipboard copy, and per-component state reset across 16 UI categories.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/components.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UI Component Lab — AL AMIN">
+  <meta name="twitter:description" content="Interactive reusable frontend components built with AL AMIN's design system.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "UI Component Lab — AL AMIN",
+    "description": "Reusable UI component showcase spanning Buttons, Cards, Forms, Inputs, Navbar, Modal, Dropdown, Tabs, Accordion, Toast, Alerts, Loaders, Sliders, Pricing Cards, Dashboard Cards, and Navigation.",
+    "url": "https://example.com/components.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components-lab.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="component-lab-root">
+      <div class="container space-y-8 sm:space-y-10">
+        <!-- Breadcrumb & Header -->
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="skills.html" class="hover:text-[var(--text)] transition-colors">Skills</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">UI Component Lab</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 animate-fade-in-up">
+            <div class="space-y-3 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">AL AMIN Design System</span>
+                <span aria-hidden="true">·</span>
+                <span>16 Interactive Component Categories</span>
+                <span aria-hidden="true">·</span>
+                <span>320px–2560px Responsive</span>
+              </div>
+              <h1 class="hero-title">
+                UI Component <span class="gradient-text">Lab</span>
+              </h1>
+              <p class="section-subtitle">
+                Test live, accessible components directly in your viewport—switch between interactive previews and clean reusable code, copy snippets, or reset individual component states anytime.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <button type="button" id="lab-reset-all" class="outline-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                <span>Reset Lab</span>
+              </button>
+              <a href="playground.html" class="secondary-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="code-2" class="w-4 h-4"></i>
+                <span>Code Playground</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <section class="lab-toolbar" aria-label="Filter and search UI components">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-center">
+            <div class="lg:col-span-7 lab-search-wrap">
+              <i data-lucide="search" class="w-4 h-4 lab-search-icon" aria-hidden="true"></i>
+              <label for="lab-search-input" class="sr-only">Search UI components</label>
+              <input
+                id="lab-search-input"
+                type="search"
+                class="lab-search-input"
+                placeholder="Search components (Buttons, Modal, Pricing Cards, Tabs...)"
+                autocomplete="off"
+              >
+              <button type="button" id="lab-search-clear" class="lab-search-clear hidden" aria-label="Clear search query">
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="lg:col-span-5 lg:hidden">
+              <label for="lab-mobile-jump" class="sr-only">Jump to component category</label>
+              <select id="lab-mobile-jump" class="lab-select w-full"></select>
+            </div>
+
+            <div class="lg:col-span-5 hidden lg:flex justify-end">
+              <p id="lab-count-label" class="text-xs sm:text-sm font-mono-tech text-[var(--muted)] tabular-nums"></p>
+            </div>
+          </div>
+
+          <div class="pt-1 border-t border-[var(--border)]">
+            <div id="lab-group-tabs" class="lab-group-strip" role="group" aria-label="Filter component categories by group"></div>
+          </div>
+        </section>
+
+        <!-- Sidebar Index + Live Component Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+          <aside class="lg:col-span-3 hidden lg:block">
+            <nav id="lab-index-rail" class="lab-index-rail" aria-label="Component category directory"></nav>
+          </aside>
+
+          <div class="lg:col-span-9 min-w-0">
+            <div id="lab-cards-list" class="space-y-6" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/components-lab.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

@@ -61,6 +61,12 @@ const PortfolioTheme = (() => {
     root.style.colorScheme = isLight ? "light" : "dark";
 
     updateToggleButtons(theme);
+
+    try {
+      window.dispatchEvent(new CustomEvent("portfolio:theme-changed", { detail: { theme } }));
+    } catch (_err) {
+      // Ignore event dispatch errors in restricted contexts
+    }
   }
 
   function toggleTheme() {

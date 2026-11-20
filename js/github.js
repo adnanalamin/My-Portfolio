@@ -427,7 +427,7 @@ const PortfolioGitHub = (() => {
     const sorted = list.slice();
     sorted.sort((a, b) => {
       if (sortBy === "updated") {
-        return new Date(b.pushed_at || b.updated_at || 0) - new Date(a.pushed_at || a.updated_at || 0);
+        return new Date(b.pushed_at || b.updated_at || 0).getTime() - new Date(a.pushed_at || a.updated_at || 0).getTime();
       }
       if (sortBy === "forks") {
         return (b.forks_count || 0) - (a.forks_count || 0) || (b.stargazers_count || 0) - (a.stargazers_count || 0);

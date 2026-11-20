@@ -1,0 +1,329 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 37: Recruiter-Focused Search System
+   High-speed multi-entity search, desktop filter rail + accessible mobile
+   slide-over filter drawer, clean zero-pill typographic scanning cards.
+   ========================================================================== */
+
+.rs-search-shell {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1rem 1.15rem;
+}
+
+@media (min-width: 640px) {
+  .rs-search-shell {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+.rs-search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  padding: 0 0.9rem;
+  border-radius: 0.65rem;
+  border: 1px solid var(--border-strong);
+  background-color: var(--background);
+  transition: border-color var(--transition-fast);
+}
+
+.rs-search-input-wrap:focus-within {
+  border-color: var(--accent-cyan);
+}
+
+.rs-search-input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.rs-search-input::placeholder {
+  color: var(--muted);
+}
+
+.rs-quick-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.rs-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.rs-quick-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.rs-quick-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(6, 182, 212, 0.12));
+  color: var(--text);
+}
+
+/* Overview Summary Strip */
+.rs-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .rs-kpi-strip {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.rs-kpi-cell {
+  border-radius: 0.65rem;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Result Scope Segmented Tabs */
+.rs-scope-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.rs-scope-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 40px;
+  padding: 0.4rem 0.85rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.rs-scope-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.rs-scope-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(6, 182, 212, 0.14));
+  color: var(--text);
+}
+
+/* Filter Sidebar (Desktop) & Slide-Over Drawer (Mobile/Tablet) */
+.rs-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(4px);
+  display: none;
+}
+
+.rs-drawer-backdrop.is-open {
+  display: block;
+}
+
+.rs-filter-panel {
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+@media (max-width: 1023px) {
+  .rs-filter-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 70;
+    width: min(350px, 90vw);
+    border-radius: 0;
+    border-left: 0;
+    overflow-y: auto;
+    transform: translateX(-105%);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .rs-filter-panel.is-open {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 1024px) {
+  .rs-drawer-backdrop {
+    display: none !important;
+  }
+
+  .rs-filter-panel {
+    position: sticky;
+    top: 5.5rem;
+    border-radius: var(--radius);
+    transform: none !important;
+  }
+}
+
+.rs-filter-select {
+  width: 100%;
+  min-height: 42px;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-strong);
+  background-color: var(--background);
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+.rs-filter-select:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+.rs-tech-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.rs-tech-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0.25rem 0.62rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.rs-tech-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.rs-tech-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.14);
+  color: var(--text);
+}
+
+/* Scannable Result Sections */
+.rs-group-block {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  overflow: hidden;
+}
+
+.rs-group-head {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.rs-result-row {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--transition-fast);
+}
+
+.rs-result-row:last-child {
+  border-bottom: 0;
+}
+
+.rs-result-row:hover {
+  background-color: var(--surface-soft);
+}
+
+.rs-mark {
+  background: rgba(6, 182, 212, 0.22);
+  color: var(--text);
+  padding: 0 0.15rem;
+  border-radius: 0.2rem;
+}
+
+.rs-skill-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .rs-skill-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.rs-skill-cell {
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+@media (min-width: 640px) {
+  .rs-skill-cell:nth-child(odd) {
+    border-right: 1px solid var(--border);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-filter-panel,
+  .rs-quick-btn,
+  .rs-scope-btn,
+  .rs-tech-btn,
+  .rs-result-row {
+    transition: none !important;
+  }
+}

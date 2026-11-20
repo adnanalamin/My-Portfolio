@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Scope &amp; Cost Estimator — AL AMIN</title>
+  <meta name="description" content="Configure your website or web application requirements to preview an estimated project scope, complexity rating, technology recommendations, and timeline.">
+  <meta name="keywords" content="Project Scope Estimator, Web Development Estimate, SaaS Scope Planner, Full-Stack Quote Calculator, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/project-estimator.html">
+  <meta property="og:title" content="Project Scope &amp; Cost Estimator — AL AMIN">
+  <meta property="og:description" content="Interactive scope configurator showing estimated complexity, development range, timeline, and technology recommendations.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/project-estimator.html">
+  <meta property="og:image" content="assets/images/projects/astrapulse.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Project Scope &amp; Cost Estimator — AL AMIN">
+  <meta name="twitter:description" content="Build an estimated project scope and connect directly with AL AMIN for a tailored quote.">
+  <meta name="twitter:image" content="assets/images/projects/astrapulse.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Project Scope & Cost Estimator — AL AMIN",
+    "description": "Configurable JavaScript scope estimator helping prospective clients define requirements, complexity, technology choices, and suggested timelines.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "https://example.com/project-estimator.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/estimator.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="estimator-root">
+      <div class="container space-y-10 sm:space-y-12">
+        <!-- Breadcrumb & Hero Header -->
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="services.html" class="hover:text-[var(--text)] transition-colors">Services</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Project Estimator</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 animate-fade-in-up">
+            <div class="space-y-3 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">Client Planning Utility</span>
+                <span aria-hidden="true">·</span>
+                <span>Estimated project scope</span>
+              </div>
+              <h1 class="hero-title">
+                Project Scope &amp; <span class="gradient-text">Cost Estimator</span>
+              </h1>
+              <p class="section-subtitle">
+                Select your project foundation, features, integrations, and operational needs to preview an estimated project scope, complexity tier, recommended stack, and timeline.
+              </p>
+              <p class="text-xs text-[var(--muted)]">
+                Non-binding planning estimate · Final pricing depends on project requirements.
+              </p>
+            </div>
+
+            <div id="est-hero-actions" class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a href="project-architect.html" class="outline-button text-xs sm:text-sm">
+                <i data-lucide="layers" class="w-4 h-4"></i>
+                <span>Project Architect</span>
+              </a>
+              <button type="button" id="est-reset-btn" class="outline-button text-xs sm:text-sm">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                <span>Reset Scope</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Presets Bar -->
+        <div class="space-y-2.5 est-no-print">
+          <p class="text-xs font-semibold text-[var(--text-secondary)]">Quick Scope Presets</p>
+          <div id="est-presets-bar" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Two-Column Mobile-First Configurator & Live Estimate Summary -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+          <div id="est-groups-mount" class="lg:col-span-7 space-y-6"></div>
+          <div id="est-summary-mount" class="lg:col-span-5" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/estimator.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Center — AL AMIN</title>
+  <meta name="description" content="Transparent security engineering practices used across AL AMIN's portfolio and full-stack builds, distinguishing Implemented, Experimental, and Planned mechanisms.">
+  <meta name="keywords" content="Security Center, Application Security, JWT, RBAC, Input Validation, API Security, Database Security, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/security.html">
+  <meta property="og:title" content="Security Center — AL AMIN">
+  <meta property="og:description" content="14 security engineering domains documented honestly across Implemented, Experimental, and Planned statuses.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/security.html">
+  <meta property="og:image" content="assets/images/projects/astrapulse.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Security Center — AL AMIN">
+  <meta name="twitter:description" content="Security practices and project-level safeguards across AL AMIN's web engineering work.">
+  <meta name="twitter:image" content="assets/images/projects/astrapulse.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Security Center — AL AMIN",
+    "description": "Structured overview of implemented, experimental, and planned security controls across portfolio applications.",
+    "url": "https://example.com/security.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/security.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="security-center-root">
+      <div class="container space-y-10 sm:space-y-12">
+        <!-- Breadcrumb & Hero Header -->
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="decisions.html" class="hover:text-[var(--text)] transition-colors">Engineering Decisions</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Security Center</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 animate-fade-in-up">
+            <div class="space-y-3 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">Application Security Posture</span>
+                <span aria-hidden="true">·</span>
+                <span>Verified Practices &amp; Architectural Safeguards</span>
+              </div>
+              <h1 class="hero-title">
+                Security <span class="gradient-text">Center</span>
+              </h1>
+              <p class="section-subtitle">
+                A transparent record of security controls across my portfolio and software builds—distinguishing what is genuinely Implemented today from mechanisms currently Experimental or Planned for backend deployments.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a href="decisions.html" class="outline-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="layers" class="w-4 h-4"></i>
+                <span>Decision Log</span>
+              </a>
+              <a href="contact.html" class="secondary-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                <span>Report or Discuss</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary Strip -->
+        <section aria-label="Security status summary">
+          <div id="sec-summary-strip" class="sec-summary-strip"></div>
+        </section>
+
+        <!-- Security Controls Filter & Grid -->
+        <section class="space-y-6" aria-labelledby="sec-controls-heading">
+          <div class="space-y-1">
+            <h2 id="sec-controls-heading" class="text-xl sm:text-2xl font-bold text-[var(--text)]">Security Engineering Controls</h2>
+            <p class="text-xs sm:text-sm text-[var(--muted)]">Inspect each security domain with explicit implementation status and project traceability.</p>
+          </div>
+
+          <div class="sec-toolbar">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-center">
+              <div class="lg:col-span-6 sec-search-wrap">
+                <i data-lucide="search" class="w-4 h-4 sec-search-icon" aria-hidden="true"></i>
+                <label for="sec-search-input" class="sr-only">Search security controls</label>
+                <input
+                  id="sec-search-input"
+                  type="search"
+                  class="sec-search-input"
+                  placeholder="Search JWT, RBAC, headers, validation, database..."
+                  autocomplete="off"
+                >
+                <button type="button" id="sec-search-clear" class="sec-search-clear hidden" aria-label="Clear security search">
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <div class="lg:col-span-6 flex flex-wrap items-center justify-between lg:justify-end gap-2.5">
+                <div id="sec-status-tabs" class="sec-filter-strip" role="group" aria-label="Filter security controls by status"></div>
+                <button type="button" id="sec-reset-btn" class="outline-button text-xs sm:text-sm min-h-[40px]">
+                  <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                  <span>Reset</span>
+                </button>
+              </div>
+            </div>
+
+            <p id="sec-count-label" class="text-xs sm:text-sm font-mono-tech text-[var(--muted)] tabular-nums"></p>
+          </div>
+
+          <div id="sec-controls-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" aria-live="polite"></div>
+        </section>
+
+        <!-- Per-Project Security Profiles -->
+        <section id="sec-project-section" class="space-y-6 pt-4 border-t border-[var(--border)]" aria-labelledby="sec-projects-heading">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div class="space-y-1 max-w-2xl">
+              <h2 id="sec-projects-heading" class="text-xl sm:text-2xl font-bold text-[var(--text)]">Project Security Breakdown</h2>
+              <p class="text-xs sm:text-sm text-[var(--muted)]">Review the specific security safeguards documented and active for each portfolio project.</p>
+            </div>
+
+            <div class="shrink-0">
+              <label for="sec-project-select" class="sr-only">Select project security breakdown</label>
+              <select id="sec-project-select" class="sec-select"></select>
+            </div>
+          </div>
+
+          <div id="sec-projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5" aria-live="polite"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/security.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

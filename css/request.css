@@ -1,0 +1,286 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 24: Smart Project Request Wizard
+   Mobile-first 7-step project brief builder, validation, summary & print mode
+   ========================================================================== */
+
+.req-progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background-color: rgba(148, 163, 184, 0.16);
+  overflow: hidden;
+}
+
+.req-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent-cyan));
+  transition: width 240ms var(--ease-out-expo);
+}
+
+.req-steps-nav {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+@media (max-width: 1023px) {
+  .req-steps-nav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 639px) {
+  .req-steps-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.req-step-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.req-step-pill:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.req-step-pill.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(6, 182, 212, 0.1));
+  color: var(--text);
+}
+
+.req-step-pill.is-done:not(.is-active) {
+  border-color: rgba(16, 185, 129, 0.42);
+}
+
+.req-step-num {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--border-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  background-color: var(--surface);
+  color: var(--muted);
+}
+
+.req-step-pill.is-active .req-step-num {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+  color: #ffffff;
+}
+
+.req-step-pill.is-done:not(.is-active) .req-step-num {
+  border-color: rgba(16, 185, 129, 0.45);
+  background-color: rgba(16, 185, 129, 0.14);
+  color: #10b981;
+}
+
+/* Inputs & Selectable Option Cards */
+.req-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.45rem;
+}
+
+.req-input,
+.req-select,
+.req-textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.req-textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.req-input:focus,
+.req-select:focus,
+.req-textarea:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.16);
+}
+
+.req-input.is-invalid,
+.req-select.is-invalid,
+.req-textarea.is-invalid {
+  border-color: #f43f5e;
+}
+
+.req-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 0.65rem;
+}
+
+.req-choice-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-height: 48px;
+  padding: 0.78rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform 160ms var(--ease-out-expo);
+}
+
+.req-choice-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.req-choice-card.is-selected {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.13), rgba(6, 182, 212, 0.08));
+}
+
+.req-choice-card input {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.15rem;
+  accent-color: var(--primary);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Final Project Brief Summary Grid */
+.req-brief-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .req-brief-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.req-brief-card {
+  min-width: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.req-kv-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.req-kv-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+@keyframes reqStepEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.req-step-animate {
+  animation: reqStepEnter 190ms var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .req-progress-fill,
+  .req-step-pill,
+  .req-choice-card,
+  .req-step-animate {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Clean White-Paper Print Support */
+@media print {
+  header#site-header,
+  footer#site-footer,
+  #portfolio-assistant-root,
+  #back-to-top,
+  #scroll-progress,
+  #req-hero-actions,
+  #req-wizard-chrome,
+  .req-no-print,
+  .skip-to-content {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  main#main-content {
+    padding: 0 !important;
+  }
+
+  .glass-card,
+  .req-brief-card {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+
+  .text-\[var\(--muted\)\],
+  .text-\[var\(--text-secondary\)\] {
+    color: #334155 !important;
+  }
+}

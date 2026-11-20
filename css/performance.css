@@ -1,0 +1,235 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 30: Performance Center
+   Futuristic telemetry dashboard, asset breakdown bars, optimization checklist,
+   and synchronized Performance Mode / Reduced Motion Mode controls.
+   ========================================================================== */
+
+.perf-hero-console {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background:
+    radial-gradient(circle at top right, rgba(6, 182, 212, 0.12), transparent 44%),
+    radial-gradient(circle at bottom left, rgba(99, 102, 241, 0.1), transparent 44%),
+    var(--surface);
+  padding: 1.35rem;
+}
+
+@media (min-width: 640px) {
+  .perf-hero-console {
+    padding: 1.65rem;
+  }
+}
+
+.perf-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+@media (min-width: 640px) {
+  .perf-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .perf-kpi-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.perf-kpi-card {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+/* Mode Toggle Panels */
+.perf-mode-card {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.perf-switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--background);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.perf-switch[aria-checked="true"] {
+  background-color: rgba(6, 182, 212, 0.25);
+  border-color: var(--accent-cyan);
+}
+
+.perf-switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background-color: var(--muted);
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.perf-switch[aria-checked="true"] .perf-switch-thumb {
+  transform: translateX(22px);
+  background-color: var(--accent-cyan);
+}
+
+/* Segmented Tabs & Domain Cards */
+.perf-tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.perf-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.42rem 0.85rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.perf-tab-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.perf-tab-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.16), rgba(99, 102, 241, 0.14));
+  color: var(--text);
+}
+
+.perf-card {
+  min-width: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  transition: border-color var(--transition-fast);
+}
+
+.perf-card:hover {
+  border-color: var(--border-strong);
+}
+
+.perf-icon-box {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--accent-cyan);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.perf-meter-track {
+  width: 100%;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.perf-meter-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent-cyan));
+  transform-origin: left center;
+}
+
+/* Interactive Verification Checklist Row */
+.perf-check-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.95rem 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+  .perf-check-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.perf-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+.perf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  text-align: left;
+}
+
+.perf-table th,
+.perf-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.perf-table th {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  background-color: var(--background);
+}
+
+.perf-table tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .perf-switch,
+  .perf-switch-thumb,
+  .perf-tab-btn,
+  .perf-card {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,443 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 32: Interactive API Explorer
+   Developer reference workspace with endpoint search, method filters,
+   Request/Response/Status tabs, expandable JSON payloads, and copy tools.
+   ========================================================================== */
+
+.api-toolbar {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.api-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.api-search-icon {
+  position: absolute;
+  left: 0.85rem;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.api-search-input {
+  width: 100%;
+  min-height: 42px;
+  padding: 0.55rem 2.5rem 0.55rem 2.45rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  transition: border-color var(--transition-fast);
+}
+
+.api-search-input:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+.api-search-clear {
+  position: absolute;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 0.35rem;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.api-search-clear:hover {
+  color: var(--text);
+}
+
+.api-select {
+  min-height: 42px;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+}
+
+.api-select:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+/* HTTP Method Filter Bar */
+.api-method-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.api-method-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 38px;
+  padding: 0.38rem 0.78rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.api-method-filter-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.api-method-filter-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(6, 182, 212, 0.14));
+  color: var(--text);
+}
+
+/* Method Labels */
+.api-method-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 66px;
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border: 1px solid transparent;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.api-method-tag--get {
+  color: #34d399;
+  background-color: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.32);
+}
+
+.api-method-tag--post {
+  color: #22d3ee;
+  background-color: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.32);
+}
+
+.api-method-tag--put {
+  color: #fbbf24;
+  background-color: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.32);
+}
+
+.api-method-tag--patch {
+  color: #a78bfa;
+  background-color: rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.34);
+}
+
+.api-method-tag--delete {
+  color: #fb7185;
+  background-color: rgba(244, 63, 94, 0.12);
+  border-color: rgba(244, 63, 94, 0.32);
+}
+
+html.light .api-method-tag--get {
+  color: #047857;
+  background-color: rgba(16, 185, 129, 0.12);
+  border-color: rgba(5, 150, 105, 0.3);
+}
+
+html.light .api-method-tag--post {
+  color: #0e7490;
+  background-color: rgba(6, 182, 212, 0.12);
+  border-color: rgba(8, 145, 178, 0.3);
+}
+
+html.light .api-method-tag--put {
+  color: #b45309;
+  background-color: rgba(245, 158, 11, 0.12);
+  border-color: rgba(217, 119, 6, 0.3);
+}
+
+html.light .api-method-tag--patch {
+  color: #6d28d9;
+  background-color: rgba(139, 92, 246, 0.12);
+  border-color: rgba(124, 58, 237, 0.3);
+}
+
+html.light .api-method-tag--delete {
+  color: #be123c;
+  background-color: rgba(244, 63, 94, 0.12);
+  border-color: rgba(225, 29, 72, 0.3);
+}
+
+/* Sticky Endpoint Index Sidebar */
+.api-index-rail {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+@media (min-width: 1024px) {
+  .api-index-rail {
+    position: sticky;
+    top: 5.75rem;
+  }
+}
+
+.api-index-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.45rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.api-index-link:hover {
+  background-color: var(--background);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.api-index-link.is-active {
+  background-color: var(--background);
+  border-color: var(--accent-cyan);
+  color: var(--text);
+}
+
+/* Endpoint Reference Cards */
+.api-card {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.api-card.is-expanded {
+  border-color: var(--border-strong);
+}
+
+.api-card-head {
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .api-card-head {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+.api-card-body {
+  border-top: 1px solid var(--border);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+@media (min-width: 640px) {
+  .api-card-body {
+    padding: 1.4rem 1.5rem;
+  }
+}
+
+.api-card-body[hidden] {
+  display: none;
+}
+
+/* Endpoint Sub-Tabs (Request / Response / Status Codes) */
+.api-tabs-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.api-tabs-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+}
+
+.api-tab-btn {
+  min-height: 36px;
+  padding: 0.35rem 0.8rem;
+  border-radius: 0.38rem;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.api-tab-btn:hover {
+  color: var(--text);
+}
+
+.api-tab-btn.is-active {
+  background-color: var(--surface);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+/* Code / JSON Payload Frame */
+.api-json-shell {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  overflow: hidden;
+}
+
+.api-json-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+.api-json-pre {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 220px;
+  white-space: pre;
+}
+
+.api-json-pre.is-expanded-json {
+  max-height: none;
+}
+
+html.light .api-json-pre {
+  color: #1e293b;
+}
+
+.api-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 34px;
+  padding: 0.3rem 0.65rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.api-mini-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.api-mini-btn.is-copied {
+  border-color: rgba(16, 185, 129, 0.5);
+  color: #34d399;
+}
+
+html.light .api-mini-btn.is-copied {
+  color: #047857;
+}
+
+/* Compact Tables inside Request / Status Panels */
+.api-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.api-spec-table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.api-spec-table td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.api-spec-table tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .api-search-input,
+  .api-method-filter-btn,
+  .api-index-link,
+  .api-card,
+  .api-tab-btn,
+  .api-mini-btn {
+    transition: none !important;
+  }
+}

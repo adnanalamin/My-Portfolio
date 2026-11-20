@@ -1,11 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="16" fill="#0B1020"/>
-  <rect x="1.5" y="1.5" width="61" height="61" rx="14.5" stroke="url(#a)" stroke-opacity="0.65" stroke-width="2"/>
-  <path d="M22.5 44L30.5 20H34.7L42.7 44H38.2L36.5 38.4H28.6L26.9 44H22.5ZM29.7 34.6H35.4L32.6 25.3L29.7 34.6Z" fill="url(#a)"/>
+  <rect width="64" height="64" rx="16" fill="#050816"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0B1020" stroke="url(#brand-fav-grad)" stroke-opacity="0.75" stroke-width="2"/>
+  <path d="M16 14H22M16 14V20M48 50H42M48 50V44" stroke="#06B6D4" stroke-opacity="0.55" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M20.5 45L30.2 18.5H34.4L44.1 45H39.1L37.1 39.2H27.4L25.4 45H20.5ZM28.7 35H35.8L32.3 24.4L28.7 35Z" fill="url(#brand-fav-grad)"/>
+  <circle cx="45.5" cy="18.5" r="2.75" fill="#06B6D4"/>
   <defs>
-    <linearGradient id="a" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+    <linearGradient id="brand-fav-grad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
       <stop stop-color="#6366F1"/>
-      <stop offset="0.55" stop-color="#8B5CF6"/>
+      <stop offset="0.52" stop-color="#8B5CF6"/>
       <stop offset="1" stop-color="#06B6D4"/>
     </linearGradient>
   </defs>

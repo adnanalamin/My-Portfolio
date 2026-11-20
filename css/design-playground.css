@@ -1,0 +1,411 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 34: Interactive Visual Design Playground
+   Scoped CSS custom properties drive the isolated #dp-preview-canvas
+   without mutating global portfolio styles or executing generated code.
+   ========================================================================== */
+
+.dp-panel {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+@media (min-width: 640px) {
+  .dp-panel {
+    padding: 1.45rem;
+  }
+}
+
+.dp-control-group {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.dp-control-group:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.dp-color-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.dp-color-picker-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dp-color-input {
+  width: 38px;
+  height: 34px;
+  padding: 2px;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border-strong);
+  background-color: var(--background);
+  cursor: pointer;
+}
+
+.dp-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  outline: none;
+}
+
+.dp-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  border: 2px solid #ffffff;
+  cursor: pointer;
+}
+
+.dp-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  border: 2px solid #ffffff;
+  cursor: pointer;
+}
+
+.dp-seg-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.dp-seg-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0.34rem 0.72rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.dp-seg-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.dp-seg-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(6, 182, 212, 0.14));
+  color: var(--text);
+}
+
+.dp-preset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 36px;
+  padding: 0.32rem 0.7rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dp-preset-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+/* ==========================================================================
+   Isolated Live Preview Stage (CSS Variable Driven)
+   ========================================================================== */
+
+.dp-preview-shell {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.dp-preview-canvas {
+  --dp-primary: #6366f1;
+  --dp-secondary: #06b6d4;
+  --dp-bg: #050816;
+  --dp-surface: #0b1020;
+  --dp-text: #f8fafc;
+  --dp-muted: #94a3b8;
+  --dp-border: rgba(148, 163, 184, 0.22);
+  --dp-radius: 12px;
+  --dp-shadow: 0 12px 30px -10px rgba(2, 6, 23, 0.55);
+  --dp-font-size: 15px;
+  --dp-spacing: 20px;
+  --dp-gradient: linear-gradient(135deg, var(--dp-primary), var(--dp-secondary));
+
+  background-color: var(--dp-bg);
+  background-image: var(--dp-bg-overlay, none);
+  color: var(--dp-text);
+  font-size: var(--dp-font-size);
+  padding: var(--dp-spacing);
+  display: flex;
+  flex-direction: column;
+  gap: var(--dp-spacing);
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+/* Preview Sub-Element 1: Navbar */
+.dp-prev-navbar {
+  border-radius: var(--dp-radius);
+  border: 1px solid var(--dp-border);
+  background-color: var(--dp-surface);
+  box-shadow: var(--dp-shadow);
+  padding: calc(var(--dp-spacing) * 0.65) calc(var(--dp-spacing) * 0.9);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.dp-prev-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 0.95em;
+  color: var(--dp-text);
+  white-space: nowrap;
+}
+
+.dp-prev-brand-mark {
+  width: 26px;
+  height: 26px;
+  border-radius: calc(var(--dp-radius) * 0.55);
+  background: var(--dp-gradient);
+  color: #ffffff;
+  font-size: 0.75em;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dp-prev-navlinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85em;
+  color: var(--dp-muted);
+}
+
+.dp-prev-navlink.is-active {
+  color: var(--dp-secondary);
+  font-weight: 600;
+}
+
+/* Preview Sub-Element 2: Heading */
+.dp-prev-heading-block {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--dp-spacing) * 0.4);
+}
+
+.dp-prev-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--dp-secondary);
+}
+
+.dp-prev-h2 {
+  margin: 0;
+  font-size: 1.85em;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--dp-text);
+}
+
+.dp-prev-h2-accent {
+  background: var(--dp-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.dp-prev-lead {
+  margin: 0;
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: var(--dp-muted);
+  max-width: 58ch;
+}
+
+/* Preview Sub-Element 3: Interactive Buttons */
+.dp-prev-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 42px;
+  padding: calc(var(--dp-spacing) * 0.45) calc(var(--dp-spacing) * 0.95);
+  border-radius: var(--dp-btn-radius, var(--dp-radius));
+  font-size: 0.88em;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  box-shadow: var(--dp-shadow);
+  transition: transform 150ms ease, opacity 150ms ease, border-color 150ms ease;
+}
+
+.dp-prev-btn:hover {
+  transform: translateY(-1px);
+}
+
+.dp-prev-btn--gradient {
+  background: var(--dp-gradient);
+  color: #ffffff;
+}
+
+.dp-prev-btn--solid {
+  background-color: var(--dp-primary);
+  color: #ffffff;
+}
+
+.dp-prev-btn--outline {
+  background-color: transparent;
+  border-color: var(--dp-primary);
+  color: var(--dp-primary);
+  box-shadow: none;
+}
+
+.dp-prev-btn--pill {
+  background: var(--dp-gradient);
+  color: #ffffff;
+  border-radius: 999px;
+}
+
+.dp-prev-btn--secondary {
+  background-color: var(--dp-surface);
+  color: var(--dp-text);
+  border-color: var(--dp-border);
+  box-shadow: none;
+}
+
+/* Preview Sub-Element 4: Card */
+.dp-prev-card {
+  border-radius: var(--dp-radius);
+  padding: var(--dp-spacing);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--dp-spacing) * 0.55);
+}
+
+.dp-prev-card--bordered {
+  background-color: var(--dp-surface);
+  border: 1px solid var(--dp-border);
+  box-shadow: none;
+}
+
+.dp-prev-card--elevated {
+  background-color: var(--dp-surface);
+  border: 1px solid var(--dp-border);
+  box-shadow: var(--dp-shadow);
+}
+
+.dp-prev-card--tinted {
+  background: linear-gradient(145deg, rgba(99, 102, 241, 0.12), rgba(6, 182, 212, 0.08)), var(--dp-surface);
+  border: 1px solid var(--dp-border);
+  box-shadow: var(--dp-shadow);
+}
+
+.dp-prev-card--minimal {
+  background-color: transparent;
+  border: 1px dashed var(--dp-border);
+  box-shadow: none;
+}
+
+/* Preview Sub-Element 5: Form */
+.dp-prev-form {
+  border-radius: var(--dp-radius);
+  padding: var(--dp-spacing);
+  background-color: var(--dp-surface);
+  border: 1px solid var(--dp-border);
+  box-shadow: var(--dp-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--dp-spacing) * 0.65);
+}
+
+.dp-prev-input {
+  width: 100%;
+  min-height: 40px;
+  padding: 0.45rem 0.75rem;
+  border-radius: calc(var(--dp-radius) * 0.7);
+  border: 1px solid var(--dp-border);
+  background-color: var(--dp-bg);
+  color: var(--dp-text);
+  font-size: 0.88em;
+}
+
+.dp-prev-input:focus {
+  outline: none;
+  border-color: var(--dp-secondary);
+}
+
+/* Live Generated CSS Code Panel */
+.dp-css-pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  background-color: var(--background);
+  border-top: 1px solid var(--border);
+  overflow-x: auto;
+  max-height: 260px;
+  white-space: pre;
+}
+
+html.light .dp-css-pre {
+  color: #1e293b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dp-seg-btn,
+  .dp-preview-canvas,
+  .dp-prev-btn {
+    transition: none !important;
+  }
+}

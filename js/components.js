@@ -80,13 +80,24 @@ function loadNavbar() {
     })
     .join("");
 
+  const brand =
+    window.PortfolioBrand && typeof window.PortfolioBrand.getBrand === "function"
+      ? window.PortfolioBrand.getBrand()
+      : {
+          displayName: config.name || "AL AMIN",
+          logo: { ariaLabel: `${config.name || "AL AMIN"} Home` }
+        };
+  const brandMarkup =
+    window.PortfolioBrand && typeof window.PortfolioBrand.getLogoMarkup === "function"
+      ? window.PortfolioBrand.getLogoMarkup({ size: "sm" })
+      : `<span class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-indigo-500/35 bg-indigo-500/12 text-sm font-extrabold text-indigo-400">A</span><span>${escapeHtml(brand.displayName)}</span>`;
+
   headerMount.className = "site-header";
   headerMount.innerHTML = `
     <div class="container">
       <div class="site-header-shell">
-        <a href="index.html" class="brand-mark" aria-label="${escapeHtml(config.name)} Home">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-indigo-500/35 bg-indigo-500/12 text-sm font-extrabold text-indigo-400">A</span>
-          <span>${escapeHtml(config.name)}</span>
+        <a href="index.html" class="brand-mark" aria-label="${escapeHtml(brand.logo.ariaLabel || `${brand.displayName} Home`)}">
+          ${brandMarkup}
         </a>
 
         <nav class="desktop-nav-list" aria-label="Primary navigation">
@@ -197,12 +208,16 @@ function initMobileMenu() {
     })
     .join("");
 
+  const mobileBrandMarkup =
+    window.PortfolioBrand && typeof window.PortfolioBrand.getLogoMarkup === "function"
+      ? window.PortfolioBrand.getLogoMarkup({ size: "sm" })
+      : `<span class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-indigo-500/35 bg-indigo-500/12 text-sm font-extrabold text-indigo-400">A</span><span>${escapeHtml(config.name || "AL AMIN")}</span>`;
+
   overlay.innerHTML = `
     <div class="container flex flex-col justify-between min-h-full py-4 sm:py-6 gap-6">
       <div class="flex items-center justify-between gap-4 pb-3 border-b border-[var(--border)]">
-        <a href="index.html" class="brand-mark">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-indigo-500/35 bg-indigo-500/12 text-sm font-extrabold text-indigo-400">A</span>
-          <span>${escapeHtml(config.name)}</span>
+        <a href="index.html" class="brand-mark" aria-label="${escapeHtml(config.name || "AL AMIN")} Home">
+          ${mobileBrandMarkup}
         </a>
         <div class="flex items-center gap-2">
           <button
@@ -429,14 +444,29 @@ function loadFooter() {
           tone: (config.websiteStatusOptions && config.websiteStatusOptions[config.websiteStatus] && config.websiteStatusOptions[config.websiteStatus].tone) || "cyan"
         };
 
+  const footerBrand =
+    window.PortfolioBrand && typeof window.PortfolioBrand.getBrand === "function"
+      ? window.PortfolioBrand.getBrand()
+      : {
+          displayName: config.name || "AL AMIN",
+          professionalTitle: config.role || "",
+          description: config.bio || "",
+          location: config.location || "Bangladesh",
+          email: config.email || "",
+          currentFocus: "Full-Stack MERN & Design Systems"
+        };
+  const footerBrandMarkup =
+    window.PortfolioBrand && typeof window.PortfolioBrand.getLogoMarkup === "function"
+      ? window.PortfolioBrand.getLogoMarkup({ size: "md", showSubtitle: true })
+      : `<span class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-indigo-500/35 bg-indigo-500/12 text-sm font-extrabold text-indigo-400">A</span><span>${escapeHtml(footerBrand.displayName)}</span>`;
+
   footerMount.className = "site-footer";
   footerMount.innerHTML = `
     <div class="container">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-10 border-b border-[var(--border)]">
         <div class="lg:col-span-4 space-y-4">
-          <a href="index.html" class="brand-mark">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-indigo-500/35 bg-indigo-500/12 text-sm font-extrabold text-indigo-400">A</span>
-            <span>${escapeHtml(config.name || "AL AMIN")}</span>
+          <a href="index.html" class="brand-mark" aria-label="${escapeHtml(footerBrand.displayName)} Home">
+            ${footerBrandMarkup}
           </a>
           <div>
             <span class="website-status-pill" data-status-tone="${escapeHtml(statusMeta.tone)}">
@@ -444,9 +474,10 @@ function loadFooter() {
               <span>${escapeHtml(statusMeta.label)}</span>
             </span>
           </div>
-          <p class="text-sm font-medium text-[var(--text-secondary)]">${escapeHtml(config.role || "")}</p>
-          <p class="text-sm text-[var(--muted)] max-w-sm">${escapeHtml(config.bio || "")}</p>
-          <p class="text-xs text-[var(--muted)]">${escapeHtml(config.location || "Bangladesh")} · <span class="font-mono-tech text-indigo-400">${escapeHtml(config.email || "")}</span></p>
+          <p class="text-sm font-medium text-[var(--text-secondary)]">${escapeHtml(footerBrand.professionalTitle || config.role || "")}</p>
+          <p class="text-sm text-[var(--muted)] max-w-sm">${escapeHtml(footerBrand.description || config.bio || "")}</p>
+          <p class="text-xs text-[var(--muted)]">${escapeHtml(footerBrand.location || config.location || "Bangladesh")} · <span class="font-mono-tech text-indigo-400">${escapeHtml(footerBrand.email || config.email || "")}</span></p>
+          <div class="pt-1" data-brand-signature="footer"></div>
         </div>
 
         <div class="lg:col-span-3 space-y-3">
@@ -482,9 +513,23 @@ function loadFooter() {
           <button type="button" data-copy-email class="hover:text-[var(--text)] transition-colors bg-transparent border-0 p-0 cursor-pointer text-xs">Copy Email</button>
           <button type="button" data-pwa-install-btn class="hidden hover:text-[var(--text)] transition-colors bg-transparent border-0 p-0 cursor-pointer text-xs text-indigo-400 font-semibold">Install App</button>
           <a href="explorer.html" class="hover:text-[var(--text)] transition-colors">Explorer</a>
+          <a href="project-architect.html" class="hover:text-[var(--text)] transition-colors">Architect</a>
+          <a href="project-estimator.html" class="hover:text-[var(--text)] transition-colors">Estimator</a>
+          <a href="project-request.html" class="hover:text-[var(--text)] transition-colors">Request Brief</a>
+          <a href="build.html" class="hover:text-[var(--text)] transition-colors">Build Log</a>
+          <a href="decisions.html" class="hover:text-[var(--text)] transition-colors">Decisions</a>
+          <a href="security.html" class="hover:text-[var(--text)] transition-colors">Security</a>
+          <a href="performance.html" class="hover:text-[var(--text)] transition-colors">Performance</a>
+          <a href="architecture.html" class="hover:text-[var(--text)] transition-colors">Architecture</a>
+          <a href="api-explorer.html" class="hover:text-[var(--text)] transition-colors">API Explorer</a>
+          <a href="components.html" class="hover:text-[var(--text)] transition-colors">Component Lab</a>
+          <a href="design-playground.html" class="hover:text-[var(--text)] transition-colors">Design Playground</a>
+          <a href="proposal-generator.html" class="hover:text-[var(--text)] transition-colors">Proposal</a>
           <a href="playground.html" class="hover:text-[var(--text)] transition-colors">Playground</a>
           <a href="github.html" class="hover:text-[var(--text)] transition-colors">GitHub</a>
           <a href="resume.html" class="hover:text-[var(--text)] transition-colors">Resume</a>
+          <a href="recruiter-search.html" class="hover:text-[var(--text)] transition-colors">Recruiter Search</a>
+          <a href="knowledge.html" class="hover:text-[var(--text)] transition-colors">Knowledge Base</a>
           <a href="contact.html" class="hover:text-[var(--text)] transition-colors">Contact</a>
           <a href="404.html" class="hover:text-[var(--text)] transition-colors">404</a>
         </div>
@@ -501,6 +546,10 @@ function loadFooter() {
 
   if (window.PortfolioUX && typeof window.PortfolioUX.bindGlobalActionTriggers === "function") {
     window.PortfolioUX.bindGlobalActionTriggers(footerMount);
+  }
+
+  if (window.PortfolioBrand && typeof window.PortfolioBrand.mountSignatures === "function") {
+    window.PortfolioBrand.mountSignatures(footerMount);
   }
 
   refreshIcons();
@@ -532,14 +581,31 @@ function initLoader() {
   if (prefersReducedMotion) return;
 
   const config = window.portfolioConfig || { name: "AL AMIN" };
+  const loaderBrand =
+    window.PortfolioBrand && typeof window.PortfolioBrand.getBrand === "function"
+      ? window.PortfolioBrand.getBrand()
+      : { displayName: config.name || "AL AMIN", professionalTitle: config.role || "" };
+  const loaderEmblem =
+    window.PortfolioBrand && typeof window.PortfolioBrand.getEmblemSvg === "function"
+      ? window.PortfolioBrand.getEmblemSvg({ size: 38 })
+      : "";
+  const loaderSig =
+    window.PortfolioBrand && typeof window.PortfolioBrand.getSignatureMarkup === "function"
+      ? window.PortfolioBrand.getSignatureMarkup("loader", { decorative: true })
+      : "";
+
   const loader = document.createElement("div");
   loader.id = "page-loader";
   loader.className = "page-loader";
   loader.setAttribute("role", "status");
-  loader.setAttribute("aria-label", "Loading page");
+  loader.setAttribute("aria-label", `Loading ${loaderBrand.displayName} portfolio`);
   loader.innerHTML = `
     <div class="loader-content">
-      <div class="loader-wordmark gradient-text">${escapeHtml(config.name || "AL AMIN")}</div>
+      <div class="loader-brand-lockup">
+        ${loaderEmblem}
+        <div class="loader-wordmark gradient-text">${escapeHtml(loaderBrand.displayName)}</div>
+      </div>
+      ${loaderSig}
       <div class="loader-track" aria-hidden="true">
         <div class="loader-sweep"></div>
       </div>
@@ -547,6 +613,10 @@ function initLoader() {
   `;
 
   document.body.appendChild(loader);
+  if (window.PortfolioBrand && typeof window.PortfolioBrand.mountSignatures === "function") {
+    const loaderBox = loader.querySelector(".brand-signature-box");
+    if (loaderBox) loaderBox.classList.add("is-drawn");
+  }
 
   const dismiss = () => {
     loader.classList.add("is-hidden");

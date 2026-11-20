@@ -1,0 +1,269 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 27: Build-in-Public System
+   Featured Currently Building spotlight, 6-stage status pipeline,
+   category filters, project progress tracker, and update feed with screenshots.
+   ========================================================================== */
+
+.bip-spotlight {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background:
+    radial-gradient(circle at top right, rgba(6, 182, 212, 0.1), transparent 46%),
+    radial-gradient(circle at bottom left, rgba(99, 102, 241, 0.1), transparent 46%),
+    var(--surface);
+  overflow: hidden;
+}
+
+.bip-stage-track {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .bip-stage-track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .bip-stage-track {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+.bip-stage-step {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bip-stage-step.is-done {
+  border-color: rgba(16, 185, 129, 0.35);
+  color: var(--text-secondary);
+}
+
+.bip-stage-step.is-done .bip-stage-dot {
+  background-color: #10b981;
+}
+
+.bip-stage-step.is-current {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.14), rgba(99, 102, 241, 0.12));
+  color: var(--text);
+}
+
+.bip-stage-step.is-current .bip-stage-dot {
+  background-color: var(--accent-cyan);
+}
+
+.bip-stage-dot {
+  width: 0.48rem;
+  height: 0.48rem;
+  border-radius: 9999px;
+  background-color: var(--border-strong);
+  flex-shrink: 0;
+}
+
+.bip-progress-track {
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.bip-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent-cyan));
+  transition: transform 280ms var(--ease-out-expo);
+  transform-origin: left center;
+}
+
+/* Segmented Filter Controls */
+.bip-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+.bip-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 40px;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.45rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.bip-filter-btn:hover {
+  color: var(--text);
+  background-color: var(--background);
+}
+
+.bip-filter-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(6, 182, 212, 0.14));
+  color: var(--text);
+}
+
+.bip-select {
+  min-height: 42px;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+}
+
+.bip-select:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+/* Project Status Label (Text + Icon, High Contrast, Not Hue-Only) */
+.bip-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.bip-status-tag[data-status="Planning"] {
+  color: #a78bfa;
+}
+.bip-status-tag[data-status="Design"] {
+  color: #f472b6;
+}
+.bip-status-tag[data-status="Development"] {
+  color: #22d3ee;
+}
+.bip-status-tag[data-status="Testing"] {
+  color: #fbbf24;
+}
+.bip-status-tag[data-status="Deployment"] {
+  color: #818cf8;
+}
+.bip-status-tag[data-status="Completed"] {
+  color: #34d399;
+}
+
+html.light .bip-status-tag[data-status="Planning"] {
+  color: #6d28d9;
+}
+html.light .bip-status-tag[data-status="Design"] {
+  color: #be185d;
+}
+html.light .bip-status-tag[data-status="Development"] {
+  color: #0e7490;
+}
+html.light .bip-status-tag[data-status="Testing"] {
+  color: #b45309;
+}
+html.light .bip-status-tag[data-status="Deployment"] {
+  color: #4338ca;
+}
+html.light .bip-status-tag[data-status="Completed"] {
+  color: #047857;
+}
+
+/* Project Summary Cards & Update Feed */
+.bip-card {
+  min-width: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  transition: border-color var(--transition-fast);
+}
+
+.bip-card:hover {
+  border-color: var(--border-strong);
+}
+
+.bip-card.is-selected {
+  border-color: var(--accent-cyan);
+}
+
+.bip-update-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  cursor: pointer;
+}
+
+.bip-update-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 240ms var(--ease-out-expo);
+}
+
+.bip-update-media:hover img {
+  transform: scale(1.02);
+}
+
+.bip-media-zoom-badge {
+  position: absolute;
+  right: 0.65rem;
+  bottom: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.4rem;
+  background-color: rgba(10, 15, 30, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #f8fafc;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bip-progress-fill,
+  .bip-filter-btn,
+  .bip-card,
+  .bip-update-media img {
+    transition: none !important;
+  }
+  .bip-update-media:hover img {
+    transform: none !important;
+  }
+}

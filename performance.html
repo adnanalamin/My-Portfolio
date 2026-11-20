@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Center — AL AMIN</title>
+  <meta name="description" content="Explore real performance metrics, static asset byte inventory, caching strategy, lazy loading, and interactive Performance / Reduced Motion controls across AL AMIN's portfolio.">
+  <meta name="keywords" content="Performance Center, Web Performance, Core Web Vitals, Caching, Service Worker, Lazy Loading, Reduced Motion, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/performance.html">
+  <meta property="og:title" content="Performance Center — AL AMIN">
+  <meta property="og:description" content="Transparent frontend performance engineering metrics, asset overview, and optimization controls.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/performance.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Performance Center — AL AMIN">
+  <meta name="twitter:description" content="Real measured asset breakdown, browser runtime telemetry, and optimization settings.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Performance Center — AL AMIN",
+    "description": "Performance engineering dashboard showing real asset measurements, runtime timing, caching architecture, and interactive performance controls.",
+    "url": "https://example.com/performance.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/performance.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="performance-center-root">
+      <div class="container space-y-10 sm:space-y-12">
+        <!-- Breadcrumb & Hero Header -->
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="dashboard.html" class="hover:text-[var(--text)] transition-colors">Dashboard</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Performance Center</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 animate-fade-in-up">
+            <div class="space-y-3 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">Performance Engineering Telemetry</span>
+                <span aria-hidden="true">·</span>
+                <span>Verified File Weights &amp; Live Browser Timing</span>
+              </div>
+              <h1 class="hero-title">
+                Performance <span class="gradient-text">Center</span>
+              </h1>
+              <p class="section-subtitle">
+                Inspect measured asset sizes, browser NavigationTiming telemetry, caching policies, and GPU-composited animation discipline—with zero fabricated scores.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <button type="button" id="perf-refresh-telemetry" class="outline-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                <span>Refresh Telemetry</span>
+              </button>
+              <a href="security.html" class="secondary-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                <span>Security Center</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             Performance Dashboard (Live Browser + Static Telemetry)
+             ============================================================ -->
+        <section class="perf-hero-console space-y-5" aria-labelledby="perf-dashboard-heading">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h2 id="perf-dashboard-heading" class="text-lg sm:text-xl font-bold text-[var(--text)]">Live Telemetry Dashboard</h2>
+              <p id="perf-telemetry-meta" class="text-xs font-mono-tech text-[var(--muted)] tabular-nums"></p>
+            </div>
+            <span class="text-xs text-[var(--muted)]">Unconfigured audits state "Measurement not configured."</span>
+          </div>
+
+          <div id="perf-kpi-grid" class="perf-kpi-grid"></div>
+        </section>
+
+        <!-- ============================================================
+             Interactive Runtime Controls: Performance Mode & Reduced Motion
+             ============================================================ -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-5" aria-label="Interactive performance and motion preferences">
+          <div class="perf-mode-card">
+            <div class="space-y-1.5 min-w-0">
+              <div class="flex items-center gap-2">
+                <i data-lucide="zap" class="w-4 h-4 text-cyan-400 shrink-0" aria-hidden="true"></i>
+                <h2 class="text-base sm:text-lg font-bold text-[var(--text)]">Performance Mode</h2>
+              </div>
+              <p class="text-xs sm:text-sm text-[var(--muted)] leading-relaxed">
+                Disables translucent backdrop blur filters, pointer glow effects, 3D tilt, and background decorative pulses for lower-power devices.
+              </p>
+              <p id="perf-mode-state-label" class="text-xs font-mono-tech text-cyan-400"></p>
+            </div>
+            <button
+              type="button"
+              id="perf-mode-toggle"
+              role="switch"
+              aria-checked="false"
+              aria-label="Toggle Performance Mode"
+              class="perf-switch"
+            >
+              <span class="perf-switch-thumb" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div class="perf-mode-card">
+            <div class="space-y-1.5 min-w-0">
+              <div class="flex items-center gap-2">
+                <i data-lucide="sliders" class="w-4 h-4 text-indigo-400 shrink-0" aria-hidden="true"></i>
+                <h2 class="text-base sm:text-lg font-bold text-[var(--text)]">Reduced Motion Mode</h2>
+              </div>
+              <p class="text-xs sm:text-sm text-[var(--muted)] leading-relaxed">
+                Synchronizes with your OS prefers-reduced-motion setting or overrides it persistently to minimize page transitions and reveal transforms.
+              </p>
+              <p id="perf-motion-state-label" class="text-xs font-mono-tech text-indigo-400"></p>
+            </div>
+            <button
+              type="button"
+              id="perf-reduced-motion-toggle"
+              role="switch"
+              aria-checked="false"
+              aria-label="Toggle Reduced Motion Mode"
+              class="perf-switch"
+            >
+              <span class="perf-switch-thumb" aria-hidden="true"></span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             Asset Overview (Measured Repository Breakdown)
+             ============================================================ -->
+        <section class="space-y-5" aria-labelledby="perf-assets-heading">
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+            <div class="space-y-1">
+              <h2 id="perf-assets-heading" class="text-xl sm:text-2xl font-bold text-[var(--text)]">Asset Overview</h2>
+              <p class="text-xs sm:text-sm text-[var(--muted)]">Verified disk sizes across workspace directories on 2026-11-20 (uncompressed before Brotli/Gzip CDN transfer).</p>
+            </div>
+            <div id="perf-asset-tabs" class="perf-tab-bar" role="group" aria-label="Filter asset breakdown category"></div>
+          </div>
+
+          <div id="perf-asset-overview" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        </section>
+
+        <!-- ============================================================
+             10 Performance Engineering Domains
+             ============================================================ -->
+        <section class="space-y-5" aria-labelledby="perf-domains-heading">
+          <div class="space-y-1">
+            <h2 id="perf-domains-heading" class="text-xl sm:text-2xl font-bold text-[var(--text)]">Performance Architecture Breakdown</h2>
+            <p class="text-xs sm:text-sm text-[var(--muted)]">Detailed verification across Page weight, JavaScript, CSS, Images, Fonts, API requests, Lazy loading, Caching, Animations, and Responsive behavior.</p>
+          </div>
+
+          <div id="perf-sections-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+        </section>
+
+        <!-- ============================================================
+             Optimization Checklist + Live Browser Resource Table
+             ============================================================ -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+          <section class="lg:col-span-5 perf-card overflow-hidden" aria-labelledby="perf-checklist-heading">
+            <div class="p-5 space-y-1">
+              <h2 id="perf-checklist-heading" class="text-lg font-bold text-[var(--text)]">Optimization Checklist</h2>
+              <p class="text-xs text-[var(--muted)]">Verifiable implementation status across static portfolio layers.</p>
+            </div>
+            <div id="perf-checklist-list"></div>
+          </section>
+
+          <section class="lg:col-span-7 space-y-3" aria-labelledby="perf-runtime-resources-heading">
+            <div class="space-y-1">
+              <h2 id="perf-runtime-resources-heading" class="text-lg font-bold text-[var(--text)]">Current Session Resource Timing</h2>
+              <p class="text-xs text-[var(--muted)]">Live browser ResourceTiming entries observed while rendering this page.</p>
+            </div>
+
+            <div class="perf-table-wrap">
+              <table class="perf-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Resource</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Transfer Size</th>
+                  </tr>
+                </thead>
+                <tbody id="perf-runtime-resources-body"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/performance.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

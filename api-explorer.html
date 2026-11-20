@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive API Explorer — AL AMIN</title>
+  <meta name="description" content="Explore AL AMIN's interactive REST API reference documentation covering GET, POST, PUT, PATCH, and DELETE contracts, authentication rules, status codes, and request/response payloads without exposing secrets or private credentials.">
+  <meta name="keywords" content="API Explorer, REST API Documentation, HTTP Methods, GET POST PUT PATCH DELETE, JSON Schema, Authentication, Status Codes, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/api-explorer.html">
+  <meta property="og:title" content="Interactive API Explorer — AL AMIN">
+  <meta property="og:description" content="Searchable REST API reference showcasing GET, POST, PUT, PATCH, and DELETE contracts with request/response JSON inspection and safe mock specifications.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/api-explorer.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Interactive API Explorer — AL AMIN">
+  <meta name="twitter:description" content="Reference REST API documentation covering methods, request/response schemas, authentication requirements, and HTTP status codes.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Interactive API Explorer — AL AMIN",
+    "description": "Reference REST API explorer covering HTTP methods, sanitized authentication policies, request parameters, JSON response contracts, and status codes.",
+    "url": "https://example.com/api-explorer.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/api-explorer.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="api-explorer-root">
+      <div class="container space-y-8 sm:space-y-10">
+        <!-- Breadcrumb & Header -->
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="architecture.html" class="hover:text-[var(--text)] transition-colors">Architecture</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">API Explorer</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 animate-fade-in-up">
+            <div class="space-y-3 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">REST API Contract Documentation</span>
+                <span aria-hidden="true">·</span>
+                <span>Static Reference Payloads</span>
+                <span aria-hidden="true">·</span>
+                <span>No Private Secrets Exposed</span>
+              </div>
+              <h1 class="hero-title">
+                Interactive <span class="gradient-text">API Explorer</span>
+              </h1>
+              <p class="section-subtitle">
+                Inspect structured REST API design across GET, POST, PUT, PATCH, and DELETE endpoints—including authentication guards, status codes, sanitized parameters, and expandable JSON contracts.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <button type="button" id="api-toggle-all-btn" class="outline-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                <span>Expand All</span>
+              </button>
+              <a href="security.html" class="secondary-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                <span>Security Center</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Clear Static Reference & Security Posture Notice -->
+          <div class="p-4 rounded-xl border border-[var(--border)] bg-[var(--surface)] flex flex-col sm:flex-row sm:items-center gap-3 text-xs sm:text-sm text-[var(--text-secondary)]">
+            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400 shrink-0" aria-hidden="true"></i>
+            <p class="leading-relaxed">
+              <strong class="text-[var(--text)]">Sanitized Reference Environment:</strong> All <code class="font-mono-tech text-cyan-400">/api/v1/*</code> routes use illustrative static documentation payloads (<code class="font-mono-tech">api.example.com</code>) with placeholder headers so no API keys, JWT secrets, database strings, or internal hosts are ever exposed. Only the configured public read-only GitHub REST endpoint can optionally fetch live public metadata.
+            </p>
+          </div>
+        </div>
+
+        <!-- Search, Domain Select & Method Filters -->
+        <section class="api-toolbar" aria-label="Search and filter API endpoints">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-center">
+            <div class="lg:col-span-6 api-search-wrap">
+              <i data-lucide="search" class="w-4 h-4 api-search-icon" aria-hidden="true"></i>
+              <label for="api-search-input" class="sr-only">Search API endpoints</label>
+              <input
+                id="api-search-input"
+                type="search"
+                class="api-search-input"
+                placeholder="Search endpoints, paths, auth rules, or status codes..."
+                autocomplete="off"
+              >
+              <button type="button" id="api-search-clear" class="api-search-clear hidden" aria-label="Clear endpoint search">
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="lg:col-span-4">
+              <label for="api-domain-select" class="sr-only">Filter by API domain</label>
+              <select id="api-domain-select" class="api-select w-full"></select>
+            </div>
+
+            <div class="lg:col-span-2 flex justify-start lg:justify-end">
+              <button type="button" id="api-reset-btn" class="outline-button w-full lg:w-auto text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                <span>Reset</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1 border-t border-[var(--border)]">
+            <div id="api-method-tabs" class="api-method-strip" role="group" aria-label="Filter endpoints by HTTP method"></div>
+            <p id="api-count-label" class="text-xs sm:text-sm font-mono-tech text-[var(--muted)] tabular-nums shrink-0"></p>
+          </div>
+        </section>
+
+        <!-- Documentation Layout: Sticky Endpoint Index + Endpoint Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+          <aside class="lg:col-span-4 hidden lg:block">
+            <nav id="api-index-rail" class="api-index-rail" aria-label="API endpoint index"></nav>
+          </aside>
+
+          <div class="lg:col-span-8">
+            <div id="api-cards-list" class="space-y-5" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/api-explorer.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

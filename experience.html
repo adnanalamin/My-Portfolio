@@ -59,6 +59,7 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/journey.css">
 </head>
 <body class="ambient-backdrop bg-grid-pattern">
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
@@ -102,15 +103,76 @@
         <div id="experience-timeline-grid" class="exp-timeline"></div>
       </div>
     </section>
+
+    <!-- ================================================================
+         Phase 26: Interactive 10-Stage Developer Journey Timeline
+         ================================================================ -->
+    <section id="developer-journey-section" aria-labelledby="developer-journey-heading" class="section border-t border-[var(--border)]">
+      <div class="container space-y-8">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-2 max-w-3xl">
+            <div class="flex items-center gap-2 text-xs text-[var(--muted)]">
+              <span class="font-semibold text-cyan-400">Chronological Story</span>
+              <span aria-hidden="true">·</span>
+              <span>10 Milestones · Configurable Timeline</span>
+            </div>
+            <h2 id="developer-journey-heading" class="section-title">Interactive <span class="gradient-text">Developer Journey</span></h2>
+            <p class="section-subtitle">
+              Follow each stage from my earliest computer science foundations to full-stack product builds, freelancing, open-source tooling, and future engineering goals.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <button type="button" id="jr-toggle-all-btn" class="outline-button text-xs sm:text-sm min-h-[40px]">
+              <i data-lucide="chevrons-down" class="w-4 h-4"></i>
+              <span>Expand All</span>
+            </button>
+            <button type="button" id="jr-reset-btn" class="outline-button text-xs sm:text-sm min-h-[40px]">
+              <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+              <span>Reset Filters</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Year + Category Filter Bar -->
+        <div class="jr-toolbar">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+              <label for="jr-year-select" class="text-xs font-semibold text-[var(--text-secondary)] whitespace-nowrap">Filter by Year:</label>
+              <select id="jr-year-select" class="jr-select"></select>
+            </div>
+            <p id="jr-count-label" class="text-xs sm:text-sm font-mono-tech text-[var(--muted)] tabular-nums"></p>
+          </div>
+
+          <div class="space-y-1.5">
+            <p class="text-xs font-semibold text-[var(--text-secondary)]">Filter by Journey Category</p>
+            <div id="jr-category-tabs" class="jr-category-strip" role="group" aria-label="Filter developer journey by stage category"></div>
+          </div>
+        </div>
+
+        <!-- Two-Column Desktop (Chapter Rail + Timeline) / Single Vertical Timeline on Mobile -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+          <aside class="lg:col-span-4 hidden lg:block">
+            <nav id="jr-nav-rail" class="jr-nav-rail" aria-label="Developer journey chapter navigation"></nav>
+          </aside>
+
+          <div class="lg:col-span-8">
+            <div id="jr-timeline-track" class="jr-timeline-track" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer id="site-footer"></footer>
 
   <script defer src="js/config.js"></script>
   <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
   <script defer src="js/modes.js"></script>
   <script defer src="js/components.js"></script>
   <script defer src="js/animations.js"></script>
+  <script defer src="js/journey.js"></script>
   <script defer src="js/assistant.js"></script>
   <script defer src="js/ux.js"></script>
   <script defer src="js/main.js"></script>

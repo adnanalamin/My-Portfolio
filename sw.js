@@ -7,7 +7,7 @@
  * - Stale-while-revalidate for static local CSS, JS, and SVG/PNG assets.
  */
 
-const CACHE_NAME = "alamin-portfolio-shell-v1";
+const CACHE_NAME = "alamin-portfolio-shell-v2";
 const PRECACHE_URLS = [
   "./",
   "./index.html",
@@ -19,11 +19,61 @@ const PRECACHE_URLS = [
   "./css/case-study.css",
   "./css/github.css",
   "./css/playground.css",
+  "./css/architect.css",
+  "./css/estimator.css",
+  "./css/request.css",
+  "./css/skills-graph.css",
+  "./css/journey.css",
+  "./css/build.css",
+  "./css/decisions.css",
+  "./css/security.css",
+  "./css/performance.css",
+  "./css/architecture.css",
+  "./css/api-explorer.css",
+  "./css/components-lab.css",
+  "./css/design-playground.css",
+  "./css/proposal-generator.css",
+  "./css/resume-builder.css",
+  "./css/recruiter-search.css",
+  "./css/knowledge.css",
+  "./project-architect.html",
+  "./project-estimator.html",
+  "./project-request.html",
+  "./build.html",
+  "./decisions.html",
+  "./security.html",
+  "./performance.html",
+  "./architecture.html",
+  "./api-explorer.html",
+  "./components.html",
+  "./design-playground.html",
+  "./proposal-generator.html",
+  "./resume.html",
+  "./recruiter-search.html",
+  "./knowledge.html",
   "./js/config.js",
   "./js/theme.js",
+  "./js/brand.js",
   "./js/modes.js",
   "./js/components.js",
   "./js/ux.js",
+  "./js/architect.js",
+  "./js/estimator.js",
+  "./js/request.js",
+  "./js/skills-graph.js",
+  "./js/journey.js",
+  "./js/build.js",
+  "./js/decisions.js",
+  "./js/security.js",
+  "./js/performance.js",
+  "./js/architecture.js",
+  "./js/api-explorer.js",
+  "./js/components-lab.js",
+  "./js/design-playground.js",
+  "./js/proposal-generator.js",
+  "./js/resume-builder.js",
+  "./js/recruiter-search.js",
+  "./js/knowledge.js",
   "./js/animations.js",
   "./js/main.js",
   "./assets/icons/favicon.svg",
@@ -108,9 +158,29 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Local static UI assets (CSS/JS/images/icons): stale-while-revalidate
-  const isStaticAsset = /\.(css|js|svg|png|jpg|jpeg|webp|woff2?|webmanifest|pdf)$/i.test(reqUrl.pathname);
-  if (!isStaticAsset) return;
+  // Local static code assets (CSS/JS): network-first with cache fallback to prevent stale code mismatches
+  const isCodeAsset = /\.(css|js|webmanifest)$/i.test(reqUrl.pathname);
+  if (isCodeAsset) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(async (cache) => {
+        try {
+          const response = await fetch(request);
+          if (response && response.ok && response.type === "basic") {
+            cache.put(request, response.clone()).catch(() => {});
+          }
+          return response;
+        } catch (_err) {
+          const cached = await cache.match(request);
+          return cached || Response.error();
+        }
+      })
+    );
+    return;
+  }
+
+  // Static media/icon assets: stale-while-revalidate
+  const isMediaAsset = /\.(svg|png|jpg|jpeg|webp|woff2?|pdf)$/i.test(reqUrl.pathname);
+  if (!isMediaAsset) return;
 
   event.respondWith(
     caches.open(CACHE_NAME).then(async (cache) => {

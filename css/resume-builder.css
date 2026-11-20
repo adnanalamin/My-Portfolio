@@ -1,0 +1,164 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 36: Dynamic Resume Builder & A4 Print Sheet
+   Reads centralized portfolio configuration, projects, and skills to build
+   role-tailored printable resumes with crisp A4 white-paper output.
+   ========================================================================== */
+
+.rb-builder-bar {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+@media (min-width: 640px) {
+  .rb-builder-bar {
+    padding: 1.5rem;
+  }
+}
+
+.rb-role-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.rb-role-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 40px;
+  padding: 0.42rem 0.85rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.rb-role-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.rb-role-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(6, 182, 212, 0.14));
+  color: var(--text);
+}
+
+.rb-section-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.rb-toggle-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 36px;
+  padding: 0.32rem 0.72rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.rb-toggle-chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.rb-toggle-chip.is-enabled {
+  border-color: rgba(16, 185, 129, 0.45);
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--text);
+}
+
+/* A4 Screen Paper Presentation Wrapper */
+.rb-sheet-frame {
+  max-width: 920px;
+  margin-inline: auto;
+}
+
+.rb-sheet-frame .resume-sheet.is-compact {
+  padding: 1.5rem 2rem;
+}
+
+.rb-sheet-frame .resume-sheet.is-compact .resume-block {
+  margin-top: 0;
+}
+
+/* Professional A4 Print Styling */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 11mm 13mm;
+  }
+
+  .no-print,
+  .rb-builder-bar {
+    display: none !important;
+  }
+
+  .rb-sheet-frame {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .resume-sheet {
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    padding: 0 !important;
+  }
+
+  .resume-sheet h2,
+  .resume-sheet h3,
+  .resume-sheet h4 {
+    color: #0f172a !important;
+  }
+
+  .resume-sheet p,
+  .resume-sheet li,
+  .resume-sheet span {
+    color: #334155 !important;
+  }
+
+  .resume-sheet a {
+    color: #0f172a !important;
+    text-decoration: none !important;
+  }
+
+  .resume-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rb-role-btn,
+  .rb-toggle-chip {
+    transition: none !important;
+  }
+}

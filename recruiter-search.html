@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recruiter Search — AL AMIN</title>
+  <meta name="description" content="Fast recruiter search system to query AL AMIN across verified skills, full-stack projects, experience, certificates, case studies, and engineering articles.">
+  <meta name="keywords" content="Recruiter Search, Hire Full-Stack Developer, MERN Engineer Search, Candidate Skills Matrix, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/recruiter-search.html">
+  <meta property="og:title" content="Recruiter Search — AL AMIN">
+  <meta property="og:description" content="Scan verified projects, technical skills, experience, certificates, and case studies in seconds.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/recruiter-search.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Recruiter Search — AL AMIN">
+  <meta name="twitter:description" content="Recruiter-focused candidate search across skills, projects, experience, certificates, and case studies.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Recruiter Search — AL AMIN",
+    "description": "Interactive recruiter search across skills, projects, experience, certificates, technologies, and technical articles.",
+    "url": "https://example.com/recruiter-search.html"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/recruiter-search.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="recruiter-search-root">
+      <div class="container space-y-6 sm:space-y-8">
+        <!-- Breadcrumb & Header -->
+        <div class="space-y-4">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="resume.html" class="hover:text-[var(--text)] transition-colors">Resume</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Recruiter Search</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 animate-fade-in-up">
+            <div class="space-y-2.5 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">Hiring &amp; Talent Discovery</span>
+                <span aria-hidden="true">·</span>
+                <span>Skills · Projects · Experience · Certificates · Articles</span>
+              </div>
+              <h1 class="hero-title">Recruiter <span class="gradient-text">Search System</span></h1>
+              <p class="section-subtitle">
+                Filter across verified skills, full-stack projects, case studies, work history, certificates, and articles in one scannable index.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a href="resume.html" class="outline-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                <span>Dynamic Resume</span>
+              </a>
+              <a href="contact.html" class="primary-button text-xs sm:text-sm min-h-[42px]">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span>Contact Candidate</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Search Input + Mobile Filter Drawer Trigger -->
+        <div class="rs-search-shell space-y-3.5 animate-fade-in-up delay-100">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div class="rs-search-input-wrap flex-1">
+              <i data-lucide="search" class="w-4 h-4 text-cyan-400 shrink-0" aria-hidden="true"></i>
+              <label for="rs-search-input" class="sr-only">Search across skills, projects, experience, certificates, technologies, and articles</label>
+              <input
+                type="search"
+                id="rs-search-input"
+                class="rs-search-input"
+                placeholder="Search React, Node.js, MongoDB, SaaS, JWT Auth, AstraPulse... (Press / to focus)"
+                autocomplete="off"
+              >
+              <button
+                type="button"
+                id="rs-search-clear"
+                class="hidden icon-button w-8 h-8 shrink-0"
+                aria-label="Clear search query"
+              >
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <button
+              type="button"
+              id="rs-drawer-open"
+              class="lg:hidden secondary-button min-h-[48px] justify-center shrink-0"
+              aria-controls="rs-filter-drawer"
+              aria-expanded="false"
+            >
+              <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+              <span>Filters</span>
+              <span id="rs-mobile-filter-count" class="font-mono-tech tabular-nums text-cyan-400"></span>
+            </button>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-semibold text-[var(--muted)]">Quick Checks:</span>
+            <div id="rs-quick-queries" class="rs-quick-row"></div>
+          </div>
+        </div>
+
+        <!-- Scannable Overview Strip -->
+        <div id="rs-kpi-strip" class="rs-kpi-strip animate-fade-in-up delay-150" aria-live="polite"></div>
+
+        <!-- Mobile Backdrop -->
+        <div id="rs-drawer-backdrop" class="rs-drawer-backdrop" aria-hidden="true"></div>
+
+        <!-- Two-Column Workspace: Desktop Sticky Filter Rail + Mobile Drawer / Fast Scan Results -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <aside
+            id="rs-filter-drawer"
+            class="lg:col-span-4 rs-filter-panel"
+            aria-label="Recruiter filter controls"
+          >
+            <div class="flex items-center justify-between gap-2 pb-3 border-b border-[var(--border)]">
+              <div class="flex items-center gap-2">
+                <i data-lucide="filter" class="w-4 h-4 text-cyan-400"></i>
+                <h2 class="text-sm font-bold text-[var(--text)]">Candidate Filters</h2>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" id="rs-reset-filters" class="text-xs font-semibold text-cyan-400 hover:underline bg-transparent border-0 p-1 cursor-pointer">
+                  Reset all
+                </button>
+                <button
+                  type="button"
+                  id="rs-drawer-close"
+                  class="lg:hidden icon-button w-8 h-8"
+                  aria-label="Close filter drawer"
+                >
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="rs-filter-tech" class="block text-xs font-semibold text-[var(--text-secondary)]">Technology Stack</label>
+              <select id="rs-filter-tech" class="rs-filter-select"></select>
+              <div id="rs-tech-cloud" class="rs-tech-cloud pt-1.5" role="group" aria-label="Quick technology filter"></div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="rs-filter-exp-cat" class="block text-xs font-semibold text-[var(--text-secondary)]">Experience Category</label>
+              <select id="rs-filter-exp-cat" class="rs-filter-select"></select>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="rs-filter-proj-type" class="block text-xs font-semibold text-[var(--text-secondary)]">Project Type</label>
+              <select id="rs-filter-proj-type" class="rs-filter-select"></select>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="rs-filter-skill-cat" class="block text-xs font-semibold text-[var(--text-secondary)]">Skill Category</label>
+              <select id="rs-filter-skill-cat" class="rs-filter-select"></select>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="rs-filter-availability" class="block text-xs font-semibold text-[var(--text-secondary)]">Availability</label>
+              <select id="rs-filter-availability" class="rs-filter-select"></select>
+            </div>
+
+            <div class="pt-3 border-t border-[var(--border)] lg:hidden">
+              <button type="button" id="rs-drawer-apply" class="primary-button w-full justify-center min-h-[44px]">
+                <i data-lucide="check" class="w-4 h-4"></i>
+                <span>Show Matching Results</span>
+              </button>
+            </div>
+          </aside>
+
+          <!-- Main Search Results Column -->
+          <div class="lg:col-span-8 space-y-4">
+            <div id="rs-scope-tabs" class="rs-scope-tabs" role="tablist" aria-label="Filter results by result group"></div>
+            <div id="rs-results-mount" class="space-y-5" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/skills.js"></script>
+  <script defer src="js/projects.js"></script>
+  <script defer src="js/blog.js"></script>
+  <script defer src="js/recruiter-search.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 29: Security Center
+   Clean, professional security engineering documentation and project posture UI.
+   ========================================================================== */
+
+.sec-summary-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .sec-summary-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.sec-stat-card {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sec-toolbar {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sec-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sec-search-icon {
+  position: absolute;
+  left: 0.85rem;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.sec-search-input {
+  width: 100%;
+  min-height: 42px;
+  padding: 0.55rem 2.5rem 0.55rem 2.45rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  transition: border-color var(--transition-fast);
+}
+
+.sec-search-input:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+.sec-search-clear {
+  position: absolute;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 0.35rem;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.sec-search-clear:hover {
+  color: var(--text);
+}
+
+.sec-filter-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.sec-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 40px;
+  padding: 0.42rem 0.85rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.sec-filter-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.sec-filter-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.16), rgba(99, 102, 241, 0.14));
+  color: var(--text);
+}
+
+/* Status Indicators (Text + Icon, High Contrast Across Themes) */
+.sec-status-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.sec-status-label[data-sec-status="Implemented"] {
+  color: #34d399;
+}
+.sec-status-label[data-sec-status="Experimental"] {
+  color: #22d3ee;
+}
+.sec-status-label[data-sec-status="Planned"] {
+  color: #fbbf24;
+}
+
+html.light .sec-status-label[data-sec-status="Implemented"] {
+  color: #047857;
+}
+html.light .sec-status-label[data-sec-status="Experimental"] {
+  color: #0e7490;
+}
+html.light .sec-status-label[data-sec-status="Planned"] {
+  color: #b45309;
+}
+
+/* Control Cards & Project Matrix Cards */
+.sec-card {
+  min-width: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  transition: border-color var(--transition-fast);
+}
+
+.sec-card:hover {
+  border-color: var(--border-strong);
+}
+
+.sec-icon-frame {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--accent-cyan);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sec-evidence-panel {
+  border-top: 1px solid var(--border);
+  padding-top: 0.85rem;
+  margin-top: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.sec-select {
+  min-height: 42px;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+}
+
+.sec-select:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sec-search-input,
+  .sec-filter-btn,
+  .sec-card {
+    transition: none !important;
+  }
+}

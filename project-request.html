@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Project Request Wizard — AL AMIN</title>
+  <meta name="description" content="Complete a guided 7-step project brief with business goals, technical requirements, budget range, and timeline to start building with AL AMIN.">
+  <meta name="keywords" content="Project Request Wizard, Project Brief, Hire Full-Stack Developer, Software Inquiry, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/project-request.html">
+  <meta property="og:title" content="Smart Project Request Wizard — AL AMIN">
+  <meta property="og:description" content="Guided 7-step project brief intake system to share your product requirements, technical needs, budget, and timeline.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/project-request.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Smart Project Request Wizard — AL AMIN">
+  <meta name="twitter:description" content="Build and submit a structured project brief to start collaborating with AL AMIN.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Smart Project Request Wizard — AL AMIN",
+    "description": "Multi-step interactive project request brief covering business context, technical specs, budget ranges, timeline, and direct submission.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "https://example.com/project-request.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/request.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section" id="project-request-root">
+      <div class="container space-y-10 sm:space-y-12">
+        <!-- Breadcrumb & Hero Header -->
+        <div class="space-y-5">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+            <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="contact.html" class="hover:text-[var(--text)] transition-colors">Contact</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-[var(--text-secondary)]">Project Request Wizard</span>
+          </nav>
+
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 animate-fade-in-up">
+            <div class="space-y-3 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
+                <span class="font-semibold text-cyan-400">7-Step Client Intake</span>
+                <span aria-hidden="true">·</span>
+                <span>Structured Project Brief</span>
+              </div>
+              <h1 class="hero-title">
+                Smart Project <span class="gradient-text">Request Wizard</span>
+              </h1>
+              <p class="section-subtitle">
+                Walk through seven quick steps to capture your project goals, features, technical requirements, indicative budget, and launch timeline into an actionable project brief.
+              </p>
+            </div>
+
+            <div id="req-hero-actions" class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a href="project-estimator.html" class="outline-button text-xs sm:text-sm">
+                <i data-lucide="wallet" class="w-4 h-4"></i>
+                <span>Scope Estimator</span>
+              </a>
+              <a href="contact.html" class="secondary-button text-xs sm:text-sm">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span>Quick Contact</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wizard Container Card -->
+        <section aria-label="Multi-step project request form" class="glass-card p-5 sm:p-8 space-y-6">
+          <!-- Progress Chrome -->
+          <div id="req-wizard-chrome" class="space-y-4 pb-5 border-b border-[var(--border)]">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3 text-xs">
+                <span class="font-semibold text-[var(--text-secondary)]">Brief Progress</span>
+                <span id="req-progress-label" class="font-mono-tech text-cyan-400 tabular-nums">Step 1 of 7 · 14%</span>
+              </div>
+              <button type="button" id="req-reset-btn" class="outline-button text-xs py-2 px-3 min-h-[38px]">
+                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                <span>Reset Brief</span>
+              </button>
+            </div>
+
+            <div class="req-progress-track" aria-hidden="true">
+              <div id="req-progress-fill" class="req-progress-fill" style="width: 14%;"></div>
+            </div>
+
+            <div id="req-steps-nav" class="req-steps-nav" role="navigation" aria-label="Project brief steps"></div>
+          </div>
+
+          <!-- Active Step Inputs -->
+          <div id="req-step-body"></div>
+
+          <!-- Inline Validation Banner -->
+          <p id="req-validation-banner" class="hidden text-xs sm:text-sm font-medium text-rose-400" role="alert"></p>
+
+          <!-- Step Footer Navigation -->
+          <div id="req-step-footer" class="pt-5 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3">
+            <button type="button" id="req-prev-btn" class="outline-button text-xs sm:text-sm min-h-[44px]" disabled>
+              <i data-lucide="arrow-left" class="w-4 h-4"></i>
+              <span>Previous Step</span>
+            </button>
+
+            <div class="flex flex-wrap items-center gap-2.5">
+              <button type="button" id="req-next-btn" class="primary-button text-xs sm:text-sm min-h-[44px]">
+                <span>Continue</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+              <button type="button" id="req-finish-btn" class="primary-button text-xs sm:text-sm min-h-[44px] hidden">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                <span>Review Final Brief</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Final Generated Summary View -->
+          <div id="req-summary-root" class="hidden" aria-live="polite"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/contact.js"></script>
+  <script defer src="js/request.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

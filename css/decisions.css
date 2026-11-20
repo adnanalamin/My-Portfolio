@@ -1,0 +1,242 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 28: Engineering Decision Log (ADR Documentation)
+   Professional documentation workspace styling for searchable, filterable,
+   expandable Architecture Decision Records.
+   ========================================================================== */
+
+.adr-toolbar {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.adr-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.adr-search-icon {
+  position: absolute;
+  left: 0.85rem;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.adr-search-input {
+  width: 100%;
+  min-height: 42px;
+  padding: 0.55rem 2.5rem 0.55rem 2.45rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  transition: border-color var(--transition-fast);
+}
+
+.adr-search-input:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+.adr-search-clear {
+  position: absolute;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 0.35rem;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.adr-search-clear:hover {
+  color: var(--text);
+}
+
+.adr-select {
+  min-height: 42px;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+}
+
+.adr-select:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+.adr-tech-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.adr-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0.38rem 0.78rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.adr-filter-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.adr-filter-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(6, 182, 212, 0.14));
+  color: var(--text);
+}
+
+/* Sticky Documentation Index Sidebar */
+.adr-index-rail {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+@media (min-width: 1024px) {
+  .adr-index-rail {
+    position: sticky;
+    top: 5.75rem;
+  }
+}
+
+.adr-index-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.45rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.adr-index-link:hover {
+  background-color: var(--background);
+  color: var(--text);
+}
+
+.adr-index-link.is-active {
+  border-color: rgba(6, 182, 212, 0.45);
+  background-color: rgba(6, 182, 212, 0.09);
+  color: var(--text);
+}
+
+/* ADR Decision Cards */
+.adr-card {
+  min-width: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  transition: border-color var(--transition-fast);
+}
+
+.adr-card:hover {
+  border-color: var(--border-strong);
+}
+
+.adr-details-body {
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.adr-spec-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .adr-spec-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.adr-spec-block {
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.adr-options-table {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+@media (min-width: 768px) {
+  .adr-options-table {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.adr-option-cell {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.adr-option-cell.is-selected {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(99, 102, 241, 0.06));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adr-search-input,
+  .adr-filter-btn,
+  .adr-index-link,
+  .adr-card {
+    transition: none !important;
+  }
+}

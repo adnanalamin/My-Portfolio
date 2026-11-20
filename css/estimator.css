@@ -1,0 +1,251 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 23: Project Scope & Cost Estimator
+   Mobile-first layout, accessible touch controls, live summary & print mode
+   ========================================================================== */
+
+.est-group-card {
+  min-width: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+@media (min-width: 640px) {
+  .est-group-card {
+    padding: 1.5rem;
+  }
+}
+
+.est-field-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .est-field-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.est-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.45rem;
+}
+
+.est-select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.est-select:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.16);
+}
+
+.est-preset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 40px;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.est-preset-btn:hover,
+.est-preset-btn.is-active {
+  border-color: var(--accent-cyan);
+  color: var(--text);
+  background-color: rgba(6, 182, 212, 0.1);
+}
+
+/* Toggle Switch Option Tiles */
+.est-toggle-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.7rem;
+}
+
+@media (min-width: 640px) {
+  .est-toggle-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.est-option-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.est-option-tile.is-configured {
+  border-color: rgba(6, 182, 212, 0.45);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(6, 182, 212, 0.06));
+}
+
+/* Sticky Output Panel on Desktop */
+.est-summary-sticky {
+  min-width: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface);
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+@media (min-width: 1024px) {
+  .est-summary-sticky {
+    position: sticky;
+    top: 5.75rem;
+    padding: 1.5rem;
+  }
+}
+
+.est-metric-box {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.est-feature-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.est-feature-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.est-feature-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.est-scope-box {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  padding: 0.95rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.est-disclaimer-note {
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  background-color: rgba(6, 182, 212, 0.08);
+  padding: 0.8rem 0.95rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+html.light .est-disclaimer-note {
+  background-color: rgba(8, 145, 178, 0.08);
+  border-color: rgba(8, 145, 178, 0.32);
+  color: #0f172a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .est-select,
+  .est-preset-btn,
+  .est-option-tile {
+    transition: none !important;
+  }
+}
+
+/* Clean White-Paper Print Styles */
+@media print {
+  header#site-header,
+  footer#site-footer,
+  #portfolio-assistant-root,
+  #back-to-top,
+  #scroll-progress,
+  #est-presets-bar,
+  #est-hero-actions,
+  #est-action-buttons,
+  .est-no-print,
+  .skip-to-content {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  main#main-content {
+    padding: 0 !important;
+  }
+
+  .est-group-card,
+  .est-summary-sticky,
+  .est-metric-box,
+  .est-scope-box,
+  .est-disclaimer-note,
+  .est-option-tile {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    position: static !important;
+    break-inside: avoid;
+  }
+
+  .text-\[var\(--muted\)\],
+  .text-\[var\(--text-secondary\)\] {
+    color: #334155 !important;
+  }
+}

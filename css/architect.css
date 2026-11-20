@@ -1,0 +1,423 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 22: Interactive Project Architect
+   ========================================================================== */
+
+.arch-stepper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+@media (max-width: 767px) {
+  .arch-stepper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.arch-step-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    transform 180ms var(--ease-out-expo);
+}
+
+.arch-step-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.arch-step-btn.is-active {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(6, 182, 212, 0.1));
+  color: var(--text);
+}
+
+.arch-step-btn.is-complete:not(.is-active) {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.arch-step-index {
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--border-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  background-color: var(--background);
+  color: var(--muted);
+}
+
+.arch-step-btn.is-active .arch-step-index {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+  color: #ffffff;
+}
+
+.arch-step-btn.is-complete:not(.is-active) .arch-step-index {
+  border-color: rgba(16, 185, 129, 0.45);
+  background-color: rgba(16, 185, 129, 0.14);
+  color: #10b981;
+}
+
+.arch-progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background-color: rgba(148, 163, 184, 0.16);
+  overflow: hidden;
+}
+
+.arch-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent-cyan));
+  transition: width 260ms var(--ease-out-expo);
+}
+
+/* Form Inputs & Selectors */
+.arch-field-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.45rem;
+}
+
+.arch-input,
+.arch-select,
+.arch-textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.arch-input:focus,
+.arch-select:focus,
+.arch-textarea:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+}
+
+.arch-option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  gap: 0.65rem;
+}
+
+.arch-choice-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-height: 48px;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform 160ms var(--ease-out-expo);
+}
+
+.arch-choice-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.arch-choice-card.is-checked {
+  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.13), rgba(6, 182, 212, 0.08));
+}
+
+.arch-choice-card input {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.15rem;
+  accent-color: var(--primary);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.arch-preset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 40px;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.arch-preset-btn:hover,
+.arch-preset-btn.is-active {
+  border-color: var(--accent-cyan);
+  color: var(--text);
+  background-color: rgba(6, 182, 212, 0.1);
+}
+
+/* Interactive Architecture Diagram */
+.arch-diagram-canvas {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.09), transparent 46%),
+    radial-gradient(circle at bottom left, rgba(6, 182, 212, 0.08), transparent 42%),
+    var(--surface);
+  padding: 1.25rem;
+}
+
+.arch-diagram-tiers {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.85rem;
+  align-items: stretch;
+}
+
+@media (max-width: 1180px) {
+  .arch-diagram-tiers {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .arch-diagram-tiers {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+}
+
+.arch-tier-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  min-height: 44px;
+  transition:
+    border-color var(--transition-fast),
+    transform 180ms var(--ease-out-expo),
+    box-shadow var(--transition-fast);
+}
+
+.arch-tier-node:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+.arch-tier-node.is-focused {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+}
+
+.arch-tier-node.is-inactive {
+  opacity: 0.62;
+  border-style: dashed;
+}
+
+.arch-tier-flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  gap: 0.35rem;
+  padding-top: 0.35rem;
+}
+
+.arch-node-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.arch-node-list li {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  line-height: 1.4;
+}
+
+/* Technology Stack Output Cards */
+.arch-output-card {
+  min-width: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.arch-output-card.is-highlighted {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.16);
+}
+
+.arch-tree-pre {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text-secondary);
+  overflow-x: auto;
+  margin: 0;
+}
+
+/* 7-Phase Development Roadmap */
+.arch-roadmap-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.arch-roadmap-phase {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.arch-phase-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-cyan);
+}
+
+html.light .arch-phase-num {
+  color: #0e7490;
+}
+
+@keyframes archFadeSlide {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.arch-animate-in {
+  animation: archFadeSlide 200ms var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-step-btn,
+  .arch-progress-fill,
+  .arch-choice-card,
+  .arch-tier-node,
+  .arch-animate-in {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Clean White-Paper Print Blueprint Support */
+@media print {
+  header#site-header,
+  footer#site-footer,
+  #portfolio-assistant-root,
+  #back-to-top,
+  #scroll-progress,
+  #arch-wizard-panel,
+  #arch-hero-actions,
+  .arch-export-actions,
+  .skip-to-content {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  main#main-content {
+    padding: 0 !important;
+  }
+
+  .arch-output-card,
+  .arch-diagram-canvas,
+  .arch-tier-node,
+  .arch-roadmap-phase,
+  .arch-tree-pre {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+
+  .arch-diagram-tiers {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .text-\[var\(--muted\)\],
+  .text-\[var\(--text-secondary\)\] {
+    color: #334155 !important;
+  }
+}
