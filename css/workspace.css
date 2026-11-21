@@ -1,0 +1,454 @@
+/* ==========================================================================
+   AL AMIN Portfolio OS — Phase 42: Lightweight CSS 3D Developer Workspace
+   Uses GPU-friendly CSS 3D transforms, SVG art, compositor lighting variables,
+   clean 2D mobile degradation (< 768px), Performance Mode & Reduced Motion.
+   ========================================================================== */
+
+.ws-shell {
+  overflow-x: clip;
+}
+
+.ws-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+@media (min-width: 768px) {
+  .ws-toolbar {
+    padding: 1rem 1.25rem;
+  }
+}
+
+.ws-ctrl-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ws-ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 42px;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.7rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition:
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.ws-ctrl-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.ws-ctrl-btn[aria-pressed="true"],
+.ws-ctrl-btn.is-active {
+  border-color: rgba(6, 182, 212, 0.58);
+  background: rgba(6, 182, 212, 0.14);
+  color: var(--text);
+}
+
+.ws-ctrl-btn-primary {
+  border-color: rgba(99, 102, 241, 0.6);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #ffffff;
+}
+
+.ws-ctrl-btn-primary:hover {
+  color: #ffffff;
+  border-color: var(--accent-cyan);
+}
+
+.ws-ctrl-btn:focus-visible,
+.ws-obj-card:focus-visible,
+.ws-a11y-item-btn:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   CSS 3D Workspace Stage (Desktop & Tablet >= 768px)
+   ========================================================================== */
+
+.ws-stage-viewport {
+  --cam-rx: 6deg;
+  --cam-ry: -4deg;
+  --light-x: 50%;
+  --light-y: 35%;
+  position: relative;
+  border-radius: 1.25rem;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(620px circle at var(--light-x) var(--light-y), rgba(99, 102, 241, 0.18), transparent 62%),
+    radial-gradient(480px circle at var(--light-x) var(--light-y), rgba(6, 182, 212, 0.12), transparent 52%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(5, 8, 22, 0.96) 100%);
+  padding: 1.75rem;
+  perspective: 1400px;
+  overflow: hidden;
+  box-shadow: 0 32px 68px -28px rgba(2, 6, 23, 0.72);
+}
+
+html.light .ws-stage-viewport {
+  background:
+    radial-gradient(620px circle at var(--light-x) var(--light-y), rgba(79, 70, 229, 0.12), transparent 62%),
+    linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  box-shadow: 0 24px 54px -26px rgba(15, 23, 42, 0.16);
+}
+
+.ws-stage-viewport.is-entered {
+  border-color: rgba(6, 182, 212, 0.45);
+}
+
+.ws-grid-floor {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--cam-rx)) rotateY(var(--cam-ry));
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 1.1rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background-image:
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  padding: 1.25rem;
+}
+
+.ws-desk-layers {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.9rem;
+  transform-style: preserve-3d;
+}
+
+/* Spatial Object Card with Depth Layering + 3D Hover */
+.ws-obj-card {
+  --obj-depth: 14px;
+  --obj-float-delay: 0s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 112px;
+  padding: 0.85rem 0.9rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.82);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform: translate3d(0, 0, var(--obj-depth));
+  box-shadow:
+    0 14px 28px -16px rgba(2, 6, 23, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease,
+    box-shadow 220ms ease,
+    background-color 180ms ease;
+}
+
+html.light .ws-obj-card {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 12px 26px -14px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.ws-obj-card.is-floating {
+  animation: wsFloatSubtle 5.4s ease-in-out var(--obj-float-delay) infinite;
+}
+
+@keyframes wsFloatSubtle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, var(--obj-depth));
+  }
+  50% {
+    transform: translate3d(0, -4px, calc(var(--obj-depth) + 8px));
+  }
+}
+
+.ws-obj-card:hover,
+.ws-obj-card:focus-visible,
+.ws-obj-card.is-selected {
+  z-index: 20;
+  animation-play-state: paused;
+  transform: translate3d(0, -5px, calc(var(--obj-depth) + 26px)) rotateX(3deg);
+  border-color: var(--accent-cyan);
+  box-shadow:
+    0 24px 44px -16px rgba(6, 182, 212, 0.36),
+    0 0 0 1px rgba(6, 182, 212, 0.32);
+}
+
+.ws-obj-depth-low {
+  --obj-depth: 6px;
+}
+
+.ws-obj-depth-mid {
+  --obj-depth: 18px;
+}
+
+.ws-obj-depth-high {
+  --obj-depth: 32px;
+}
+
+/* Spatial Column Placements inside 12-col 3D Grid */
+.ws-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+.ws-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.ws-span-6 {
+  grid-column: span 6 / span 6;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ws-span-3 {
+    grid-column: span 4 / span 4;
+  }
+
+  .ws-span-4 {
+    grid-column: span 6 / span 6;
+  }
+}
+
+/* Accessible Tooltip on 3D Objects */
+.ws-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translate3d(-50%, 6px, 40px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 40;
+  min-width: 195px;
+  max-width: 245px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.65rem;
+  border: 1px solid var(--border-strong);
+  background: var(--background);
+  color: var(--text);
+  box-shadow: 0 16px 32px -12px rgba(2, 6, 23, 0.65);
+  transition: opacity 150ms ease, transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ws-obj-row-top .ws-tooltip {
+  bottom: auto;
+  top: calc(100% + 10px);
+  transform: translate3d(-50%, -6px, 40px);
+}
+
+.ws-obj-card:hover .ws-tooltip,
+.ws-obj-card:focus-visible .ws-tooltip {
+  opacity: 1;
+  transform: translate3d(-50%, 0, 40px);
+}
+
+/* ==========================================================================
+   Clean 2D Mobile Workspace (< 768px) — Zero 3D overhead
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .ws-stage-viewport,
+  .ws-grid-floor,
+  .ws-desk-layers,
+  .ws-obj-card {
+    perspective: none !important;
+    transform-style: flat !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+.ws-mobile-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 60px;
+  padding: 0.875rem 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.ws-mobile-card:hover,
+.ws-mobile-card.is-selected {
+  border-color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.08);
+}
+
+/* ==========================================================================
+   Accessible HTML Directory List (Always Present for Full Keyboard / Screen Reader Parity)
+   ========================================================================== */
+
+.ws-a11y-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .ws-a11y-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .ws-a11y-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ws-a11y-item-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 54px;
+  padding: 0.75rem 0.95rem;
+  border-radius: 0.85rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.ws-a11y-item-btn:hover,
+.ws-a11y-item-btn.is-selected {
+  border-color: var(--accent-cyan);
+}
+
+/* ==========================================================================
+   Detail Modal
+   ========================================================================== */
+
+.ws-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(2, 6, 23, 0.76);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.ws-modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ws-modal-panel {
+  width: 100%;
+  max-width: 740px;
+  max-height: 88vh;
+  overflow-y: auto;
+  border-radius: 1.15rem;
+  border: 1px solid var(--border-strong);
+  background: var(--background);
+  color: var(--text);
+  box-shadow: 0 32px 64px -20px rgba(2, 6, 23, 0.75);
+  transform: translate3d(0, 12px, 0) scale(0.985);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ws-modal-backdrop.is-open .ws-modal-panel {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* ==========================================================================
+   Performance Mode & Reduced Motion Overrides
+   ========================================================================== */
+
+html.ws-perf-mode .ws-stage-viewport,
+html.perf-mode .ws-stage-viewport {
+  background: var(--surface) !important;
+  box-shadow: none !important;
+  perspective: none !important;
+}
+
+html.ws-perf-mode .ws-grid-floor,
+html.perf-mode .ws-grid-floor,
+html.ws-perf-mode .ws-obj-card,
+html.perf-mode .ws-obj-card {
+  transform-style: flat !important;
+  transform: none !important;
+  animation: none !important;
+  box-shadow: none !important;
+}
+
+html.ws-perf-mode .ws-modal-backdrop,
+html.perf-mode .ws-modal-backdrop {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html.ws-reduced-motion .ws-obj-card,
+html.ws-reduced-motion .ws-grid-floor,
+html.ws-reduced-motion .ws-tooltip,
+html.ws-reduced-motion .ws-ctrl-btn,
+html.ws-reduced-motion .ws-modal-backdrop,
+html.ws-reduced-motion .ws-modal-panel,
+html.a11y-reduce-motion .ws-obj-card,
+html.a11y-reduce-motion .ws-grid-floor,
+html.a11y-reduce-motion .ws-tooltip,
+html.a11y-reduce-motion .ws-modal-backdrop,
+html.a11y-reduce-motion .ws-modal-panel {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ws-obj-card,
+  .ws-grid-floor,
+  .ws-tooltip,
+  .ws-ctrl-btn,
+  .ws-modal-backdrop,
+  .ws-modal-panel {
+    animation: none !important;
+    transition: none !important;
+  }
+}

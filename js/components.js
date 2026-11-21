@@ -250,6 +250,7 @@ function initMobileMenu() {
           <div class="flex flex-wrap items-center gap-1.5" role="group" aria-label="Mobile visitor experience mode">
             <button type="button" class="visitor-mode-switch-btn ${activeMode === "client" ? "is-active" : ""}" data-set-visitor-mode="client" aria-pressed="${activeMode === "client" ? "true" : "false"}">Client</button>
             <button type="button" class="visitor-mode-switch-btn ${activeMode === "recruiter" ? "is-active" : ""}" data-set-visitor-mode="recruiter" aria-pressed="${activeMode === "recruiter" ? "true" : "false"}">Recruiter</button>
+            <button type="button" class="visitor-mode-switch-btn ${activeMode === "developer" ? "is-active" : ""}" data-set-visitor-mode="developer" aria-pressed="${activeMode === "developer" ? "true" : "false"}">Developer</button>
             <button type="button" class="visitor-mode-switch-btn ${activeMode === "default" ? "is-active" : ""}" data-set-visitor-mode="default" aria-pressed="${activeMode === "default" ? "true" : "false"}">Default</button>
           </div>
         </div>
@@ -530,6 +531,12 @@ function loadFooter() {
           <a href="resume.html" class="hover:text-[var(--text)] transition-colors">Resume</a>
           <a href="recruiter-search.html" class="hover:text-[var(--text)] transition-colors">Recruiter Search</a>
           <a href="knowledge.html" class="hover:text-[var(--text)] transition-colors">Knowledge Base</a>
+          <a href="opensource.html" class="hover:text-[var(--text)] transition-colors">Open Source</a>
+          <a href="office.html" class="hover:text-[var(--text)] transition-colors">Digital Office</a>
+          <a href="workspace.html" class="hover:text-[var(--text)] transition-colors">3D Workspace</a>
+          <a href="tour.html" class="hover:text-[var(--text)] transition-colors">Guided Tour</a>
+          <a href="career-assistant.html" class="hover:text-[var(--text)] transition-colors">Career Assistant</a>
+          <a href="requirement-analyzer.html" class="hover:text-[var(--text)] transition-colors">Requirement Analyzer</a>
           <a href="contact.html" class="hover:text-[var(--text)] transition-colors">Contact</a>
           <a href="404.html" class="hover:text-[var(--text)] transition-colors">404</a>
         </div>
@@ -836,6 +843,201 @@ function showToast(message, type = "info") {
 }
 
 /* ==========================================================================
+   10. Global Component Primitives (Breadcrumbs, Cards, Buttons, Modals, States)
+   ========================================================================== */
+
+function renderBreadcrumbs(items = []) {
+  if (!Array.isArray(items) || items.length === 0) return "";
+  const crumbs = items
+    .map((item, idx) => {
+      const isLast = idx === items.length - 1 || !item.href;
+      if (isLast) {
+        return `<span class="text-[var(--text-secondary)]" aria-current="page">${escapeHtml(item.label || "")}</span>`;
+      }
+      return `<a href="${escapeHtml(item.href)}" class="hover:text-[var(--text)] transition-colors">${escapeHtml(item.label || "")}</a>`;
+    })
+    .join(`<span aria-hidden="true">/</span>`);
+  return `<nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">${crumbs}</nav>`;
+}
+
+function renderButton(options = {}) {
+  const {
+    label = "Action",
+    variant = "primary",
+    href = "",
+    icon = "",
+    type = "button",
+    attrs = ""
+  } = options;
+  const clsMap = {
+    primary: "primary-button",
+    secondary: "secondary-button",
+    outline: "outline-button"
+  };
+  const cls = clsMap[variant] || "primary-button";
+  const iconHtml = icon ? `<i data-lucide="${escapeHtml(icon)}" class="w-4 h-4" aria-hidden="true"></i>` : "";
+  if (href) {
+    return `<a href="${escapeHtml(href)}" class="${cls}" ${attrs}>${iconHtml}<span>${escapeHtml(label)}</span></a>`;
+  }
+  return `<button type="${escapeHtml(type)}" class="${cls}" ${attrs}>${iconHtml}<span>${escapeHtml(label)}</span></button>`;
+}
+
+function renderCard(options = {}) {
+  const {
+    eyebrow = "",
+    title = "",
+    description = "",
+    footerHtml = "",
+    variant = "glass",
+    extraClass = ""
+  } = options;
+  const baseClass = variant === "plain" ? "card" : "glass-card";
+  return `
+    <article class="${baseClass} p-5 sm:p-6 flex flex-col justify-between gap-4 ${escapeHtml(extraClass)}">
+      <div class="space-y-2">
+        ${eyebrow ? `<p class="text-xs font-mono-tech text-cyan-400">${escapeHtml(eyebrow)}</p>` : ""}
+        ${title ? `<h3 class="text-base sm:text-lg font-bold text-[var(--text)]">${escapeHtml(title)}</h3>` : ""}
+        ${description ? `<p class="text-sm text-[var(--muted)] leading-relaxed">${escapeHtml(description)}</p>` : ""}
+      </div>
+      ${footerHtml ? `<div class="pt-3 border-t border-[var(--border)]">${footerHtml}</div>` : ""}
+    </article>
+  `;
+}
+
+function renderSearchBox(options = {}) {
+  const {
+    id = "global-inline-search",
+    placeholder = "Search...",
+    ariaLabel = "Search items",
+    value = ""
+  } = options;
+  return `
+    <div class="relative flex items-center">
+      <i data-lucide="search" class="w-4 h-4 text-[var(--muted)] absolute left-3.5 pointer-events-none" aria-hidden="true"></i>
+      <input
+        id="${escapeHtml(id)}"
+        type="search"
+        value="${escapeHtml(value)}"
+        placeholder="${escapeHtml(placeholder)}"
+        aria-label="${escapeHtml(ariaLabel)}"
+        class="form-input pl-10 pr-4 w-full"
+      >
+    </div>
+  `;
+}
+
+function renderThemeSwitcher() {
+  return `
+    <button
+      type="button"
+      data-theme-toggle
+      class="icon-button"
+      aria-label="Toggle color theme"
+    >
+      <i data-lucide="sun" data-theme-icon="sun" class="w-4 h-4"></i>
+      <i data-lucide="moon" data-theme-icon="moon" class="w-4 h-4 hidden"></i>
+    </button>
+  `;
+}
+
+function renderLoadingState(label = "Loading module...") {
+  return `
+    <div class="glass-card p-6 sm:p-8 flex items-center justify-center gap-3 text-sm text-[var(--muted)]" role="status" aria-live="polite">
+      <i data-lucide="loader-2" class="w-4 h-4 animate-spin text-cyan-400" aria-hidden="true"></i>
+      <span>${escapeHtml(label)}</span>
+    </div>
+  `;
+}
+
+function renderErrorState(options = {}) {
+  const {
+    title = "Unable to load content",
+    message = "Please verify your connection or try reloading the module.",
+    retryId = ""
+  } = options;
+  const retryBtn = retryId
+    ? `<button type="button" id="${escapeHtml(retryId)}" class="secondary-button text-xs py-2 px-4 min-h-[38px]">Retry</button>`
+    : "";
+  return `
+    <div class="glass-card p-6 sm:p-8 text-center space-y-3" role="alert">
+      <i data-lucide="alert-circle" class="w-7 h-7 text-rose-400 mx-auto" aria-hidden="true"></i>
+      <h3 class="text-base font-bold text-[var(--text)]">${escapeHtml(title)}</h3>
+      <p class="text-sm text-[var(--muted)] max-w-md mx-auto">${escapeHtml(message)}</p>
+      ${retryBtn}
+    </div>
+  `;
+}
+
+function renderEmptyState(options = {}) {
+  const {
+    title = "No matching items found",
+    message = "Adjust your search query or clear active filters to view all items.",
+    resetId = ""
+  } = options;
+  const resetBtn = resetId
+    ? `<button type="button" id="${escapeHtml(resetId)}" class="secondary-button text-xs py-2 px-4 min-h-[38px]">Reset Filters</button>`
+    : "";
+  return `
+    <div class="glass-card p-6 sm:p-8 text-center space-y-3">
+      <i data-lucide="inbox" class="w-7 h-7 text-indigo-400 mx-auto" aria-hidden="true"></i>
+      <h3 class="text-base font-bold text-[var(--text)]">${escapeHtml(title)}</h3>
+      <p class="text-sm text-[var(--muted)] max-w-md mx-auto">${escapeHtml(message)}</p>
+      ${resetBtn}
+    </div>
+  `;
+}
+
+function createModal(options = {}) {
+  const { id = "portfolio-shared-modal", title = "Details", bodyHtml = "" } = options;
+  let modal = document.getElementById(id);
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = id;
+    modal.className = "ux-modal-backdrop";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-labelledby", `${id}-title`);
+    modal.setAttribute("aria-hidden", "true");
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = `
+    <div class="ux-modal-panel p-5 sm:p-6 space-y-4">
+      <div class="flex items-center justify-between gap-3 pb-3 border-b border-[var(--border)]">
+        <h2 id="${escapeHtml(id)}-title" class="text-base sm:text-lg font-bold text-[var(--text)]">${escapeHtml(title)}</h2>
+        <button type="button" data-shared-modal-close class="icon-button" aria-label="Close modal">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div>${bodyHtml}</div>
+    </div>
+  `;
+
+  const close = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("menu-open");
+  };
+
+  const closeBtn = modal.querySelector("[data-shared-modal-close]");
+  if (closeBtn) closeBtn.addEventListener("click", close);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) close();
+  });
+
+  refreshIcons();
+  return {
+    el: modal,
+    open: () => {
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("menu-open");
+      if (closeBtn) window.setTimeout(() => closeBtn.focus(), 30);
+    },
+    close
+  };
+}
+
+/* ==========================================================================
    Global Exports
    ========================================================================== */
 
@@ -849,6 +1051,15 @@ const PortfolioComponents = {
   initBackToTop,
   initPageTransitions,
   showToast,
+  renderBreadcrumbs,
+  renderCard,
+  renderButton,
+  createModal,
+  renderLoadingState,
+  renderErrorState,
+  renderEmptyState,
+  renderSearchBox,
+  renderThemeSwitcher,
   getCurrentPage: getCurrentPageName
 };
 

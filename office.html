@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Digital Office — AL AMIN | Full-Stack Developer</title>
+  <meta name="description" content="Explore AL AMIN's Interactive Digital Office: clickable developer desk, monitor, bookshelf, whiteboard, server rack, GitHub wall, responsive phone showcase, and certificates wall.">
+  <meta name="keywords" content="AL AMIN, Digital Office, Developer Workspace, Interactive Portfolio, Full-Stack Developer, MERN Stack">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/office.html">
+  <meta property="og:title" content="Interactive Digital Office — AL AMIN">
+  <meta property="og:description" content="Step inside AL AMIN's virtual developer studio with interactive workspace zones, guided tour, keyboard navigation, and live portfolio modules.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/office.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Interactive Digital Office — AL AMIN">
+  <meta name="twitter:description" content="Virtual developer studio connecting projects, dashboard, knowledge base, architecture, GitHub, and certificates.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Interactive Digital Office — AL AMIN",
+    "description": "Interactive developer studio workspace connecting projects, architecture, knowledge base, GitHub activity, and verified certificates.",
+    "url": "https://example.com/office.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/office.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern office-shell">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="section" id="office-root">
+      <div class="container space-y-6 sm:space-y-8">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">Digital Office</span>
+        </nav>
+
+        <!-- Studio Header -->
+        <header class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-2.5 max-w-2xl">
+            <p class="text-xs font-semibold text-cyan-400">Workspace · 8 Interactive Studio Zones</p>
+            <h1 class="hero-title text-balance">
+              AL AMIN <span class="gradient-text">Digital Office</span>
+            </h1>
+            <p class="section-subtitle">
+              Click or tab to any station across the studio—developer desk, monitor, bookshelf, whiteboard, server rack, GitHub wall, phone, or certificates wall—to inspect live portfolio systems.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+            <a href="workspace.html" class="secondary-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <i data-lucide="box" class="w-4 h-4" aria-hidden="true"></i>
+              <span>3D Workspace</span>
+            </a>
+            <a href="dashboard.html" class="secondary-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <i data-lucide="layout-dashboard" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Dashboard</span>
+            </a>
+            <a href="index.html" class="outline-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <i data-lucide="log-out" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Exit Office</span>
+            </a>
+          </div>
+        </header>
+
+        <!-- Action Controls Toolbar -->
+        <section class="office-toolbar" aria-label="Office interaction controls">
+          <div class="office-toolbar-group">
+            <button type="button" id="office-explore-btn" class="office-ctrl-btn office-ctrl-btn-primary">
+              <i data-lucide="compass" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Explore Office</span>
+            </button>
+            <button type="button" id="office-reset-btn" class="office-ctrl-btn">
+              <i data-lucide="rotate-ccw" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Reset View</span>
+            </button>
+          </div>
+
+          <div class="office-toolbar-group">
+            <button type="button" id="office-motion-toggle" class="office-ctrl-btn" aria-pressed="false">
+              <i data-lucide="sparkles" class="w-4 h-4" aria-hidden="true"></i>
+              <span data-motion-label>Reduced Motion</span>
+            </button>
+            <a href="index.html" class="office-ctrl-btn">
+              <i data-lucide="arrow-left" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Exit Office</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Polite Live Announcer -->
+        <p id="office-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+
+        <!-- Guided Tour Strip -->
+        <div id="office-tour-bar" class="office-tour-bar hidden" role="region" aria-label="Guided studio tour controls"></div>
+
+        <!-- Desktop & Tablet Architectural Interactive Room (>= 768px) -->
+        <section class="hidden md:block" aria-label="Interactive Digital Office Floorplan">
+          <div id="office-desktop-stage"></div>
+        </section>
+
+        <!-- Simplified Mobile Office Experience (< 768px) -->
+        <section class="md:hidden space-y-5" aria-label="Mobile Digital Office Map and Stations">
+          <div class="space-y-2">
+            <h2 class="text-base font-bold text-[var(--text)]">Simplified Office Zone Map</h2>
+            <p class="text-xs text-[var(--muted)]">Large touch zones organized by studio area for comfortable mobile navigation.</p>
+            <div id="office-mobile-map" class="office-mobile-map space-y-4"></div>
+          </div>
+
+          <div class="space-y-2.5">
+            <h2 class="text-base font-bold text-[var(--text)]">All Office Stations</h2>
+            <div id="office-mobile-list" class="space-y-2.5"></div>
+          </div>
+        </section>
+
+        <!-- Active Station Summary & Quick Launch Dock -->
+        <section aria-label="Selected studio zone overview">
+          <div id="office-inspector-bar" class="office-inspector-bar"></div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Accessible Details Modal -->
+  <div
+    id="office-details-modal"
+    class="office-modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="office-modal-title"
+    aria-hidden="true"
+  >
+    <div class="office-modal-panel p-5 sm:p-6 space-y-4">
+      <div class="flex items-start justify-between gap-4 pb-3 border-b border-[var(--border)]">
+        <div class="space-y-0.5 min-w-0">
+          <p id="office-modal-kicker" class="text-xs font-semibold text-cyan-400">Studio Zone</p>
+          <h2 id="office-modal-title" class="text-lg sm:text-xl font-bold text-[var(--text)]">Station Details</h2>
+        </div>
+        <button
+          type="button"
+          id="office-modal-close"
+          class="icon-button shrink-0"
+          aria-label="Close office station details"
+        >
+          <i data-lucide="x" class="w-4 h-4" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div id="office-modal-body"></div>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/profile.js"></script>
+  <script defer src="js/data/projects.js"></script>
+  <script defer src="js/data/skills.js"></script>
+  <script defer src="js/data/services.js"></script>
+  <script defer src="js/data/experience.js"></script>
+  <script defer src="js/data/certificates.js"></script>
+  <script defer src="js/data/blog.js"></script>
+  <script defer src="js/data/knowledge.js"></script>
+  <script defer src="js/data/decisions.js"></script>
+  <script defer src="js/data/components.js"></script>
+  <script defer src="js/data/github.js"></script>
+  <script defer src="js/data/index.js"></script>
+  <script defer src="js/office.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

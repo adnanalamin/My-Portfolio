@@ -1,0 +1,203 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 45: Rule-Based Client Requirement Analyzer
+   Extraction Grid, Architecture Breakdown, Risks, Print Layout & Responsive Rules
+   ========================================================================== */
+
+.ra-shell {
+  overflow-x: clip;
+}
+
+.ra-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .ra-layout {
+    grid-template-columns: 420px minmax(0, 1fr);
+  }
+}
+
+.ra-panel {
+  border-radius: 1.15rem;
+  border: 1px solid var(--border);
+  background: var(--glass-card-bg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.ra-textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 0.9rem 1rem;
+  border-radius: 0.85rem;
+  border: 1px solid var(--border);
+  background: rgba(5, 8, 22, 0.72);
+  color: var(--text);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+html.light .ra-textarea {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.ra-textarea:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.25);
+}
+
+.ra-sample-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.4);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+html.light .ra-sample-btn {
+  background: #f8fafc;
+}
+
+.ra-sample-btn:hover,
+.ra-sample-btn:focus-visible {
+  border-color: var(--accent-cyan);
+  color: var(--text);
+  outline: none;
+}
+
+/* Action Bar */
+.ra-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: var(--glass-card-bg);
+}
+
+.ra-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 42px;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.65rem;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.45);
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.light .ra-action-btn {
+  background: #ffffff;
+}
+
+.ra-action-btn:hover,
+.ra-action-btn:focus-visible {
+  border-color: var(--accent-cyan);
+  color: var(--text);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* Output Sections */
+.ra-output-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .ra-output-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.ra-kv-card {
+  border-radius: 0.85rem;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.36);
+  padding: 0.85rem 0.95rem;
+}
+
+html.light .ra-kv-card {
+  background: #f8fafc;
+}
+
+.ra-phase-row {
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0, 1fr);
+  gap: 0.85rem;
+  padding: 0.85rem;
+  border-radius: 0.85rem;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.32);
+  align-items: start;
+}
+
+html.light .ra-phase-row {
+  background: #f8fafc;
+}
+
+.ra-phase-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  border-radius: 0.55rem;
+  background: rgba(6, 182, 212, 0.14);
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Clean Print Styling */
+@media print {
+  #site-header,
+  #site-footer,
+  #portfolio-assistant-root,
+  .ra-no-print {
+    display: none !important;
+  }
+
+  body,
+  .ra-panel,
+  .ra-kv-card,
+  .ra-phase-row {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    border-color: #cbd5e1 !important;
+  }
+
+  .ra-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}

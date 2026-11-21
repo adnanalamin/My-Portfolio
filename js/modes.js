@@ -7,7 +7,7 @@
 
 const PortfolioModes = (() => {
   const STORAGE_KEY = "alamin_portfolio_visitor_mode_v1";
-  const VALID_MODES = ["default", "client", "recruiter"];
+  const VALID_MODES = ["default", "client", "recruiter", "developer"];
 
   const modeMeta = {
     default: {
@@ -15,23 +15,31 @@ const PortfolioModes = (() => {
       label: "Default Portfolio",
       shortLabel: "Default",
       icon: "layout-grid",
-      tagline: "Complete developer showcase across services, engineering projects, skills, blog, and tools."
+      tagline: "Complete developer platform across services, case studies, skills, tools, and knowledge."
     },
     client: {
       id: "client",
       label: "Client Mode",
-      shortLabel: "Client Mode",
+      shortLabel: "Client",
       icon: "briefcase",
       cardPrompt: "I want to hire Al Amin for a project.",
-      tagline: "Prioritizing services, case studies, development process, testimonials, availability, and project inquiries."
+      tagline: "Prioritizing services, projects, case studies, project estimator, request wizard, and contact."
     },
     recruiter: {
       id: "recruiter",
       label: "Recruiter Mode",
-      shortLabel: "Recruiter Mode",
+      shortLabel: "Recruiter",
       icon: "user-check",
-      cardPrompt: "I want to explore his professional background.",
-      tagline: "Prioritizing summary, technical skills, experience, education, certificates, GitHub, and resume download."
+      cardPrompt: "I want to evaluate his engineering background.",
+      tagline: "Prioritizing resume, experience, skills, GitHub, projects, certificates, and recruiter search."
+    },
+    developer: {
+      id: "developer",
+      label: "Developer Mode",
+      shortLabel: "Developer",
+      icon: "terminal",
+      cardPrompt: "I want to inspect architecture, APIs & code.",
+      tagline: "Prioritizing system architecture, code playground, API explorer, component lab, ADRs, and security."
     }
   };
 
@@ -241,6 +249,7 @@ const PortfolioModes = (() => {
 
     const clientHighlight = new Set(["services.html", "projects.html", "testimonials.html", "contact.html"]);
     const recruiterHighlight = new Set(["about.html", "skills.html", "experience.html", "projects.html", "certificates.html"]);
+    const developerHighlight = new Set(["projects.html", "skills.html", "dashboard.html", "blog.html"]);
 
     const sorted = Array.isArray(modeOrder) && modeOrder.length > 0
       ? links.sort((a, b) => {
@@ -256,6 +265,8 @@ const PortfolioModes = (() => {
         isPriority = clientHighlight.has(item.href);
       } else if (state.currentMode === "recruiter") {
         isPriority = recruiterHighlight.has(item.href);
+      } else if (state.currentMode === "developer") {
+        isPriority = developerHighlight.has(item.href);
       }
       return { ...item, isPriority };
     });
@@ -265,8 +276,15 @@ const PortfolioModes = (() => {
     if (state.currentMode === "client") {
       return {
         label: "Hire / Quote",
-        href: "contact.html?intent=quote",
+        href: "project-request.html",
         icon: "send"
+      };
+    }
+    if (state.currentMode === "developer") {
+      return {
+        label: "Architecture",
+        href: "architecture.html",
+        icon: "cpu"
       };
     }
     return {
@@ -364,6 +382,15 @@ const PortfolioModes = (() => {
             </button>
             <button
               type="button"
+              class="visitor-mode-switch-btn ${mode === "developer" ? "is-active" : ""}"
+              data-set-visitor-mode="developer"
+              aria-pressed="${mode === "developer" ? "true" : "false"}"
+            >
+              <i data-lucide="terminal" class="w-3.5 h-3.5" aria-hidden="true"></i>
+              <span>Developer</span>
+            </button>
+            <button
+              type="button"
               class="visitor-mode-switch-btn ${mode === "default" ? "is-active" : ""}"
               data-set-visitor-mode="default"
               aria-pressed="${mode === "default" ? "true" : "false"}"
@@ -444,9 +471,9 @@ const PortfolioModes = (() => {
           </button>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           <!-- Client Mode Card -->
-          <article class="glass-card mode-card ${mode === "client" ? "is-selected" : ""} p-6 sm:p-7 flex flex-col justify-between gap-6">
+          <article class="glass-card mode-card ${mode === "client" ? "is-selected" : ""} p-6 flex flex-col justify-between gap-6">
             <div class="space-y-4">
               <div class="flex items-start justify-between gap-4">
                 <div class="mode-card-icon">
@@ -459,7 +486,7 @@ const PortfolioModes = (() => {
 
               <div class="space-y-2">
                 <h3 class="text-xl font-bold text-[var(--text)]">Client Mode</h3>
-                <p class="text-sm sm:text-base font-medium text-cyan-400">
+                <p class="text-sm font-medium text-cyan-400">
                   "I want to hire Al Amin for a project."
                 </p>
               </div>
@@ -467,15 +494,15 @@ const PortfolioModes = (() => {
               <ul class="space-y-2 text-sm text-[var(--muted)] list-none p-0 m-0">
                 <li class="flex items-start gap-2.5">
                   <i data-lucide="check" class="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" aria-hidden="true"></i>
-                  <span>What I can build, development services &amp; delivery process</span>
+                  <span>Services, projects &amp; engineering case studies</span>
                 </li>
                 <li class="flex items-start gap-2.5">
                   <i data-lucide="check" class="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" aria-hidden="true"></i>
-                  <span>Featured projects, agency-level case studies &amp; testimonials</span>
+                  <span>Project Estimator &amp; Proposal Generator</span>
                 </li>
                 <li class="flex items-start gap-2.5">
                   <i data-lucide="check" class="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" aria-hidden="true"></i>
-                  <span>Freelance availability, pricing info &amp; project quote CTA</span>
+                  <span>Smart Project Request Wizard &amp; direct contact</span>
                 </li>
               </ul>
             </div>
@@ -490,14 +517,14 @@ const PortfolioModes = (() => {
                 <span>${mode === "client" ? "Client Mode Active" : "Enter Client Mode"}</span>
                 <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
               </button>
-              <a href="services.html" class="text-xs font-semibold text-indigo-400 hover:underline whitespace-nowrap">
-                Explore Services →
+              <a href="project-estimator.html" class="text-xs font-semibold text-cyan-400 hover:underline whitespace-nowrap">
+                Estimator →
               </a>
             </div>
           </article>
 
           <!-- Recruiter Mode Card -->
-          <article class="glass-card mode-card ${mode === "recruiter" ? "is-selected" : ""} p-6 sm:p-7 flex flex-col justify-between gap-6">
+          <article class="glass-card mode-card ${mode === "recruiter" ? "is-selected" : ""} p-6 flex flex-col justify-between gap-6">
             <div class="space-y-4">
               <div class="flex items-start justify-between gap-4">
                 <div class="mode-card-icon mode-card-icon-recruiter">
@@ -510,7 +537,7 @@ const PortfolioModes = (() => {
 
               <div class="space-y-2">
                 <h3 class="text-xl font-bold text-[var(--text)]">Recruiter Mode</h3>
-                <p class="text-sm sm:text-base font-medium text-indigo-400">
+                <p class="text-sm font-medium text-indigo-400">
                   "I want to explore his professional background."
                 </p>
               </div>
@@ -518,15 +545,15 @@ const PortfolioModes = (() => {
               <ul class="space-y-2 text-sm text-[var(--muted)] list-none p-0 m-0">
                 <li class="flex items-start gap-2.5">
                   <i data-lucide="check" class="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" aria-hidden="true"></i>
-                  <span>Professional summary, career goals &amp; technical stack</span>
+                  <span>Dynamic Resume Builder &amp; A4 PDF print</span>
                 </li>
                 <li class="flex items-start gap-2.5">
                   <i data-lucide="check" class="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" aria-hidden="true"></i>
-                  <span>Work experience, B.Sc. CSE education &amp; certificates</span>
+                  <span>Experience timeline, skills graph &amp; certificates</span>
                 </li>
                 <li class="flex items-start gap-2.5">
                   <i data-lucide="check" class="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" aria-hidden="true"></i>
-                  <span>One-click resume download, live GitHub &amp; contact channels</span>
+                  <span>Recruiter Search &amp; live GitHub repositories</span>
                 </li>
               </ul>
             </div>
@@ -541,8 +568,59 @@ const PortfolioModes = (() => {
                 <span>${mode === "recruiter" ? "Recruiter Mode Active" : "Enter Recruiter Mode"}</span>
                 <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
               </button>
-              <a href="resume.html" class="text-xs font-semibold text-indigo-400 hover:underline whitespace-nowrap">
-                Open Resume →
+              <a href="recruiter-search.html" class="text-xs font-semibold text-indigo-400 hover:underline whitespace-nowrap">
+                Search →
+              </a>
+            </div>
+          </article>
+
+          <!-- Developer Mode Card -->
+          <article class="glass-card mode-card ${mode === "developer" ? "is-selected" : ""} p-6 flex flex-col justify-between gap-6 md:col-span-2 lg:col-span-1">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-4">
+                <div class="mode-card-icon mode-card-icon-developer">
+                  <i data-lucide="terminal" class="w-5 h-5" aria-hidden="true"></i>
+                </div>
+                <span class="text-xs font-mono-tech text-[var(--muted)]">
+                  ${mode === "developer" ? "Active View" : "For Engineers & Peers"}
+                </span>
+              </div>
+
+              <div class="space-y-2">
+                <h3 class="text-xl font-bold text-[var(--text)]">Developer Mode</h3>
+                <p class="text-sm font-medium text-emerald-400">
+                  "I want to inspect architecture, APIs &amp; code."
+                </p>
+              </div>
+
+              <ul class="space-y-2 text-sm text-[var(--muted)] list-none p-0 m-0">
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" aria-hidden="true"></i>
+                  <span>System Architecture, API Explorer &amp; ADRs</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" aria-hidden="true"></i>
+                  <span>Live Code Playground &amp; UI Component Lab</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" aria-hidden="true"></i>
+                  <span>Security Center, Performance &amp; Knowledge Base</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-4 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3">
+              <button
+                type="button"
+                class="${mode === "developer" ? "secondary-button" : "primary-button"} w-full sm:w-auto"
+                data-set-visitor-mode="developer"
+                aria-pressed="${mode === "developer" ? "true" : "false"}"
+              >
+                <span>${mode === "developer" ? "Developer Mode Active" : "Enter Developer Mode"}</span>
+                <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+              </button>
+              <a href="architecture.html" class="text-xs font-semibold text-emerald-400 hover:underline whitespace-nowrap">
+                Architecture →
               </a>
             </div>
           </article>
@@ -717,6 +795,29 @@ const PortfolioModes = (() => {
           <span>GitHub Profile</span>
         </a>
       `;
+    } else if (state.currentMode === "developer") {
+      kicker.innerHTML = `
+        <span class="badge">Developer View · Engineering OS</span>
+        <span class="hidden sm:inline text-[var(--muted)]" aria-hidden="true">·</span>
+        <span class="hidden sm:inline text-[var(--muted)]">Architecture, APIs &amp; Tooling</span>
+      `;
+      headline.innerHTML = `Inspect the <span class="gradient-text">Engineering Platform</span>`;
+      subtitle.textContent =
+        "Explore interactive system architecture blueprints, live HTML/CSS/JS code sandbox, documented REST endpoints, reusable UI components, ADR decisions, and security practices.";
+      ctaGroup.innerHTML = `
+        <a href="architecture.html" class="primary-button w-full sm:w-auto">
+          <i data-lucide="cpu" class="w-4 h-4" aria-hidden="true"></i>
+          <span>System Architecture</span>
+        </a>
+        <a href="playground.html" class="secondary-button w-full sm:w-auto">
+          <i data-lucide="code-2" class="w-4 h-4" aria-hidden="true"></i>
+          <span>Code Playground</span>
+        </a>
+        <a href="api-explorer.html" class="outline-button w-full sm:w-auto">
+          <i data-lucide="webhook" class="w-4 h-4" aria-hidden="true"></i>
+          <span>API Explorer</span>
+        </a>
+      `;
     } else if (state.heroSnapshot) {
       kicker.innerHTML = state.heroSnapshot.kickerHtml;
       headline.innerHTML = state.heroSnapshot.headlineHtml;
@@ -888,12 +989,16 @@ const PortfolioModes = (() => {
                 </p>
               </div>
               <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center lg:items-stretch justify-end gap-3">
-                <a href="contact.html?intent=quote" class="primary-button justify-center">
-                  <span>Request a Project</span>
+                <a href="project-estimator.html" class="primary-button justify-center">
+                  <span>Project Estimator</span>
+                  <i data-lucide="calculator" class="w-4 h-4" aria-hidden="true"></i>
+                </a>
+                <a href="project-request.html" class="secondary-button justify-center">
+                  <span>Request Wizard</span>
                   <i data-lucide="send" class="w-4 h-4" aria-hidden="true"></i>
                 </a>
-                <a href="contact.html" class="secondary-button justify-center">
-                  <span>Open Contact Page</span>
+                <a href="contact.html" class="outline-button justify-center">
+                  <span>Contact</span>
                   <i data-lucide="mail" class="w-4 h-4" aria-hidden="true"></i>
                 </a>
               </div>
@@ -987,12 +1092,16 @@ const PortfolioModes = (() => {
                   <i data-lucide="download" class="w-4 h-4" aria-hidden="true"></i>
                   <span>Download Resume (PDF)</span>
                 </a>
-                <div class="grid grid-cols-2 gap-2.5">
-                  <a href="resume.html" class="secondary-button justify-center text-xs sm:text-sm">
+                <div class="grid grid-cols-3 gap-2">
+                  <a href="resume.html" class="secondary-button justify-center text-xs">
                     <i data-lucide="file-text" class="w-4 h-4" aria-hidden="true"></i>
-                    <span>Web Resume</span>
+                    <span>Resume</span>
                   </a>
-                  <a href="github.html" class="outline-button justify-center text-xs sm:text-sm">
+                  <a href="recruiter-search.html" class="outline-button justify-center text-xs">
+                    <i data-lucide="search" class="w-4 h-4" aria-hidden="true"></i>
+                    <span>Search</span>
+                  </a>
+                  <a href="github.html" class="outline-button justify-center text-xs">
                     <i data-lucide="github" class="w-4 h-4" aria-hidden="true"></i>
                     <span>GitHub</span>
                   </a>
@@ -1062,6 +1171,130 @@ const PortfolioModes = (() => {
     `;
   }
 
+  function renderDeveloperDynamicSections() {
+    const primaryModules = [
+      {
+        title: "System Architecture",
+        desc: "Interactive multi-layer diagrams across frontend, API gateway, authentication, databases, and client sandbox boundaries.",
+        href: "architecture.html",
+        icon: "cpu",
+        badge: "Blueprints"
+      },
+      {
+        title: "Code Playground",
+        desc: "Isolated HTML, CSS & JavaScript live sandbox with console capture, templates, and responsive viewport switcher.",
+        href: "playground.html",
+        icon: "code-2",
+        badge: "Live Sandbox"
+      },
+      {
+        title: "API Explorer",
+        desc: "Interactive REST documentation for GET, POST, PUT, PATCH, and DELETE contracts with request/response inspection.",
+        href: "api-explorer.html",
+        icon: "webhook",
+        badge: "REST Contracts"
+      },
+      {
+        title: "UI Component Lab",
+        desc: "16 interactive, production-tested components with live preview, source code tabs, copy actions, and state reset.",
+        href: "components.html",
+        icon: "blocks",
+        badge: "16 Categories"
+      },
+      {
+        title: "Engineering Decisions",
+        desc: "Architecture Decision Records (ADRs) documenting trade-offs behind MongoDB, Node.js, JWT RBAC, and modular UI.",
+        href: "decisions.html",
+        icon: "git-branch",
+        badge: "ADR Log"
+      },
+      {
+        title: "Security Center",
+        desc: "Verification of client-side XSS escaping, iframe sandboxing, secret hygiene, and safe external link policies.",
+        href: "security.html",
+        icon: "shield-check",
+        badge: "AppSec"
+      }
+    ];
+
+    const secondaryModules = [
+      { title: "Performance Center", href: "performance.html", icon: "gauge" },
+      { title: "Knowledge Base", href: "knowledge.html", icon: "book-marked" },
+      { title: "Open Source Hub", href: "opensource.html", icon: "git-fork" },
+      { title: "Design Playground", href: "design-playground.html", icon: "palette" },
+      { title: "Build in Public", href: "build.html", icon: "hammer" },
+      { title: "Developer Dashboard", href: "dashboard.html", icon: "layout-dashboard" }
+    ];
+
+    const cardsHtml = primaryModules
+      .map(
+        (mod) => `
+        <a href="${escHtml(mod.href)}" class="glass-card hover-lift p-6 flex flex-col justify-between gap-4 group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-3">
+              <span class="mode-card-icon mode-card-icon-developer">
+                <i data-lucide="${escHtml(mod.icon)}" class="w-5 h-5" aria-hidden="true"></i>
+              </span>
+              <span class="text-xs font-mono-tech text-emerald-400">${escHtml(mod.badge)}</span>
+            </div>
+            <h3 class="text-lg font-bold text-[var(--text)] group-hover:text-cyan-400 transition-colors">${escHtml(mod.title)}</h3>
+            <p class="text-sm text-[var(--muted)] leading-relaxed">${escHtml(mod.desc)}</p>
+          </div>
+          <div class="pt-3 border-t border-[var(--border)] flex items-center justify-between text-xs font-semibold text-cyan-400">
+            <span>Open Module</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
+          </div>
+        </a>
+      `
+      )
+      .join("");
+
+    const secondaryHtml = secondaryModules
+      .map(
+        (m) => `
+        <a href="${escHtml(m.href)}" class="card hover-lift p-3.5 flex items-center justify-between gap-2 text-xs sm:text-sm font-semibold text-[var(--text)]">
+          <span class="inline-flex items-center gap-2 min-w-0">
+            <i data-lucide="${escHtml(m.icon)}" class="w-4 h-4 text-cyan-400 shrink-0" aria-hidden="true"></i>
+            <span class="truncate">${escHtml(m.title)}</span>
+          </span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-[var(--muted)] shrink-0" aria-hidden="true"></i>
+        </a>
+      `
+      )
+      .join("");
+
+    return `
+      <section class="section border-t border-[var(--border)] mode-transition-fade" aria-label="Developer Mode Systems">
+        <div class="container space-y-10">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div class="space-y-2 max-w-2xl">
+              <p class="text-xs font-semibold text-emerald-400">Developer Focus · Engineering Workbench</p>
+              <h2 class="section-title">Explore the <span class="gradient-text">Developer Systems</span></h2>
+              <p class="section-subtitle">
+                Direct entry points to system architecture, interactive sandboxes, component code, engineering ADRs, and security controls.
+              </p>
+            </div>
+            <a href="knowledge.html" class="outline-button self-start md:self-auto shrink-0">
+              <span>Knowledge Base</span>
+              <i data-lucide="book-marked" class="w-4 h-4" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            ${cardsHtml}
+          </div>
+
+          <div class="space-y-3 pt-4 border-t border-[var(--border)]">
+            <p class="text-xs font-mono-tech uppercase tracking-wider text-[var(--muted)]">Companion Engineering Modules</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              ${secondaryHtml}
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
   function renderHomepageDynamicExperience() {
     const container = document.getElementById("mode-dynamic-experience");
     const flowRoot = document.getElementById("homepage-sections-flow");
@@ -1083,6 +1316,8 @@ const PortfolioModes = (() => {
     container.innerHTML =
       mode === "client"
         ? renderClientDynamicSections(cfg)
+        : mode === "developer"
+        ? renderDeveloperDynamicSections()
         : renderRecruiterDynamicSections(cfg);
 
     // Bind resume links inside injected recruiter hero/sections
@@ -1157,8 +1392,9 @@ const PortfolioModes = (() => {
 
     if (notify && typeof window.showToast === "function") {
       const msgMap = {
-        client: "Switched to Client Mode — highlighting services, case studies & project inquiries.",
-        recruiter: "Switched to Recruiter Mode — highlighting skills, experience, certificates & resume.",
+        client: "Switched to Client Mode — highlighting services, case studies, estimator & project requests.",
+        recruiter: "Switched to Recruiter Mode — highlighting resume, experience, skills, GitHub & certificates.",
+        developer: "Switched to Developer Mode — highlighting architecture, playground, APIs, components & security.",
         default: "Restored Default Portfolio view."
       };
       window.showToast(msgMap[nextMode], "info");

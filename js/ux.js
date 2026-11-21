@@ -12,7 +12,7 @@
  */
 
 const PortfolioUX = (() => {
-  const MAX_COMMAND_RESULTS = 24;
+  const MAX_COMMAND_RESULTS = 32;
   const CHORD_TIMEOUT_MS = 1000;
   const KONAMI_SEQUENCE = [
     "ArrowUp",
@@ -101,6 +101,39 @@ const PortfolioUX = (() => {
       title: "Writing Engineering Case Studies That Impress Technical Hiring Teams",
       category: "Career"
     }
+  ];
+
+  const fallbackKnowledge = [
+    { id: "js-event-loop-abort-controllers", type: "Article", category: "JavaScript", title: "Coordinating Async Fetch Lifecycles with AbortController & Microtasks" },
+    { id: "react-predictable-filter-state", type: "Article", category: "React", title: "Derived Filter State Without Redundant useEffect Synchronization" },
+    { id: "node-structured-rest-errors", type: "Article", category: "Node.js", title: "Normalized Error Envelope & Async Boundaries in Express APIs" },
+    { id: "mongodb-compound-index-rules", type: "Article", category: "MongoDB", title: "ESR Rule for Compound MongoDB Indexes in Multi-Tenant Queries" },
+    { id: "css-fluid-grid-zero-cls", type: "Article", category: "CSS", title: "Intrinsic Grid Systems & Fluid Typography Across 320px to 2560px" },
+    { id: "webdev-resilient-client-cache", type: "Article", category: "Web Development", title: "Network-First HTML & Safe Shell Precaching in Static Service Workers" },
+    { id: "security-jwt-cookie-hardening", type: "Note", category: "Security", title: "Session Hygiene Note: Input Validation, CORS Allowlists & Secret Scope" },
+    { id: "uiux-scannable-filter-bars", type: "Note", category: "UI/UX", title: "Design System Note: Clean Typography vs. Pill Enclosure Clutter" },
+    { id: "ai-prompt-boundaries-note", type: "Note", category: "AI", title: "Engineering Note: Deterministic Fallbacks & Output Validation for AI UIs" },
+    { id: "career-technical-case-studies", type: "Article", category: "Career", title: "Writing Engineering Case Studies Hiring Managers Actually Read" },
+    { id: "devnotes-explain-checklist", type: "Note", category: "Development Notes", title: "Pre-Ship Verification Checklist (HTML, Accessibility, CSS & Build)" }
+  ];
+
+  const fallbackComponents = [
+    { id: "buttons", number: "01", title: "Buttons", group: "Actions & Forms" },
+    { id: "cards", number: "02", title: "Cards", group: "Data & Commerce" },
+    { id: "forms", number: "03", title: "Forms", group: "Actions & Forms" },
+    { id: "inputs", number: "04", title: "Inputs", group: "Actions & Forms" },
+    { id: "navbar", number: "05", title: "Navbar", group: "Layout & Nav" },
+    { id: "modal", number: "06", title: "Modal", group: "Overlays & Feedback" },
+    { id: "dropdown", number: "07", title: "Dropdown", group: "Overlays & Feedback" },
+    { id: "tabs", number: "08", title: "Tabs", group: "Layout & Nav" },
+    { id: "accordion", number: "09", title: "Accordion", group: "Layout & Nav" },
+    { id: "toast", number: "10", title: "Toast", group: "Overlays & Feedback" },
+    { id: "alerts", number: "11", title: "Alerts", group: "Overlays & Feedback" },
+    { id: "loaders", number: "12", title: "Loaders", group: "Overlays & Feedback" },
+    { id: "sliders", number: "13", title: "Sliders", group: "Actions & Forms" },
+    { id: "pricing-cards", number: "14", title: "Pricing Cards", group: "Data & Commerce" },
+    { id: "dashboard-cards", number: "15", title: "Dashboard Cards", group: "Data & Commerce" },
+    { id: "navigation", number: "16", title: "Navigation", group: "Layout & Nav" }
   ];
 
   const state = {
@@ -281,7 +314,13 @@ const PortfolioUX = (() => {
       { label: "HTML/CSS/JS Code Playground", href: "playground.html" },
       { label: "Interactive Resume / CV", href: "resume.html" },
       { label: "Recruiter Search System", href: "recruiter-search.html" },
-      { label: "Personal Knowledge Base", href: "knowledge.html" }
+      { label: "Personal Knowledge Base", href: "knowledge.html" },
+      { label: "Open Source Hub (SLIDEVERSE & GitHub)", href: "opensource.html" },
+      { label: "Interactive Digital Office", href: "office.html" },
+      { label: "3D Developer Workspace", href: "workspace.html" },
+      { label: "Guided Portfolio Tour", href: "tour.html" },
+      { label: "Portfolio Career Assistant", href: "career-assistant.html" },
+      { label: "Client Requirement Analyzer", href: "requirement-analyzer.html" }
     ];
 
     const seenPages = new Set();
@@ -299,10 +338,12 @@ const PortfolioUX = (() => {
       });
     });
 
-    // Projects (live from PortfolioProjects or synchronized fallback)
+    // Projects & Case Studies (live from PortfolioProjects, PortfolioData, or synchronized fallback)
     const projectsList =
       window.PortfolioProjects && Array.isArray(window.PortfolioProjects.projectsData)
         ? window.PortfolioProjects.projectsData
+        : window.PortfolioData && typeof window.PortfolioData.getProjects === "function"
+        ? window.PortfolioData.getProjects()
         : fallbackProjects;
 
     projectsList.forEach((proj) => {
@@ -311,58 +352,124 @@ const PortfolioUX = (() => {
         id: `proj-${proj.id}`,
         group: "Projects",
         title: proj.title,
-        subtitle: `${proj.category} · Case Study`,
-        keywords: `${proj.title} ${proj.category} ${techs} case study project`,
+        subtitle: `${proj.category} Project`,
+        keywords: `${proj.title} ${proj.category} ${techs} project`,
         icon: "folder-kanban",
+        action: () => navigateTo(`project-details.html?id=${encodeURIComponent(proj.id)}`)
+      });
+      items.push({
+        id: `case-${proj.id}`,
+        group: "Case Studies",
+        title: `${proj.title} Case Study`,
+        subtitle: `${proj.category} · Architecture & Outcomes`,
+        keywords: `${proj.title} case study architecture ${techs}`,
+        icon: "book-open",
         action: () => navigateTo(`project-details.html?id=${encodeURIComponent(proj.id)}`)
       });
     });
 
-    // Skills (live from PortfolioSkills or synchronized fallback)
+    // Skills & Technologies (live from PortfolioSkills, PortfolioData, or synchronized fallback)
     const skillsList =
       window.PortfolioSkills && Array.isArray(window.PortfolioSkills.skillsCatalog)
         ? window.PortfolioSkills.skillsCatalog
+        : window.PortfolioData && typeof window.PortfolioData.getSkills === "function"
+        ? window.PortfolioData.getSkills()
         : fallbackSkills;
 
+    const seenTechs = new Set();
     skillsList.forEach((sk) => {
       const targetTech = sk.queryName || sk.name;
       items.push({
         id: `skill-${sk.name}`,
-        group: "Skills & Tech",
+        group: "Skills",
         title: sk.name,
-        subtitle: `${sk.category} · Inspect in Explorer`,
-        keywords: `${sk.name} ${sk.category} ${sk.level || ""} skill technology`,
-        icon: "cpu",
-        action: () => navigateTo(`explorer.html?tech=${encodeURIComponent(targetTech)}`)
+        subtitle: `${sk.category} Skill`,
+        keywords: `${sk.name} ${sk.category} ${sk.level || ""} skill`,
+        icon: "layers",
+        action: () => navigateTo(`skills.html#skills-graph-section`)
       });
+      if (!seenTechs.has(targetTech.toLowerCase())) {
+        seenTechs.add(targetTech.toLowerCase());
+        items.push({
+          id: `tech-${targetTech}`,
+          group: "Technologies",
+          title: sk.name,
+          subtitle: `${sk.category} · Open in Tech Explorer`,
+          keywords: `${sk.name} ${sk.category} technology stack explorer`,
+          icon: "cpu",
+          action: () => navigateTo(`explorer.html?tech=${encodeURIComponent(targetTech)}`)
+        });
+      }
     });
 
-    // Blog Posts (live from PortfolioBlog or synchronized fallback)
+    // Blog Posts
     const postsList =
       window.PortfolioBlog && Array.isArray(window.PortfolioBlog.articlesData)
         ? window.PortfolioBlog.articlesData
+        : window.PortfolioData && typeof window.PortfolioData.getBlogPosts === "function"
+        ? window.PortfolioData.getBlogPosts()
         : fallbackBlogPosts;
 
     postsList.forEach((post) => {
       const tags = Array.isArray(post.tags) ? post.tags.join(" ") : "";
       items.push({
         id: `blog-${post.slug}`,
-        group: "Blog Posts",
+        group: "Blog",
         title: post.title,
         subtitle: `${post.category} Article`,
         keywords: `${post.title} ${post.category} ${tags} blog article`,
-        icon: "book-open",
+        icon: "file-text",
         action: () => navigateTo(`blog-details.html?article=${encodeURIComponent(post.slug)}`)
       });
     });
 
-    // Quick Actions
+    // Knowledge Base Articles & Notes
+    const kbList =
+      window.PortfolioKnowledge && Array.isArray(window.PortfolioKnowledge.ENTRIES)
+        ? window.PortfolioKnowledge.ENTRIES
+        : window.PortfolioData && typeof window.PortfolioData.getKnowledgeEntries === "function"
+        ? window.PortfolioData.getKnowledgeEntries()
+        : fallbackKnowledge;
+
+    kbList.forEach((entry) => {
+      items.push({
+        id: `kb-${entry.id}`,
+        group: "Knowledge",
+        title: entry.title,
+        subtitle: `${entry.category} · ${entry.type || "Note"}`,
+        keywords: `${entry.title} ${entry.category} ${entry.type || ""} knowledge base note docs`,
+        icon: "book-marked",
+        action: () => navigateTo(`knowledge.html?entry=${encodeURIComponent(entry.id)}`)
+      });
+    });
+
+    // UI Component Lab Categories
+    const compList =
+      window.PortfolioComponentLab && Array.isArray(window.PortfolioComponentLab.DEFAULT_COMPONENTS)
+        ? window.PortfolioComponentLab.DEFAULT_COMPONENTS
+        : window.PortfolioData && typeof window.PortfolioData.getComponentCategories === "function"
+        ? window.PortfolioData.getComponentCategories()
+        : fallbackComponents;
+
+    compList.forEach((comp) => {
+      items.push({
+        id: `comp-${comp.id}`,
+        group: "Components",
+        title: comp.title,
+        subtitle: `${comp.group} · Component #${comp.number}`,
+        keywords: `${comp.title} ${comp.group} ui component lab preview code`,
+        icon: "blocks",
+        action: () => navigateTo(`components.html#lab-comp-${encodeURIComponent(comp.id)}`)
+      });
+    });
+
+    // Quick Command Center Actions
     const isLight = document.documentElement.classList.contains("light");
     items.push(
       {
         id: "act-theme",
         group: "Actions",
-        title: isLight ? "Switch to Dark Theme" : "Switch to Light Theme",
+        title: isLight ? "Change Theme: Dark Mode" : "Change Theme: Light Mode",
         subtitle: "Toggle global light / dark appearance",
         keywords: "theme dark light mode toggle appearance",
         icon: isLight ? "moon" : "sun",
@@ -370,6 +477,95 @@ const PortfolioUX = (() => {
           if (window.PortfolioTheme && typeof window.PortfolioTheme.toggleTheme === "function") {
             window.PortfolioTheme.toggleTheme();
           }
+        }
+      },
+      {
+        id: "act-open-projects",
+        group: "Actions",
+        title: "Open Projects Archive",
+        subtitle: "Browse all projects and case studies",
+        keywords: "open projects portfolio work case studies",
+        icon: "folder-kanban",
+        action: () => navigateTo("projects.html")
+      },
+      {
+        id: "act-open-resume",
+        group: "Actions",
+        title: "Open Interactive Resume",
+        subtitle: "Tailor Developer, Full-Stack, Frontend, Designer or Recruiter CV",
+        keywords: "open resume cv print a4 download",
+        icon: "file-text",
+        action: () => navigateTo("resume.html")
+      },
+      {
+        id: "act-open-contact",
+        group: "Actions",
+        title: "Contact Al Amin",
+        subtitle: "Send a message, hire inquiry, or request quote",
+        keywords: "contact email hire message inquiry",
+        icon: "mail",
+        action: () => navigateTo("contact.html")
+      },
+      {
+        id: "act-open-dashboard",
+        group: "Actions",
+        title: "Open Developer Dashboard",
+        subtitle: "View engineering metrics, stack chart, activity & GitHub",
+        keywords: "open dashboard command center stats",
+        icon: "layout-dashboard",
+        action: () => navigateTo("dashboard.html")
+      },
+      {
+        id: "act-open-playground",
+        group: "Actions",
+        title: "Open Live Code Playground",
+        subtitle: "Run HTML, CSS & JavaScript in isolated browser sandbox",
+        keywords: "open playground sandbox code editor",
+        icon: "code-2",
+        action: () => navigateTo("playground.html")
+      },
+      {
+        id: "act-client-mode",
+        group: "Actions",
+        title: "Switch Mode: Client Mode",
+        subtitle: "Prioritize services, case studies, estimator & project requests",
+        keywords: "switch client mode hire project visitor",
+        icon: "briefcase",
+        action: () => {
+          if (window.PortfolioModes) window.PortfolioModes.setMode("client");
+        }
+      },
+      {
+        id: "act-recruiter-mode",
+        group: "Actions",
+        title: "Switch Mode: Recruiter Mode",
+        subtitle: "Prioritize resume, experience, skills, GitHub & certificates",
+        keywords: "switch recruiter mode resume hiring cv",
+        icon: "user-check",
+        action: () => {
+          if (window.PortfolioModes) window.PortfolioModes.setMode("recruiter");
+        }
+      },
+      {
+        id: "act-developer-mode",
+        group: "Actions",
+        title: "Switch Mode: Developer Mode",
+        subtitle: "Prioritize architecture, playground, API explorer, components & security",
+        keywords: "switch developer mode architecture api explorer components engineering",
+        icon: "terminal",
+        action: () => {
+          if (window.PortfolioModes) window.PortfolioModes.setMode("developer");
+        }
+      },
+      {
+        id: "act-default-mode",
+        group: "Actions",
+        title: "Switch Mode: Default Portfolio",
+        subtitle: "Restore complete balanced portfolio view",
+        keywords: "switch default mode reset view",
+        icon: "rotate-ccw",
+        action: () => {
+          if (window.PortfolioModes) window.PortfolioModes.setMode("default");
         }
       },
       {
@@ -421,26 +617,13 @@ const PortfolioUX = (() => {
         }
       },
       {
-        id: "act-client-mode",
+        id: "act-guided-tour",
         group: "Actions",
-        title: "Switch to Client Mode",
-        subtitle: "Emphasize services, case studies, and inquiries",
-        keywords: "client mode hire project visitor",
-        icon: "briefcase",
-        action: () => {
-          if (window.PortfolioModes) window.PortfolioModes.setMode("client");
-        }
-      },
-      {
-        id: "act-recruiter-mode",
-        group: "Actions",
-        title: "Switch to Recruiter Mode",
-        subtitle: "Emphasize skills, experience, resume & GitHub",
-        keywords: "recruiter mode resume hiring cv",
-        icon: "user-check",
-        action: () => {
-          if (window.PortfolioModes) window.PortfolioModes.setMode("recruiter");
-        }
+        title: "Start Guided Portfolio Tour",
+        subtitle: "8-stop interactive walkthrough with hotspots, text-only & skip options",
+        keywords: "start tour guided walkthrough hotspots architecture security explore freely",
+        icon: "compass",
+        action: () => navigateTo("tour.html?autoplay=1")
       },
       {
         id: "act-easter-egg",
@@ -505,7 +688,7 @@ const PortfolioUX = (() => {
             id="cmd-palette-input"
             type="search"
             class="cmd-search-input"
-            placeholder="Search pages, projects, skills, articles, or actions..."
+            placeholder="Search pages, projects, skills, knowledge, components, or commands..."
             autocomplete="off"
             role="combobox"
             aria-autocomplete="list"
@@ -593,12 +776,19 @@ const PortfolioUX = (() => {
     const query = String(rawQuery || "").trim().toLowerCase();
     const catalog = buildSearchItems();
 
-    const matches = query
-      ? catalog.filter((item) => {
-          const hay = `${item.title} ${item.subtitle} ${item.group} ${item.keywords}`.toLowerCase();
-          return hay.includes(query);
-        })
-      : catalog.slice(0, MAX_COMMAND_RESULTS);
+    let matches;
+    if (query) {
+      matches = catalog.filter((item) => {
+        const hay = `${item.title} ${item.subtitle} ${item.group} ${item.keywords}`.toLowerCase();
+        return hay.includes(query);
+      });
+    } else {
+      const topActions = catalog.filter((i) => i.group === "Actions").slice(0, 10);
+      const topPages = catalog.filter((i) => i.group === "Pages").slice(0, 8);
+      const topProjects = catalog.filter((i) => i.group === "Projects").slice(0, 4);
+      const topKnowledge = catalog.filter((i) => i.group === "Knowledge").slice(0, 3);
+      matches = [...topActions, ...topPages, ...topProjects, ...topKnowledge];
+    }
 
     state.filteredItems = matches.slice(0, MAX_COMMAND_RESULTS);
     if (state.activeIndex >= state.filteredItems.length) {

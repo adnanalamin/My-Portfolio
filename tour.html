@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guided Portfolio Tour — AL AMIN | Full-Stack Developer</title>
+  <meta name="description" content="Take a self-paced or guided tour across AL AMIN's portfolio architecture: Overview, Projects, Skills, Experience, Open Source, System Architecture, Security, and Contact.">
+  <meta name="keywords" content="AL AMIN, Guided Portfolio Tour, Interactive Walkthrough, System Architecture, Security Center, Open Source, Full-Stack Developer">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/tour.html">
+  <meta property="og:title" content="Guided Portfolio Tour — AL AMIN">
+  <meta property="og:description" content="Interactive guided walkthrough with hotspots, tooltips, keyboard navigation, mobile swipe gestures, and accessible text-only tour mode.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/tour.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guided Portfolio Tour — AL AMIN">
+  <meta name="twitter:description" content="Interactive guided walkthrough covering projects, open source, architecture, security, and collaboration paths.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Guided Portfolio Tour — AL AMIN",
+    "description": "Non-coercive guided walkthrough and accessible text-only tour across AL AMIN Portfolio OS.",
+    "url": "https://example.com/tour.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/tour.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern tour-shell">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="section" id="tour-root">
+      <div class="container space-y-6 sm:space-y-8">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">Guided Tour</span>
+        </nav>
+
+        <!-- Hero Header -->
+        <header class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-2.5 max-w-2xl">
+            <p class="text-xs font-semibold text-cyan-400">Interactive Walkthrough · Self-Paced &amp; Accessible</p>
+            <h1 class="hero-title text-balance">
+              Guided Portfolio <span class="gradient-text">Tour</span>
+            </h1>
+            <p class="section-subtitle">
+              Follow an 8-stop curated walkthrough across projects, open source work, system architecture, security practices, and contact workflows—or switch to Explore Freely at any moment.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+            <button type="button" id="tour-start-btn" class="primary-button text-xs sm:text-sm py-2.5 px-5 min-h-[44px]" aria-pressed="false">
+              <i data-lucide="play" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Start Tour</span>
+            </button>
+            <button type="button" id="tour-free-btn" class="secondary-button text-xs sm:text-sm py-2.5 px-5 min-h-[44px]" aria-pressed="false">
+              <i data-lucide="compass" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Explore Freely</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Mode & Accessibility Toolbar -->
+        <section class="tour-toolbar" aria-label="Tour playback and accessibility controls">
+          <div class="tour-ctrl-group">
+            <button type="button" class="tour-ctrl-btn" data-tour-prev>
+              <i data-lucide="arrow-left" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Previous</span>
+            </button>
+            <button type="button" class="tour-ctrl-btn tour-ctrl-btn-primary" data-tour-next>
+              <span data-next-label>Next</span>
+              <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+            </button>
+            <button type="button" id="tour-skip-btn" class="tour-ctrl-btn" data-tour-skip>
+              <i data-lucide="skip-forward" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Skip Tour</span>
+            </button>
+            <button type="button" id="tour-restart-btn" class="tour-ctrl-btn" data-tour-restart>
+              <i data-lucide="rotate-ccw" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Restart Tour</span>
+            </button>
+          </div>
+
+          <div class="tour-ctrl-group">
+            <button type="button" id="tour-text-mode-btn" class="tour-ctrl-btn" aria-pressed="false">
+              <i data-lucide="file-text" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Text-Only Tour</span>
+            </button>
+            <button type="button" id="tour-motion-toggle" class="tour-ctrl-btn" aria-pressed="false">
+              <i data-lucide="sparkles" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Reduced Motion</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Polite Live Announcement Region -->
+        <p id="tour-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+
+        <!-- Progress Indicator & Step Counter -->
+        <section class="tour-progress-panel" aria-label="Tour progress indicator">
+          <div class="tour-progress-header">
+            <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+              <span id="tour-step-counter" class="tour-step-counter">Step 1 of 8</span>
+              <span class="text-[var(--muted)]" aria-hidden="true">·</span>
+              <span id="tour-active-stop-label" class="text-sm font-bold text-[var(--text)]">Overview &amp; Personal Brand</span>
+            </div>
+            <p id="tour-mode-status" class="text-xs font-medium text-cyan-400">Ready · Choose Start Tour or Explore Freely</p>
+          </div>
+
+          <div
+            id="tour-progress-track"
+            class="tour-progress-track"
+            role="progressbar"
+            aria-label="Tour completion progress"
+            aria-valuemin="1"
+            aria-valuemax="8"
+            aria-valuenow="1"
+          >
+            <div id="tour-progress-fill" class="tour-progress-fill" style="transform: scaleX(0.125);"></div>
+          </div>
+
+          <div id="tour-stepper-dots" class="tour-stepper-dots" role="navigation" aria-label="Tour step selector"></div>
+        </section>
+
+        <!-- Visual Hotspot Blueprint & Spotlight Stepper -->
+        <section id="tour-visual-workspace" class="space-y-4" aria-label="Interactive visual portfolio tour">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+
+            <!-- Left/Top: Interactive Hotspots Canvas (Desktop/Tablet >= 768px) & Touch Grid (Mobile < 768px) -->
+            <div class="lg:col-span-7 flex flex-col gap-3">
+              <div class="hidden md:block">
+                <div id="tour-map-canvas" class="tour-map-stage"></div>
+              </div>
+
+              <div class="md:hidden space-y-2">
+                <p class="text-xs font-semibold text-[var(--muted)]">Tap a hotspot or swipe the card below left/right</p>
+                <div id="tour-mobile-hotspots" class="tour-mobile-hotspots"></div>
+              </div>
+
+              <div class="hidden sm:flex flex-wrap items-center justify-between gap-2 text-xs text-[var(--muted)] px-1">
+                <span>Hover or focus any hotspot to inspect tooltips.</span>
+                <span class="flex items-center gap-2">
+                  <span><kbd class="tour-kbd">←</kbd> <kbd class="tour-kbd">→</kbd> Step</span>
+                  <span><kbd class="tour-kbd">Esc</kbd> Skip Tour</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Right/Bottom: Active Spotlight Step Details (Touch Swipe Enabled) -->
+            <div class="lg:col-span-5 flex">
+              <article
+                id="tour-spotlight-card"
+                class="tour-spotlight-card w-full"
+                tabindex="-1"
+                aria-labelledby="tour-step-heading"
+              >
+                <div id="tour-spotlight-body" class="tour-spotlight-body space-y-4"></div>
+
+                <div class="pt-3 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex items-center gap-2">
+                    <button type="button" class="tour-ctrl-btn min-h-[40px] py-1.5 px-3 text-xs" data-tour-prev>
+                      <i data-lucide="chevron-left" class="w-4 h-4" aria-hidden="true"></i>
+                      <span>Previous</span>
+                    </button>
+                    <button type="button" class="tour-ctrl-btn tour-ctrl-btn-primary min-h-[40px] py-1.5 px-3 text-xs" data-tour-next>
+                      <span data-next-label>Next</span>
+                      <i data-lucide="chevron-right" class="w-4 h-4" aria-hidden="true"></i>
+                    </button>
+                  </div>
+
+                  <div class="flex items-center gap-3 text-xs">
+                    <button type="button" class="text-[var(--muted)] hover:text-[var(--text)] bg-transparent border-0 p-0 cursor-pointer font-medium" data-tour-skip>
+                      Skip Tour
+                    </button>
+                    <button type="button" class="text-cyan-400 hover:underline bg-transparent border-0 p-0 cursor-pointer font-medium" data-tour-restart>
+                      Restart
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Accessible Text-Only Tour Mode -->
+        <section id="tour-text-only-view" class="hidden space-y-4" aria-label="Accessible text-only portfolio tour">
+          <div class="glass-card p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="space-y-1">
+              <h2 class="text-base sm:text-lg font-bold text-[var(--text)]">Accessible Text-Only Tour Mode</h2>
+              <p class="text-xs sm:text-sm text-[var(--muted)]">
+                Linear semantic reading order with direct portfolio links, clear context explanations, and keyboard shortcuts.
+              </p>
+            </div>
+            <button type="button" id="tour-visual-mode-btn" class="outline-button text-xs py-2 px-4 shrink-0">
+              <i data-lucide="layout" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Switch to Visual Map</span>
+            </button>
+          </div>
+
+          <div id="tour-text-only-list" class="space-y-4"></div>
+        </section>
+
+        <!-- Explore Freely Full Directory -->
+        <section id="tour-explore-directory" class="space-y-4 pt-4 border-t border-[var(--border)]" aria-labelledby="tour-explore-heading">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div class="space-y-1">
+              <h2 id="tour-explore-heading" class="text-lg sm:text-xl font-bold text-[var(--text)]">Explore Freely Across All Stops</h2>
+              <p class="text-xs sm:text-sm text-[var(--muted)]">
+                No tour completion is required. Jump straight to any stop below or open the corresponding page directly.
+              </p>
+            </div>
+            <a href="index.html" class="outline-button text-xs py-2 px-4 self-start sm:self-auto">
+              <i data-lucide="home" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Back to Home</span>
+            </a>
+          </div>
+
+          <div id="tour-explore-grid" class="tour-explore-grid"></div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/profile.js"></script>
+  <script defer src="js/data/projects.js"></script>
+  <script defer src="js/data/skills.js"></script>
+  <script defer src="js/data/services.js"></script>
+  <script defer src="js/data/experience.js"></script>
+  <script defer src="js/data/certificates.js"></script>
+  <script defer src="js/data/blog.js"></script>
+  <script defer src="js/data/knowledge.js"></script>
+  <script defer src="js/data/decisions.js"></script>
+  <script defer src="js/data/components.js"></script>
+  <script defer src="js/data/github.js"></script>
+  <script defer src="js/data/index.js"></script>
+  <script defer src="js/tour.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

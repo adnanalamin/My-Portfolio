@@ -607,7 +607,7 @@ html.light .site-header.is-scrolled .site-header-shell {
   display: none;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
+  gap: 0.38rem;
   min-width: 0;
 }
 
@@ -619,25 +619,25 @@ html.light .site-header.is-scrolled .site-header-shell {
 
 @media (min-width: 1200px) {
   .desktop-nav-list {
-    gap: 0.65rem;
+    gap: 0.6rem;
   }
 }
 
 @media (min-width: 1366px) {
   .desktop-nav-list {
-    gap: 0.85rem;
+    gap: 0.8rem;
   }
 }
 
 @media (min-width: 1536px) {
   .desktop-nav-list {
-    gap: 1.15rem;
+    gap: 1.08rem;
   }
 }
 
 .nav-link {
   position: relative;
-  font-size: 0.72rem;
+  font-size: 0.695rem;
   font-weight: 500;
   color: var(--muted);
   white-space: nowrap;
@@ -3161,6 +3161,10 @@ html.light .visitor-mode-bar {
   border-bottom-color: rgba(99, 102, 241, 0.35);
 }
 
+.visitor-mode-bar[data-mode="developer"] {
+  border-bottom-color: rgba(16, 185, 129, 0.35);
+}
+
 .visitor-mode-bar-inner {
   display: flex;
   flex-wrap: wrap;
@@ -3251,6 +3255,12 @@ html.light .visitor-mode-bar {
   color: var(--primary);
 }
 
+.mode-card-icon-developer {
+  border-color: rgba(16, 185, 129, 0.35);
+  background-color: rgba(16, 185, 129, 0.12);
+  color: #34D399;
+}
+
 /* Mode Selector Modal */
 .mode-modal-backdrop {
   position: fixed;
@@ -3275,7 +3285,7 @@ html.light .visitor-mode-bar {
 
 .mode-modal-panel {
   width: 100%;
-  max-width: 960px;
+  max-width: 1120px;
   max-height: 90dvh;
   overflow-y: auto;
   border-radius: var(--radius);
@@ -3322,6 +3332,15 @@ html.light .visitor-mode-bar {
 .homepage-sections-flow[data-active-mode="recruiter"] [data-home-section="selector"] { order: 6; }
 .homepage-sections-flow[data-active-mode="recruiter"] [data-home-section="services"] { order: 7; }
 .homepage-sections-flow[data-active-mode="recruiter"] [data-home-section="cta"] { order: 8; }
+
+.homepage-sections-flow[data-active-mode="developer"] [data-home-section="dynamic"] { order: 1; }
+.homepage-sections-flow[data-active-mode="developer"] [data-home-section="tech"] { order: 2; }
+.homepage-sections-flow[data-active-mode="developer"] [data-home-section="projects"] { order: 3; }
+.homepage-sections-flow[data-active-mode="developer"] [data-home-section="stats"] { order: 4; }
+.homepage-sections-flow[data-active-mode="developer"] [data-home-section="selector"] { order: 5; }
+.homepage-sections-flow[data-active-mode="developer"] [data-home-section="about"] { order: 6; }
+.homepage-sections-flow[data-active-mode="developer"] [data-home-section="services"] { order: 7; }
+.homepage-sections-flow[data-active-mode="developer"] [data-home-section="cta"] { order: 8; }
 
 .mode-transition-fade {
   animation: modeFadeIn 220ms var(--ease-out-expo) both;

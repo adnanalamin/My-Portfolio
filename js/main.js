@@ -1100,6 +1100,12 @@
     if (window.PortfolioResumeBuilder) window.PortfolioResumeBuilder.init();
     if (window.PortfolioRecruiterSearch) window.PortfolioRecruiterSearch.init();
     if (window.PortfolioKnowledge) window.PortfolioKnowledge.init();
+    if (window.PortfolioOpenSourceHub) window.PortfolioOpenSourceHub.init();
+    if (window.PortfolioOffice) window.PortfolioOffice.init();
+    if (window.PortfolioWorkspace) window.PortfolioWorkspace.init();
+    if (window.PortfolioTour) window.PortfolioTour.init();
+    if (window.PortfolioCareerAssistant) window.PortfolioCareerAssistant.init();
+    if (window.PortfolioRequirementAnalyzer) window.PortfolioRequirementAnalyzer.init();
     if (window.PortfolioAssistant) window.PortfolioAssistant.init();
     if (window.PortfolioUX) window.PortfolioUX.init();
     initServicesPage();

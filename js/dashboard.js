@@ -1520,6 +1520,107 @@ const PortfolioDashboard = (() => {
     refreshIcons();
   }
 
+  function renderSystemsDirectory() {
+    const mount = document.getElementById("dash-systems-mount");
+    if (!mount) return;
+
+    const systems =
+      window.PortfolioData && typeof window.PortfolioData.getSystemsDirectory === "function"
+        ? window.PortfolioData.getSystemsDirectory()
+        : [];
+
+    if (!systems.length) {
+      mount.innerHTML = `<p class="text-xs text-[var(--muted)]">Centralized system index ready.</p>`;
+      return;
+    }
+
+    const categories = ["All", "User Modes", "Developer Tools", "Engineering", "Design & UI", "Client Intake", "Career", "Quality"];
+    let activeCat = "All";
+
+    const draw = () => {
+      const visible = activeCat === "All" ? systems : systems.filter((s) => s.category === activeCat);
+      const tabsHtml = categories
+        .map(
+          (cat) => `
+          <button
+            type="button"
+            class="skill-tab-btn text-xs ${activeCat === cat ? "is-active" : ""}"
+            data-sys-cat="${esc(cat)}"
+          >${esc(cat)}</button>
+        `
+        )
+        .join("");
+
+      const gridHtml = visible
+        .map((sys) => {
+          const badgeNum = String(sys.num).padStart(2, "0");
+          const inner = `
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="inline-flex items-center gap-2 font-bold text-[var(--text)] min-w-0">
+                <i data-lucide="${esc(sys.icon)}" class="w-4 h-4 text-cyan-400 shrink-0" aria-hidden="true"></i>
+                <span class="truncate">${esc(sys.title)}</span>
+              </span>
+              <span class="font-mono-tech text-[11px] text-[var(--muted)] tabular-nums shrink-0">${badgeNum}</span>
+            </div>
+            <div class="flex items-center justify-between text-[11px] text-[var(--muted)] pt-1">
+              <span>${esc(sys.category)}</span>
+              <span class="text-cyan-400 font-semibold">Launch →</span>
+            </div>
+          `;
+          if (sys.action) {
+            return `
+              <button
+                type="button"
+                data-sys-action="${esc(sys.action)}"
+                class="card hover-lift p-3.5 text-left space-y-1.5 cursor-pointer"
+              >${inner}</button>
+            `;
+          }
+          return `
+            <a href="${esc(sys.href)}" class="card hover-lift p-3.5 block space-y-1.5">${inner}</a>
+          `;
+        })
+        .join("");
+
+      mount.innerHTML = `
+        <div class="space-y-4">
+          <div class="skill-tabs-bar">${tabsHtml}</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+            ${gridHtml}
+          </div>
+        </div>
+      `;
+
+      mount.querySelectorAll("[data-sys-cat]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeCat = btn.getAttribute("data-sys-cat") || "All";
+          draw();
+        });
+      });
+
+      mount.querySelectorAll("[data-sys-action]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const act = btn.getAttribute("data-sys-action") || "";
+          if (act.startsWith("mode:") && window.PortfolioModes) {
+            window.PortfolioModes.setMode(act.split(":")[1]);
+          } else if (act === "cmd" && window.PortfolioUX) {
+            window.PortfolioUX.openCommandPalette(btn);
+          } else if (act === "prefs" && window.PortfolioUX) {
+            window.PortfolioUX.openPrefsModal(btn);
+          } else if (act === "theme" && window.PortfolioTheme) {
+            window.PortfolioTheme.toggleTheme();
+          } else if (act === "assistant" && window.PortfolioAssistant && typeof window.PortfolioAssistant.open === "function") {
+            window.PortfolioAssistant.open();
+          }
+        });
+      });
+
+      refreshIcons();
+    };
+
+    draw();
+  }
+
   /* ========================================================================
      Initialization
      ======================================================================== */
@@ -1542,6 +1643,7 @@ const PortfolioDashboard = (() => {
     renderFeaturedProjects();
     renderTimeline();
     renderAvailabilityCard();
+    renderSystemsDirectory();
     refreshIcons();
 
     if (window.PortfolioAnimations) {

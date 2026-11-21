@@ -172,6 +172,7 @@ const siteRoutes = {
     { label: "Blog", href: "blog.html" },
     { label: "Testimonials", href: "testimonials.html" },
     { label: "Dashboard", href: "dashboard.html" },
+    { label: "Office", href: "office.html" },
     { label: "Contact", href: "contact.html" }
   ],
   modeNavOrder: {
@@ -186,6 +187,7 @@ const siteRoutes = {
       "blog.html",
       "testimonials.html",
       "dashboard.html",
+      "office.html",
       "contact.html"
     ],
     client: [
@@ -194,6 +196,7 @@ const siteRoutes = {
       "projects.html",
       "testimonials.html",
       "contact.html",
+      "office.html",
       "dashboard.html",
       "about.html",
       "skills.html",
@@ -209,10 +212,52 @@ const siteRoutes = {
       "projects.html",
       "certificates.html",
       "dashboard.html",
+      "office.html",
       "contact.html",
       "services.html",
       "blog.html",
       "testimonials.html"
+    ],
+    developer: [
+      "index.html",
+      "projects.html",
+      "skills.html",
+      "dashboard.html",
+      "office.html",
+      "blog.html",
+      "experience.html",
+      "about.html",
+      "services.html",
+      "certificates.html",
+      "testimonials.html",
+      "contact.html"
+    ]
+  },
+  modePriorities: {
+    client: [
+      { label: "Services", href: "services.html", icon: "layers" },
+      { label: "Projects", href: "projects.html", icon: "folder-kanban" },
+      { label: "Case Studies", href: "project-details.html?id=astrapulse", icon: "book-open" },
+      { label: "Project Estimator", href: "project-estimator.html", icon: "calculator" },
+      { label: "Project Request", href: "project-request.html", icon: "send" },
+      { label: "Contact", href: "contact.html", icon: "mail" }
+    ],
+    recruiter: [
+      { label: "Resume", href: "resume.html", icon: "file-text" },
+      { label: "Experience", href: "experience.html", icon: "briefcase" },
+      { label: "Skills", href: "skills.html", icon: "cpu" },
+      { label: "GitHub", href: "github.html", icon: "github" },
+      { label: "Projects", href: "projects.html", icon: "folder-kanban" },
+      { label: "Certificates", href: "certificates.html", icon: "award" },
+      { label: "Recruiter Search", href: "recruiter-search.html", icon: "search" }
+    ],
+    developer: [
+      { label: "Architecture", href: "architecture.html", icon: "cpu" },
+      { label: "Code Playground", href: "playground.html", icon: "code-2" },
+      { label: "API Explorer", href: "api-explorer.html", icon: "webhook" },
+      { label: "Components", href: "components.html", icon: "blocks" },
+      { label: "Engineering Decisions", href: "decisions.html", icon: "git-branch" },
+      { label: "Security", href: "security.html", icon: "shield-check" }
     ]
   },
   primaryNav: [
@@ -246,6 +291,12 @@ const siteRoutes = {
     { label: "Resume", href: "resume.html" },
     { label: "Recruiter Search", href: "recruiter-search.html" },
     { label: "Knowledge Base", href: "knowledge.html" },
+    { label: "Open Source Hub", href: "opensource.html" },
+    { label: "Digital Office", href: "office.html" },
+    { label: "3D Workspace", href: "workspace.html" },
+    { label: "Guided Tour", href: "tour.html" },
+    { label: "Career Assistant", href: "career-assistant.html" },
+    { label: "Requirement Analyzer", href: "requirement-analyzer.html" },
     { label: "Contact", href: "contact.html" }
   ],
   detailRoutes: [

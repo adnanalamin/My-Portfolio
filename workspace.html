@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Developer Workspace — AL AMIN | Full-Stack Developer</title>
+  <meta name="description" content="Explore AL AMIN's interactive CSS 3D Developer Workspace featuring 13 clickable studio objects mapped to projects, dashboard, code editor, server architecture, database skills, GitHub, terminal, knowledge base, and certificates.">
+  <meta name="keywords" content="AL AMIN, 3D Developer Workspace, CSS 3D Portfolio, Interactive Studio, MERN Stack, Full-Stack Developer">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/workspace.html">
+  <meta property="og:title" content="3D Developer Workspace — AL AMIN">
+  <meta property="og:description" content="Lightweight CSS 3D interactive developer desk with mouse perspective lighting, Performance Mode, Reduced Motion, and accessible object directory.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/workspace.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="3D Developer Workspace — AL AMIN">
+  <meta name="twitter:description" content="Lightweight CSS 3D interactive developer workspace connecting projects, architecture, terminal, and credentials.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "3D Developer Workspace — AL AMIN",
+    "description": "Lightweight CSS 3D interactive developer workspace connecting portfolio systems with Performance Mode and full keyboard accessibility.",
+    "url": "https://example.com/workspace.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/workspace.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern ws-shell">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="section" id="workspace-root">
+      <div class="container space-y-6 sm:space-y-8">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="office.html" class="hover:text-[var(--text)] transition-colors">Digital Office</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">3D Workspace</span>
+        </nav>
+
+        <!-- Workspace Header -->
+        <header class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-2.5 max-w-2xl">
+            <p class="text-xs font-semibold text-cyan-400">Lightweight CSS 3D Environment · 13 Interactive Objects</p>
+            <h1 class="hero-title text-balance">
+              3D Developer <span class="gradient-text">Workspace</span>
+            </h1>
+            <p class="section-subtitle">
+              Built with GPU-composited CSS 3D transforms and inline vector graphics for fast loading. Move your pointer across desktop viewports for subtle depth lighting, or use the accessible directory list below.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+            <a href="office.html" class="secondary-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <i data-lucide="layout-grid" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Digital Office</span>
+            </a>
+            <a href="index.html" id="ws-exit-header-btn" class="outline-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <i data-lucide="log-out" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Exit Workspace</span>
+            </a>
+          </div>
+        </header>
+
+        <!-- Workspace Controls Toolbar -->
+        <section class="ws-toolbar" aria-label="Workspace controls and rendering preferences">
+          <div class="ws-ctrl-group">
+            <button type="button" id="ws-enter-btn" class="ws-ctrl-btn ws-ctrl-btn-primary">
+              <i data-lucide="compass" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Enter Workspace</span>
+            </button>
+            <button type="button" id="ws-reset-cam-btn" class="ws-ctrl-btn">
+              <i data-lucide="rotate-ccw" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Reset Camera</span>
+            </button>
+          </div>
+
+          <div class="ws-ctrl-group">
+            <button type="button" id="ws-perf-toggle" class="ws-ctrl-btn" aria-pressed="false">
+              <i data-lucide="zap" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Performance Mode</span>
+            </button>
+            <button type="button" id="ws-motion-toggle" class="ws-ctrl-btn" aria-pressed="false">
+              <i data-lucide="sparkles" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Reduced Motion</span>
+            </button>
+            <a href="index.html" id="ws-exit-btn" class="ws-ctrl-btn">
+              <i data-lucide="arrow-left" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Exit Workspace</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Live Screen Reader Region -->
+        <p id="ws-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+
+        <!-- Desktop & Tablet CSS 3D Interactive Stage (>= 768px) -->
+        <section class="hidden md:block space-y-3" aria-label="Interactive CSS 3D Workspace Stage">
+          <div id="ws-desktop-stage"></div>
+          <p class="text-xs text-[var(--muted)]">
+            Desktop perspective interaction adapts subtly to cursor movement. Select any object or press Arrow keys to inspect portfolio modules.
+          </p>
+        </section>
+
+        <!-- Mobile Clean 2D Workspace (< 768px) -->
+        <section class="md:hidden space-y-3" aria-label="2D Mobile Workspace">
+          <div class="space-y-1">
+            <h2 class="text-base font-bold text-[var(--text)]">2D Workspace View</h2>
+            <p class="text-xs text-[var(--muted)]">Heavy 3D transforms are disabled automatically on mobile devices for fast rendering and large touch targets.</p>
+          </div>
+          <div id="ws-mobile-stage" class="space-y-2.5"></div>
+        </section>
+
+        <!-- Mandatory Accessible HTML List of All 13 Objects -->
+        <section class="space-y-3 pt-2 border-t border-[var(--border)]" aria-labelledby="ws-a11y-list-heading">
+          <div class="space-y-1">
+            <h2 id="ws-a11y-list-heading" class="text-base sm:text-lg font-bold text-[var(--text)]">Accessible Workspace Object Directory</h2>
+            <p class="text-xs sm:text-sm text-[var(--muted)]">
+              Direct semantic list of all 13 workspace objects for keyboard-only navigation, screen readers, and quick launching.
+            </p>
+          </div>
+          <ul id="workspace-accessible-list" class="ws-a11y-list"></ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Accessible Workspace Object Details Modal -->
+  <div
+    id="ws-details-modal"
+    class="ws-modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="ws-modal-title"
+    aria-hidden="true"
+  >
+    <div class="ws-modal-panel p-5 sm:p-6 space-y-4">
+      <div class="flex items-start justify-between gap-4 pb-3 border-b border-[var(--border)]">
+        <div class="space-y-0.5 min-w-0">
+          <p id="ws-modal-kicker" class="text-xs font-semibold text-cyan-400">Workspace Object</p>
+          <h2 id="ws-modal-title" class="text-lg sm:text-xl font-bold text-[var(--text)]">Object Details</h2>
+        </div>
+        <button
+          type="button"
+          id="ws-modal-close"
+          class="icon-button shrink-0"
+          aria-label="Close workspace object details"
+        >
+          <i data-lucide="x" class="w-4 h-4" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div id="ws-modal-body"></div>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/profile.js"></script>
+  <script defer src="js/data/projects.js"></script>
+  <script defer src="js/data/skills.js"></script>
+  <script defer src="js/data/services.js"></script>
+  <script defer src="js/data/experience.js"></script>
+  <script defer src="js/data/certificates.js"></script>
+  <script defer src="js/data/blog.js"></script>
+  <script defer src="js/data/knowledge.js"></script>
+  <script defer src="js/data/decisions.js"></script>
+  <script defer src="js/data/components.js"></script>
+  <script defer src="js/data/github.js"></script>
+  <script defer src="js/data/index.js"></script>
+  <script defer src="js/workspace.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

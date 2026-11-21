@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Requirement Analyzer — AL AMIN | Full-Stack Developer</title>
+  <meta name="description" content="Paste a client project brief for deterministic, rule-based JavaScript requirement analysis covering stack, authentication, databases, security, phases, risks, and client discovery questions.">
+  <meta name="keywords" content="AL AMIN, Client Requirement Analyzer, Technical Scoping, Architecture Planning, MERN Stack, Project Brief Analysis">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/requirement-analyzer.html">
+  <meta property="og:title" content="Client Requirement Analyzer — AL AMIN">
+  <meta property="og:description" content="Deterministic rule-based project brief analyzer extracting architecture, security, stack recommendations, complexity signals, risks, and discovery questions.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/requirement-analyzer.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Client Requirement Analyzer — AL AMIN">
+  <meta name="twitter:description" content="Rule-based project brief scoping tool with Copy, Print, Download, and Project Request Wizard handoff.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Client Requirement Analyzer — AL AMIN",
+    "description": "Local rule-based JavaScript brief analyzer generating structured engineering scope, risks, phases, and discovery questions without exposing API keys.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "https://example.com/requirement-analyzer.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/requirement-analyzer.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern ra-shell">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="section" id="requirement-analyzer-root">
+      <div class="container space-y-6 sm:space-y-8">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="ra-no-print flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="project-architect.html" class="hover:text-[var(--text)] transition-colors">Project Architect</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">Requirement Analyzer</span>
+        </nav>
+
+        <!-- Header -->
+        <header class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-2.5 max-w-2xl">
+            <p class="text-xs font-semibold text-cyan-400">Rule-Based Scoping Engine · Local Client Processing · Zero Exposed API Keys</p>
+            <h1 class="hero-title text-balance">
+              Client Requirement <span class="gradient-text">Analyzer</span>
+            </h1>
+            <p class="section-subtitle">
+              Paste a project brief to extract technical requirements, stack recommendations, architecture layers, complexity signals, potential risks, and discovery questions locally using rule-based JavaScript. Estimates are exploratory only and not official quotes.
+            </p>
+          </div>
+          <div class="ra-no-print flex flex-wrap items-center gap-2.5 shrink-0">
+            <a href="project-request.html" class="primary-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <span>Start Project Request</span>
+              <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+            </a>
+            <a href="project-estimator.html" class="outline-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <i data-lucide="calculator" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Estimator</span>
+            </a>
+          </div>
+        </header>
+
+        <!-- Action Controls Bar -->
+        <section class="ra-actions-bar ra-no-print" aria-label="Requirement analysis export and workflow actions">
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" id="ra-copy-btn" class="ra-action-btn" data-ra-requires-output disabled>
+              <i data-lucide="copy" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Copy Analysis</span>
+            </button>
+            <button type="button" id="ra-print-btn" class="ra-action-btn" data-ra-requires-output disabled>
+              <i data-lucide="printer" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Print</span>
+            </button>
+            <button type="button" id="ra-download-btn" class="ra-action-btn" data-ra-requires-output disabled>
+              <i data-lucide="download" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Download</span>
+            </button>
+          </div>
+
+          <a href="project-request.html" class="ra-action-btn text-cyan-400">
+            <i data-lucide="send" class="w-4 h-4" aria-hidden="true"></i>
+            <span>Start Project Request</span>
+          </a>
+        </section>
+
+        <!-- Dual-Column Workbench -->
+        <div class="ra-layout">
+
+          <!-- Input Column -->
+          <aside class="ra-panel ra-no-print space-y-4" aria-label="Project brief input panel">
+            <div class="space-y-1">
+              <h2 class="text-base font-bold text-[var(--text)]">Paste Project Brief</h2>
+              <p class="text-xs text-[var(--muted)]">
+                Describe goals, user roles, payments, dashboards, integrations, or responsiveness requirements.
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <label for="ra-brief-input" class="sr-only">Project brief description</label>
+              <textarea
+                id="ra-brief-input"
+                class="ra-textarea"
+                maxlength="5000"
+                placeholder="Example: We need a multi-tenant SaaS dashboard with Google OAuth, role permissions, Stripe recurring billing, PostgreSQL reporting, and mobile-responsive UI..."
+              ></textarea>
+              <p id="ra-input-error" class="hidden text-xs font-medium text-rose-400" role="alert"></p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5">
+              <button type="button" id="ra-analyze-btn" class="primary-button flex-1 min-h-[44px] justify-center text-xs sm:text-sm">
+                <i data-lucide="scan-search" class="w-4 h-4" aria-hidden="true"></i>
+                <span>Analyze Brief</span>
+              </button>
+              <button type="button" id="ra-clear-btn" class="secondary-button min-h-[44px] px-4 text-xs sm:text-sm">
+                <span>Clear</span>
+              </button>
+            </div>
+
+            <div class="pt-3 border-t border-[var(--border)] space-y-2">
+              <p class="text-xs font-semibold text-[var(--text-secondary)]">Sample Briefs</p>
+              <div id="ra-samples-mount" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <div class="pt-3 border-t border-[var(--border)] space-y-1.5 text-xs text-[var(--muted)] leading-relaxed">
+              <p class="font-semibold text-indigo-400">Honest Engine Disclosure</p>
+              <p>
+                Local version runs 100% deterministically in JavaScript—it does not falsely claim generative AI or store external LLM keys in browser code. Optional server-proxy hook available via <span class="font-mono-tech text-[var(--text-secondary)]">PortfolioRequirementAnalyzer.configureBackend()</span>.
+              </p>
+            </div>
+          </aside>
+
+          <!-- Output Column -->
+          <section aria-label="Generated requirement analysis report" aria-live="polite">
+            <div id="ra-empty-state" class="ra-panel p-8 sm:p-10 text-center space-y-3">
+              <div class="w-12 h-12 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 flex items-center justify-center text-cyan-400 mx-auto" aria-hidden="true">
+                <i data-lucide="file-search" class="w-6 h-6"></i>
+              </div>
+              <h2 class="text-lg font-bold text-[var(--text)]">Ready to Analyze a Project Brief</h2>
+              <p class="text-xs sm:text-sm text-[var(--muted)] max-w-md mx-auto leading-relaxed">
+                Paste a client brief on the left—or click any sample brief—and select <strong>Analyze Brief</strong> to generate structured requirements, architecture layers, risks, and client discovery questions.
+              </p>
+            </div>
+
+            <div id="ra-results-mount" class="hidden"></div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/profile.js"></script>
+  <script defer src="js/data/projects.js"></script>
+  <script defer src="js/data/skills.js"></script>
+  <script defer src="js/data/services.js"></script>
+  <script defer src="js/data/experience.js"></script>
+  <script defer src="js/data/certificates.js"></script>
+  <script defer src="js/data/blog.js"></script>
+  <script defer src="js/data/knowledge.js"></script>
+  <script defer src="js/data/decisions.js"></script>
+  <script defer src="js/data/components.js"></script>
+  <script defer src="js/data/github.js"></script>
+  <script defer src="js/data/index.js"></script>
+  <script defer src="js/requirement-analyzer.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>
