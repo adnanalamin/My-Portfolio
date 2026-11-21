@@ -136,12 +136,15 @@ const PortfolioUX = (() => {
     { id: "navigation", number: "16", title: "Navigation", group: "Layout & Nav" }
   ];
 
+  const RECENTS_STORAGE_KEY = "alamin_cmd_recent_v1";
+
   const state = {
     cmdOpen: false,
     prefsOpen: false,
     easterOpen: false,
     iosInstallOpen: false,
     activeIndex: 0,
+    activeCategory: "All",
     filteredItems: [],
     lastTrigger: null,
     gPressedAt: 0,
@@ -320,7 +323,13 @@ const PortfolioUX = (() => {
       { label: "3D Developer Workspace", href: "workspace.html" },
       { label: "Guided Portfolio Tour", href: "tour.html" },
       { label: "Portfolio Career Assistant", href: "career-assistant.html" },
-      { label: "Client Requirement Analyzer", href: "requirement-analyzer.html" }
+      { label: "Client Requirement Analyzer", href: "requirement-analyzer.html" },
+      { label: "Job Description Resume Matcher", href: "resume-matcher.html" },
+      { label: "Interactive Project Dependency Map", href: "dependency-map.html" },
+      { label: "GitHub Contribution Universe", href: "github-universe.html" },
+      { label: "Live Coding Activity", href: "coding-activity.html" },
+      { label: "Interactive CLI Portfolio", href: "terminal.html" },
+      { label: "Real-Time System Monitor", href: "system-monitor.html" }
     ];
 
     const seenPages = new Set();
@@ -460,6 +469,25 @@ const PortfolioUX = (() => {
         keywords: `${comp.title} ${comp.group} ui component lab preview code`,
         icon: "blocks",
         action: () => navigateTo(`components.html#lab-comp-${encodeURIComponent(comp.id)}`)
+      });
+    });
+
+    // Services (centralized from PortfolioData)
+    const servicesList =
+      window.PortfolioData && typeof window.PortfolioData.getServices === "function"
+        ? window.PortfolioData.getServices()
+        : [];
+
+    servicesList.forEach((srv) => {
+      const techs = Array.isArray(srv.technology) ? srv.technology.join(" ") : "";
+      items.push({
+        id: `srv-${srv.slug}`,
+        group: "Services",
+        title: srv.title,
+        subtitle: "Development Service",
+        keywords: `${srv.title} ${srv.summary} ${techs} service`,
+        icon: srv.icon || "layers",
+        action: () => navigateTo("services.html")
       });
     });
 
@@ -626,6 +654,48 @@ const PortfolioUX = (() => {
         action: () => navigateTo("tour.html?autoplay=1")
       },
       {
+        id: "act-open-terminal",
+        group: "Actions",
+        title: "Open Developer Terminal",
+        subtitle: "Launch interactive portfolio terminal widget anywhere",
+        keywords: "open terminal developer console cli command",
+        icon: "terminal",
+        action: () => {
+          if (window.PortfolioTerminal && typeof window.PortfolioTerminal.open === "function") {
+            window.PortfolioTerminal.open();
+          } else {
+            navigateTo("terminal.html");
+          }
+        }
+      },
+      {
+        id: "act-open-office",
+        group: "Actions",
+        title: "Open Digital Office",
+        subtitle: "Explore AL AMIN interactive workspace objects & tools",
+        keywords: "open office workspace desk digital office",
+        icon: "monitor",
+        action: () => navigateTo("office.html")
+      },
+      {
+        id: "act-download-resume",
+        group: "Actions",
+        title: "Download Resume PDF",
+        subtitle: "Download AL_AMIN_Resume.pdf or customize in Resume Builder",
+        keywords: "download resume pdf cv file",
+        icon: "download",
+        action: () => {
+          const cfg = window.portfolioConfig || {};
+          const url = (cfg.brand && cfg.brand.resume && cfg.brand.resume.url) || cfg.resumeUrl || "assets/documents/resume.pdf";
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = (cfg.brand && cfg.brand.resume && cfg.brand.resume.filename) || "AL_AMIN_Resume.pdf";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        }
+      },
+      {
         id: "act-easter-egg",
         group: "Actions",
         title: "Open Developer Stack Inspector (Easter Egg)",
@@ -700,6 +770,8 @@ const PortfolioUX = (() => {
           </button>
         </div>
 
+        <div id="cmd-categories-bar" class="flex flex-wrap items-center gap-1.5 px-3 py-2 border-b border-[var(--border)] bg-[var(--background)]" role="group" aria-label="Filter command categories"></div>
+
         <div id="cmd-palette-results" class="cmd-list" role="listbox" aria-label="Command results"></div>
 
         <div class="cmd-footer">
@@ -761,7 +833,54 @@ const PortfolioUX = (() => {
     return modal;
   }
 
+  function getRecentActionIds() {
+    try {
+      const raw = window.localStorage.getItem(RECENTS_STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function recordRecentAction(item) {
+    if (!item || !item.id) return;
+    try {
+      const prev = getRecentActionIds().filter((id) => id !== item.id);
+      const next = [item.id, ...prev].slice(0, 6);
+      window.localStorage.setItem(RECENTS_STORAGE_KEY, JSON.stringify(next));
+    } catch {
+      // Ignore storage write errors
+    }
+  }
+
+  function fuzzyScore(haystack, needle) {
+    if (!needle) return 1;
+    const h = haystack.toLowerCase();
+    const n = needle.toLowerCase();
+    if (h.includes(n)) return 100 - h.indexOf(n);
+    // Multi-token AND match or sequential fuzzy character score
+    const tokens = n.split(/\s+/).filter(Boolean);
+    if (tokens.length > 1 && tokens.every((t) => h.includes(t))) return 70;
+    let hi = 0;
+    let ni = 0;
+    let gap = 0;
+    while (hi < h.length && ni < n.length) {
+      if (h[hi] === n[ni]) {
+        ni += 1;
+      } else {
+        gap += 1;
+      }
+      hi += 1;
+    }
+    if (ni === n.length) {
+      return Math.max(5, 50 - Math.min(45, gap));
+    }
+    return 0;
+  }
+
   function executeCommandItem(item) {
+    recordRecentAction(item);
     closeCommandPalette();
     if (item && typeof item.action === "function") {
       item.action();
@@ -775,19 +894,51 @@ const PortfolioUX = (() => {
 
     const query = String(rawQuery || "").trim().toLowerCase();
     const catalog = buildSearchItems();
+    const recentIds = getRecentActionIds();
 
     let matches;
     if (query) {
-      matches = catalog.filter((item) => {
-        const hay = `${item.title} ${item.subtitle} ${item.group} ${item.keywords}`.toLowerCase();
-        return hay.includes(query);
-      });
+      matches = catalog
+        .filter((item) => state.activeCategory === "All" || item.group === state.activeCategory)
+        .map((item) => {
+          const hay = `${item.title} ${item.subtitle} ${item.group} ${item.keywords}`;
+          const score = fuzzyScore(hay, query) + (item.title.toLowerCase().includes(query) ? 35 : 0);
+          return { item, score };
+        })
+        .filter((entry) => entry.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .map((entry) => entry.item);
+    } else if (state.activeCategory !== "All") {
+      matches = catalog.filter((item) => item.group === state.activeCategory);
     } else {
-      const topActions = catalog.filter((i) => i.group === "Actions").slice(0, 10);
+      const recentItems = recentIds
+        .map((id) => catalog.find((i) => i.id === id))
+        .filter(Boolean)
+        .map((i) => ({ ...i, group: "Recent Actions" }));
+      const topActions = catalog.filter((i) => i.group === "Actions").slice(0, 9);
       const topPages = catalog.filter((i) => i.group === "Pages").slice(0, 8);
       const topProjects = catalog.filter((i) => i.group === "Projects").slice(0, 4);
-      const topKnowledge = catalog.filter((i) => i.group === "Knowledge").slice(0, 3);
-      matches = [...topActions, ...topPages, ...topProjects, ...topKnowledge];
+      const topServices = catalog.filter((i) => i.group === "Services").slice(0, 3);
+      matches = [...recentItems, ...topActions, ...topPages, ...topProjects, ...topServices];
+    }
+
+    const categoriesMount = document.getElementById("cmd-categories-bar");
+    if (categoriesMount) {
+      const cats = ["All", "Actions", "Pages", "Projects", "Skills", "Services", "Blog", "Tools"];
+      categoriesMount.innerHTML = cats
+        .map((c) => {
+          const mappedGroup = c === "Tools" ? "Components" : c;
+          const isAct = state.activeCategory === mappedGroup || (c === "All" && state.activeCategory === "All");
+          return `<button type="button" class="px-2.5 py-1 rounded-md text-[11px] font-semibold border ${isAct ? "border-cyan-400 text-cyan-400 bg-cyan-500/10" : "border-[var(--border)] text-[var(--muted)]"}" data-cmd-cat="${escHtml(mappedGroup)}">${escHtml(c)}</button>`;
+        })
+        .join("");
+      categoriesMount.querySelectorAll("[data-cmd-cat]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          state.activeCategory = btn.getAttribute("data-cmd-cat") || "All";
+          state.activeIndex = 0;
+          renderCommandResults(inputEl ? inputEl.value : "");
+        });
+      });
     }
 
     state.filteredItems = matches.slice(0, MAX_COMMAND_RESULTS);
@@ -799,7 +950,7 @@ const PortfolioUX = (() => {
       mount.innerHTML = `
         <div class="p-8 text-center space-y-2">
           <p class="text-sm font-semibold text-[var(--text)]">No matching routes, projects, or actions</p>
-          <p class="text-xs text-[var(--muted)]">Try searching "AstraPulse", "React", "Resume", "Theme", or "Contrast".</p>
+          <p class="text-xs text-[var(--muted)]">Try searching "AstraPulse", "Terminal", "Dependency Map", "Resume", or "Theme".</p>
         </div>
       `;
       if (inputEl) inputEl.removeAttribute("aria-activedescendant");
@@ -1432,6 +1583,18 @@ const PortfolioUX = (() => {
       if (btn.dataset.copyEmailBound === "true") return;
       btn.dataset.copyEmailBound = "true";
       btn.addEventListener("click", () => copyEmailAddress());
+    });
+
+    scopeRoot.querySelectorAll("[data-open-terminal]").forEach((btn) => {
+      if (btn.dataset.terminalBound === "true") return;
+      btn.dataset.terminalBound = "true";
+      btn.addEventListener("click", () => {
+        if (window.PortfolioTerminal && typeof window.PortfolioTerminal.open === "function") {
+          window.PortfolioTerminal.open();
+        } else {
+          navigateTo("terminal.html");
+        }
+      });
     });
 
     scopeRoot.querySelectorAll("[data-pwa-install-btn]").forEach((btn) => {

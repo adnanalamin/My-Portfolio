@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive CLI Portfolio — AL AMIN | Terminal Mode</title>
+  <meta name="description" content="Dedicated interactive CLI portfolio for AL AMIN featuring safe command routing, tab autocomplete, command history, project lookup, and accessible visual navigation fallback.">
+  <meta name="keywords" content="AL AMIN, Interactive CLI Portfolio, Terminal Portfolio, Developer Command Line">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/terminal.html">
+  <meta property="og:title" content="Interactive CLI Portfolio — AL AMIN">
+  <meta property="og:description" content="Command-line portfolio interface with safe JavaScript routing, project search, and accessible visual navigation fallback.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/terminal.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Interactive CLI Portfolio — AL AMIN">
+  <meta name="twitter:description" content="Command-line style portfolio with autocomplete, history, and visual fallback links.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Interactive CLI Portfolio — AL AMIN",
+    "description": "Command-line style web portfolio executing safe predefined JavaScript commands against configured portfolio data.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "url": "https://example.com/terminal.html",
+    "author": { "@type": "Person", "name": "AL AMIN" }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/terminal.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern cli-page-shell">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="section" id="cli-portfolio-root">
+      <div class="container space-y-6 sm:space-y-8">
+
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="dashboard.html" class="hover:text-[var(--text)] transition-colors">Dashboard</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">CLI Portfolio</span>
+        </nav>
+
+        <header class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-2.5 max-w-2xl">
+            <p class="text-xs font-semibold text-cyan-400">Safe Predefined Parser · Zero eval() · Zero OS Execution</p>
+            <h1 class="hero-title text-balance">
+              Interactive <span class="gradient-text">CLI Portfolio</span>
+            </h1>
+            <p class="section-subtitle">
+              Navigate AL AMIN's configured portfolio via commands like <code class="font-mono-tech text-cyan-400">about</code>, <code class="font-mono-tech text-cyan-400">skills</code>, <code class="font-mono-tech text-cyan-400">project astra</code>, <code class="font-mono-tech text-cyan-400">theme</code>, or <code class="font-mono-tech text-cyan-400">help</code>—or use the visual fallback directory below.
+            </p>
+          </div>
+          <a href="index.html" class="outline-button text-xs sm:text-sm py-2 px-4 min-h-[42px] shrink-0">
+            <i data-lucide="arrow-left" class="w-4 h-4" aria-hidden="true"></i>
+            <span>Return to Visual Home</span>
+          </a>
+        </header>
+
+        <!-- Dedicated CLI Terminal Window -->
+        <section class="cli-frame" aria-label="Interactive portfolio command line">
+          <header class="dt-titlebar">
+            <div class="flex items-center gap-2">
+              <i data-lucide="terminal" class="w-4 h-4 text-cyan-400" aria-hidden="true"></i>
+              <span class="text-xs font-mono-tech font-bold text-slate-100">alamin@portfolio-cli:~</span>
+            </div>
+            <button type="button" id="cli-clear-btn" class="dt-chrome-btn text-xs font-mono-tech px-2.5" aria-label="Clear CLI screen">Clear</button>
+          </header>
+
+          <div id="cli-body" class="dt-body" role="log" aria-live="polite" aria-label="Command line output"></div>
+          <div id="cli-suggestions" class="dt-suggestions" aria-label="Autocomplete command suggestions"></div>
+
+          <form id="cli-form" class="dt-form" novalidate>
+            <span class="font-mono-tech text-xs text-cyan-400 shrink-0" aria-hidden="true">alamin:~$</span>
+            <label for="cli-input" class="sr-only">Type a CLI portfolio command</label>
+            <input
+              id="cli-input"
+              type="text"
+              class="dt-input"
+              placeholder="Try 'help', 'projects', 'project astra', 'theme', or Tab to autocomplete..."
+              autocomplete="off"
+              spellcheck="false"
+            >
+            <button type="submit" class="dt-chip-btn text-cyan-300 px-3 min-h-[34px]">Execute</button>
+          </form>
+        </section>
+
+        <!-- Visual Fallback for Visitors Preferring Standard Navigation -->
+        <section class="glass-card p-5 sm:p-6 space-y-4" aria-labelledby="cli-fallback-heading">
+          <div class="space-y-1">
+            <h2 id="cli-fallback-heading" class="text-base sm:text-lg font-bold text-[var(--text)]">Visual Portfolio Navigation (Standard Fallback)</h2>
+            <p class="text-xs text-[var(--muted)]">Prefer clicking instead of typing commands? Jump directly to any section below.</p>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs font-semibold">
+            <a href="about.html" class="p-3 rounded-xl border border-[var(--border)] hover:border-cyan-400 transition-colors text-[var(--text)]">About AL AMIN</a>
+            <a href="skills.html" class="p-3 rounded-xl border border-[var(--border)] hover:border-cyan-400 transition-colors text-[var(--text)]">Skills &amp; Graph</a>
+            <a href="projects.html" class="p-3 rounded-xl border border-[var(--border)] hover:border-cyan-400 transition-colors text-[var(--text)]">Projects</a>
+            <a href="experience.html" class="p-3 rounded-xl border border-[var(--border)] hover:border-cyan-400 transition-colors text-[var(--text)]">Experience</a>
+            <a href="resume.html" class="p-3 rounded-xl border border-[var(--border)] hover:border-cyan-400 transition-colors text-[var(--text)]">Resume / CV</a>
+            <a href="contact.html" class="p-3 rounded-xl border border-[var(--border)] hover:border-cyan-400 transition-colors text-[var(--text)]">Contact</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/profile.js"></script>
+  <script defer src="js/data/projects.js"></script>
+  <script defer src="js/data/skills.js"></script>
+  <script defer src="js/data/services.js"></script>
+  <script defer src="js/data/experience.js"></script>
+  <script defer src="js/data/certificates.js"></script>
+  <script defer src="js/data/blog.js"></script>
+  <script defer src="js/data/knowledge.js"></script>
+  <script defer src="js/data/decisions.js"></script>
+  <script defer src="js/data/components.js"></script>
+  <script defer src="js/data/github.js"></script>
+  <script defer src="js/data/index.js"></script>
+  <script defer src="js/terminal.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

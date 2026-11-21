@@ -1106,6 +1106,27 @@
     if (window.PortfolioTour) window.PortfolioTour.init();
     if (window.PortfolioCareerAssistant) window.PortfolioCareerAssistant.init();
     if (window.PortfolioRequirementAnalyzer) window.PortfolioRequirementAnalyzer.init();
+    if (window.PortfolioResumeMatcher) window.PortfolioResumeMatcher.init();
+    if (window.PortfolioDependencyMap) window.PortfolioDependencyMap.init();
+    if (window.PortfolioGitHubUniverse) window.PortfolioGitHubUniverse.init();
+    if (window.PortfolioCodingActivity) window.PortfolioCodingActivity.init();
+    if (window.PortfolioSystemMonitor) window.PortfolioSystemMonitor.init();
+    if (window.PortfolioTerminalEngine) {
+      window.PortfolioTerminalEngine.init();
+    } else if (typeof document !== "undefined") {
+      if (!document.querySelector('link[href="css/terminal.css"]')) {
+        const tLink = document.createElement("link");
+        tLink.rel = "stylesheet";
+        tLink.href = "css/terminal.css";
+        document.head.appendChild(tLink);
+      }
+      const tScript = document.createElement("script");
+      tScript.src = "js/terminal.js";
+      tScript.onload = () => {
+        if (window.PortfolioTerminalEngine) window.PortfolioTerminalEngine.init();
+      };
+      document.body.appendChild(tScript);
+    }
     if (window.PortfolioAssistant) window.PortfolioAssistant.init();
     if (window.PortfolioUX) window.PortfolioUX.init();
     initServicesPage();

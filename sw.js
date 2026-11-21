@@ -7,7 +7,7 @@
  * - Stale-while-revalidate for static local CSS, JS, and SVG/PNG assets.
  */
 
-const CACHE_NAME = "alamin-portfolio-shell-v8";
+const CACHE_NAME = "alamin-portfolio-shell-v10";
 const PRECACHE_URLS = [
   "./",
   "./index.html",
@@ -57,6 +57,12 @@ const PRECACHE_URLS = [
   "./css/tour.css",
   "./css/career-assistant.css",
   "./css/requirement-analyzer.css",
+  "./css/resume-matcher.css",
+  "./css/dependency-map.css",
+  "./css/github-universe.css",
+  "./css/coding-activity.css",
+  "./css/terminal.css",
+  "./css/system-monitor.css",
   "./project-architect.html",
   "./project-estimator.html",
   "./project-request.html",
@@ -78,6 +84,12 @@ const PRECACHE_URLS = [
   "./tour.html",
   "./career-assistant.html",
   "./requirement-analyzer.html",
+  "./resume-matcher.html",
+  "./dependency-map.html",
+  "./github-universe.html",
+  "./coding-activity.html",
+  "./terminal.html",
+  "./system-monitor.html",
   "./js/config.js",
   "./js/theme.js",
   "./js/brand.js",
@@ -117,6 +129,12 @@ const PRECACHE_URLS = [
   "./js/tour.js",
   "./js/career-assistant.js",
   "./js/requirement-analyzer.js",
+  "./js/resume-matcher.js",
+  "./js/dependency-map.js",
+  "./js/github-universe.js",
+  "./js/coding-activity.js",
+  "./js/terminal.js",
+  "./js/system-monitor.js",
   "./js/data/profile.js",
   "./js/data/projects.js",
   "./js/data/skills.js",

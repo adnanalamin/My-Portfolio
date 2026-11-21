@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Resume Matcher — AL AMIN | Full-Stack Developer</title>
+  <meta name="description" content="Compare any job description locally against AL AMIN's configured skills, projects, services, experience, and certifications with transparent match scoring and zero network data transmission.">
+  <meta name="keywords" content="AL AMIN, Resume Matcher, Job Description Analyzer, Candidate Fit Calculator, MERN Stack, Recruiter Tool">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/resume-matcher.html">
+  <meta property="og:title" content="Resume Matcher — AL AMIN Portfolio">
+  <meta property="og:description" content="Local, privacy-first job description comparison against configured skills, project experience, services, and certifications.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/resume-matcher.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Resume Matcher — AL AMIN Portfolio">
+  <meta name="twitter:description" content="100% client-side JD match scoring with transparent formula breakdown, gap honesty, and Resume Builder handoff.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Job Description Resume Matcher — AL AMIN",
+    "description": "100% browser-local job description matching engine comparing skills, technologies, project experience, services, experience, certifications, and keywords against configured portfolio data.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "https://example.com/resume-matcher.html",
+    "author": {
+      "@type": "Person",
+      "name": "AL AMIN"
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/resume-matcher.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern rm-shell">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="section" id="resume-matcher-root">
+      <div class="container space-y-6 sm:space-y-8">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="rm-no-print flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="resume.html" class="hover:text-[var(--text)] transition-colors">Resume Builder</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">Resume Matcher</span>
+        </nav>
+
+        <!-- Page Header -->
+        <header class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-2.5 max-w-2xl">
+            <p class="text-xs font-semibold text-cyan-400">100% Local In-Browser Processing · Zero External API Calls · Grounded Portfolio Data Only</p>
+            <h1 class="hero-title text-balance">
+              Job Description <span class="gradient-text">Resume Matcher</span>
+            </h1>
+            <p class="section-subtitle">
+              Paste a job description to compare required skills, technologies, project experience, services, work timeline, and certifications strictly against AL AMIN's configured portfolio data—with transparent scoring math and honest missing-requirement detection.
+            </p>
+          </div>
+          <div class="rm-no-print flex flex-wrap items-center gap-2.5 shrink-0">
+            <a href="resume.html" class="primary-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <i data-lucide="file-text" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Open Resume Builder</span>
+            </a>
+            <a href="recruiter-search.html" class="outline-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <i data-lucide="search" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Recruiter Search</span>
+            </a>
+          </div>
+        </header>
+
+        <!-- Action Controls Bar -->
+        <section class="rm-actions-bar rm-no-print" aria-label="Resume match export and navigation actions">
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" id="rm-copy-btn" class="rm-action-btn" data-rm-requires-output disabled>
+              <i data-lucide="copy" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Copy Results</span>
+            </button>
+            <button type="button" id="rm-print-btn" class="rm-action-btn" data-rm-requires-output disabled>
+              <i data-lucide="printer" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Print</span>
+            </button>
+            <button type="button" id="rm-download-btn" class="rm-action-btn" data-rm-requires-output disabled>
+              <i data-lucide="download" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Download</span>
+            </button>
+          </div>
+
+          <a href="contact.html" class="rm-action-btn text-cyan-400">
+            <i data-lucide="mail" class="w-4 h-4" aria-hidden="true"></i>
+            <span>Contact AL AMIN</span>
+          </a>
+        </section>
+
+        <!-- Mobile-First Responsive Workbench -->
+        <div class="rm-layout">
+
+          <!-- Input Column -->
+          <aside class="rm-panel rm-no-print space-y-4" aria-label="Job description input panel">
+            <div class="space-y-1">
+              <h2 class="text-base font-bold text-[var(--text)]">Paste Job Description</h2>
+              <p class="text-xs text-[var(--muted)]">
+                Include required technologies, frameworks, databases, architecture expectations, or seniority details.
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <label for="rm-jd-input" class="sr-only">Job description text</label>
+              <textarea
+                id="rm-jd-input"
+                class="rm-textarea"
+                maxlength="8000"
+                placeholder="Paste job description here (e.g., React, Node.js, Express, MongoDB, Tailwind CSS, REST API, JWT Auth, PostgreSQL, or Docker/Python requirements)..."
+              ></textarea>
+              <p id="rm-input-error" class="hidden text-xs font-medium text-rose-400" role="alert"></p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5">
+              <button type="button" id="rm-analyze-btn" class="primary-button flex-1 min-h-[44px] justify-center text-xs sm:text-sm">
+                <i data-lucide="check-circle-2" class="w-4 h-4" aria-hidden="true"></i>
+                <span>Analyze</span>
+              </button>
+              <button type="button" id="rm-clear-btn" class="secondary-button min-h-[44px] px-4 text-xs sm:text-sm">
+                <span>Clear</span>
+              </button>
+            </div>
+
+            <div class="pt-3 border-t border-[var(--border)] space-y-2">
+              <p class="text-xs font-semibold text-[var(--text-secondary)]">Sample Job Descriptions</p>
+              <div id="rm-samples-mount" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <!-- Privacy Guarantee & Data Integrity Notice -->
+            <div class="pt-3 border-t border-[var(--border)] space-y-2 text-xs text-[var(--muted)] leading-relaxed">
+              <div class="flex items-start gap-2 text-emerald-400 font-semibold">
+                <i data-lucide="shield-check" class="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true"></i>
+                <span>Privacy Guarantee: 100% Local Processing</span>
+              </div>
+              <p>
+                Your pasted job description stays strictly in memory inside your browser tab. It is never uploaded, logged, stored in localStorage, or sent to any third-party AI API or external server.
+              </p>
+              <p>
+                Every match, gap, project reference, and credential is computed solely from AL AMIN's configured <span class="font-mono-tech text-[var(--text-secondary)]">PortfolioData</span>—no skills or experience are ever invented.
+              </p>
+            </div>
+          </aside>
+
+          <!-- Results Output Column -->
+          <section aria-label="Resume match analysis results" aria-live="polite">
+            <div id="rm-empty-state" class="rm-panel p-8 sm:p-10 text-center space-y-3">
+              <div class="w-12 h-12 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 flex items-center justify-center text-cyan-400 mx-auto" aria-hidden="true">
+                <i data-lucide="clipboard-check" class="w-6 h-6"></i>
+              </div>
+              <h2 class="text-lg font-bold text-[var(--text)]">Ready to Compare a Job Description</h2>
+              <p class="text-xs sm:text-sm text-[var(--muted)] max-w-md mx-auto leading-relaxed">
+                Paste any role description—or test one of the sample JDs—and click <strong>Analyze</strong> to inspect match score math, strong/partial/missing requirements, relevant projects, skills, and tailored resume focus.
+              </p>
+            </div>
+
+            <div id="rm-results-mount" class="hidden"></div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/profile.js"></script>
+  <script defer src="js/data/projects.js"></script>
+  <script defer src="js/data/skills.js"></script>
+  <script defer src="js/data/services.js"></script>
+  <script defer src="js/data/experience.js"></script>
+  <script defer src="js/data/certificates.js"></script>
+  <script defer src="js/data/blog.js"></script>
+  <script defer src="js/data/knowledge.js"></script>
+  <script defer src="js/data/decisions.js"></script>
+  <script defer src="js/data/components.js"></script>
+  <script defer src="js/data/github.js"></script>
+  <script defer src="js/data/index.js"></script>
+  <script defer src="js/resume-matcher.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

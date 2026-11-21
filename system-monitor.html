@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time System Monitor — AL AMIN | Browser Endpoint Health</title>
+  <meta name="description" content="Real browser-based health monitor verifying portfolio page availability, static assets, and configured public endpoints with measured response timing and honest ONLINE/DEGRADED/OFFLINE/UNKNOWN reporting.">
+  <meta name="keywords" content="AL AMIN, System Monitor, Endpoint Health, Browser Diagnostics, Latency Check">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/system-monitor.html">
+  <meta property="og:title" content="Real-Time System Monitor — AL AMIN">
+  <meta property="og:description" content="Transparent browser-verified health telemetry reporting ONLINE, DEGRADED, OFFLINE, and UNKNOWN states from js/config.js.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/system-monitor.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Real-Time System Monitor — AL AMIN">
+  <meta name="twitter:description" content="Configurable browser endpoint monitor with measured latency and zero fabricated green status.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Real-Time System Monitor — AL AMIN",
+    "description": "Browser-based endpoint health checker reporting verifiable HTTP responses, response times, and explicit UNKNOWN status for disabled or cross-origin blocked checks.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "url": "https://example.com/system-monitor.html",
+    "author": { "@type": "Person", "name": "AL AMIN" }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/system-monitor.css">
+  <link rel="stylesheet" href="css/terminal.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern sm-shell">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="section" id="system-monitor-root">
+      <div class="container space-y-6 sm:space-y-8">
+
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="performance.html" class="hover:text-[var(--text)] transition-colors">Performance</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">System Monitor</span>
+        </nav>
+
+        <header class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-2.5 max-w-2xl">
+            <p class="text-xs font-semibold text-cyan-400">Browser-Verified Probes · Configured in js/config.js · Zero Fake Status</p>
+            <h1 class="hero-title text-balance">
+              Real-Time <span class="gradient-text">System Monitor</span>
+            </h1>
+            <p class="section-subtitle">
+              Measures only resources actually verifiable from your browser (<code class="font-mono-tech text-cyan-400">portfolioConfig.systemChecks</code>). Unverified, cross-origin blocked, or disabled endpoints honestly report <strong class="text-[var(--text)]">UNKNOWN</strong>.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+            <a href="performance.html" class="outline-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">Performance Center</a>
+            <a href="security.html" class="outline-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">Security Center</a>
+          </div>
+        </header>
+
+        <!-- Controls -->
+        <section class="sm-panel flex flex-col sm:flex-row sm:items-center justify-between gap-3" aria-label="Monitor refresh controls">
+          <div class="flex flex-wrap items-center gap-2.5">
+            <button type="button" id="sm-refresh-btn" class="primary-button text-xs py-2 px-4 min-h-[42px]">
+              <i data-lucide="refresh-cw" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Run Checks Now</span>
+            </button>
+            <label for="sm-interval-select" class="sr-only">Auto refresh interval</label>
+            <select id="sm-interval-select" class="sm-select">
+              <option value="60" selected>Auto-refresh: Every 60s</option>
+              <option value="30">Auto-refresh: Every 30s</option>
+              <option value="0">Auto-refresh: Paused</option>
+            </select>
+          </div>
+          <span id="sm-last-run" class="text-xs font-mono-tech text-[var(--muted)]" aria-live="polite">Initializing probes...</span>
+        </section>
+
+        <!-- Summary Counters -->
+        <section id="sm-summary-mount" class="sm-summary-grid" aria-label="Health summary counts" aria-live="polite"></section>
+
+        <!-- Status Cards -->
+        <section id="sm-cards-mount" class="sm-cards-grid" aria-label="Monitored endpoint status cards" aria-live="polite"></section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/profile.js"></script>
+  <script defer src="js/data/projects.js"></script>
+  <script defer src="js/data/skills.js"></script>
+  <script defer src="js/data/services.js"></script>
+  <script defer src="js/data/experience.js"></script>
+  <script defer src="js/data/certificates.js"></script>
+  <script defer src="js/data/blog.js"></script>
+  <script defer src="js/data/knowledge.js"></script>
+  <script defer src="js/data/decisions.js"></script>
+  <script defer src="js/data/components.js"></script>
+  <script defer src="js/data/github.js"></script>
+  <script defer src="js/data/index.js"></script>
+  <script defer src="js/system-monitor.js"></script>
+  <script defer src="js/terminal.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

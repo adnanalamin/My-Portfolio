@@ -112,6 +112,17 @@ function loadNavbar() {
 
           <button
             type="button"
+            data-open-command-palette
+            class="icon-button w-auto px-2.5 gap-1.5"
+            aria-label="Open Command Center (Ctrl+K)"
+            title="Command Center (Ctrl+K / Cmd+K)"
+          >
+            <i data-lucide="search" class="w-4 h-4" aria-hidden="true"></i>
+            <span class="hidden sm:inline font-mono-tech text-[11px]">⌘K</span>
+          </button>
+
+          <button
+            type="button"
             data-theme-toggle
             class="icon-button"
             aria-label="Toggle color theme"
@@ -537,6 +548,13 @@ function loadFooter() {
           <a href="tour.html" class="hover:text-[var(--text)] transition-colors">Guided Tour</a>
           <a href="career-assistant.html" class="hover:text-[var(--text)] transition-colors">Career Assistant</a>
           <a href="requirement-analyzer.html" class="hover:text-[var(--text)] transition-colors">Requirement Analyzer</a>
+          <a href="resume-matcher.html" class="hover:text-[var(--text)] transition-colors">Resume Matcher</a>
+          <a href="dependency-map.html" class="hover:text-[var(--text)] transition-colors">Dependency Map</a>
+          <a href="github-universe.html" class="hover:text-[var(--text)] transition-colors">GitHub Universe</a>
+          <a href="coding-activity.html" class="hover:text-[var(--text)] transition-colors">Coding Activity</a>
+          <a href="terminal.html" class="hover:text-[var(--text)] transition-colors">CLI Portfolio</a>
+          <a href="system-monitor.html" class="hover:text-[var(--text)] transition-colors">System Monitor</a>
+          <button type="button" data-open-terminal class="hover:text-[var(--text)] transition-colors bg-transparent border-0 p-0 cursor-pointer text-xs text-cyan-400 font-semibold">Open Terminal</button>
           <a href="contact.html" class="hover:text-[var(--text)] transition-colors">Contact</a>
           <a href="404.html" class="hover:text-[var(--text)] transition-colors">404</a>
         </div>

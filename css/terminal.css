@@ -1,0 +1,266 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phases 51 & 52: Developer Terminal & CLI Portfolio
+   Global floating terminal (bottom-left launcher) + full-page terminal.html
+   ========================================================================== */
+
+/* Floating Global Launcher (Positioned bottom-left, away from right assistant/top buttons) */
+.dt-root {
+  position: fixed;
+  z-index: 84;
+  pointer-events: none;
+}
+
+.dt-launcher {
+  position: fixed;
+  left: clamp(0.875rem, 2.5vw, 1.75rem);
+  bottom: clamp(0.875rem, 2.5vw, 1.75rem);
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 46px;
+  min-height: 46px;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(6, 182, 212, 0.45);
+  background: rgba(11, 16, 32, 0.92);
+  color: #e2e8f0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 28px -10px rgba(2, 6, 23, 0.65);
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+
+html.light .dt-launcher {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.dt-launcher:hover,
+.dt-launcher:focus-visible {
+  border-color: #22d3ee;
+  transform: translateY(-2px);
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+.dt-launcher.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Floating Terminal Window */
+.dt-window {
+  position: fixed;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  background: #070b17;
+  color: #e2e8f0;
+  border: 1px solid rgba(99, 102, 241, 0.42);
+  box-shadow: 0 28px 60px -14px rgba(2, 6, 23, 0.82);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 14px, 0) scale(0.98);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+}
+
+.dt-window.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+@media (max-width: 639px) {
+  .dt-window {
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    border-radius: 0;
+    border: 0;
+  }
+
+  .dt-window.is-minimized {
+    inset: auto 0.75rem 0.75rem 0.75rem;
+    width: auto;
+    height: auto;
+    border-radius: 0.85rem;
+    border: 1px solid rgba(99, 102, 241, 0.42);
+  }
+}
+
+@media (min-width: 640px) {
+  .dt-window {
+    left: clamp(0.875rem, 2.5vw, 1.75rem);
+    bottom: clamp(0.875rem, 2.5vw, 1.75rem);
+    width: min(560px, calc(100vw - 2rem));
+    height: min(460px, calc(100dvh - 5.5rem));
+    border-radius: 1rem;
+  }
+
+  .dt-window.is-maximized {
+    left: 1rem;
+    right: 1rem;
+    top: 1rem;
+    bottom: 1rem;
+    width: calc(100vw - 2rem);
+    height: calc(100dvh - 2rem);
+  }
+
+  .dt-window.is-minimized {
+    height: auto;
+    width: min(360px, calc(100vw - 2rem));
+  }
+}
+
+.dt-window.is-minimized .dt-body,
+.dt-window.is-minimized .dt-suggestions,
+.dt-window.is-minimized .dt-form {
+  display: none;
+}
+
+/* Shared Terminal Chrome (used by floating terminal + terminal.html) */
+.dt-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(15, 23, 42, 0.92);
+}
+
+.dt-chrome-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(15, 23, 42, 0.7);
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.dt-chrome-btn:hover,
+.dt-chrome-btn:focus-visible {
+  border-color: #22d3ee;
+  color: #ffffff;
+  outline: 2px solid #22d3ee;
+  outline-offset: 1px;
+}
+
+.dt-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.dt-entry-cmd {
+  color: #22d3ee;
+  font-weight: 600;
+}
+
+.dt-entry-output {
+  color: #cbd5e1;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.dt-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(15, 23, 42, 0.65);
+}
+
+.dt-chip-btn {
+  min-height: 28px;
+  padding: 0.15rem 0.55rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(30, 41, 59, 0.65);
+  color: #e2e8f0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.dt-chip-btn:hover,
+.dt-chip-btn:focus-visible {
+  border-color: #22d3ee;
+  color: #22d3ee;
+  outline: none;
+}
+
+.dt-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(5, 8, 22, 0.95);
+}
+
+.dt-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 36px;
+  background: transparent;
+  border: 0;
+  color: #f8fafc;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  outline: none;
+}
+
+.dt-input::placeholder {
+  color: #64748b;
+}
+
+/* Phase 52: Dedicated Page CLI Shell */
+.cli-page-shell {
+  overflow-x: clip;
+}
+
+.cli-frame {
+  border-radius: 1.1rem;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  background: #070b17;
+  color: #e2e8f0;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 460px;
+  max-height: 68dvh;
+}
+
+@media print {
+  #dev-terminal-root {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dt-launcher,
+  .dt-window {
+    transition: none !important;
+    transform: none !important;
+  }
+}

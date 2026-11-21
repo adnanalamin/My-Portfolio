@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Project Dependency Map — AL AMIN | Full-Stack Developer</title>
+  <meta name="description" content="Explore AL AMIN's interactive project architecture dependency map showing Frontend, Backend, Database, Authentication, Storage, APIs, Deployment, and Security connections.">
+  <meta name="keywords" content="AL AMIN, Project Dependency Map, Architecture Graph, MERN Stack, Full-Stack Systems">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/dependency-map.html">
+  <meta property="og:title" content="Interactive Project Dependency Map — AL AMIN">
+  <meta property="og:description" content="Zoom, pan, and inspect project-to-layer dependencies derived strictly from AL AMIN's configured project catalog.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/dependency-map.html">
+  <meta property="og:image" content="assets/images/projects/portfolio-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Interactive Project Dependency Map — AL AMIN">
+  <meta name="twitter:description" content="Interactive SVG dependency visualization with mobile vertical tree and accessible expandable dependency list.">
+  <meta name="twitter:image" content="assets/images/projects/portfolio-system.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Interactive Project Dependency Map — AL AMIN",
+    "description": "SVG project architecture dependency visualization built directly from configured project stacks with zoom, pan, filters, mobile vertical tree, and accessible details list.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "url": "https://example.com/dependency-map.html",
+    "author": { "@type": "Person", "name": "AL AMIN" }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dependency-map.css">
+  <link rel="stylesheet" href="css/terminal.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern dm-shell">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="section" id="dependency-map-root">
+      <div class="container space-y-6 sm:space-y-8">
+
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="architecture.html" class="hover:text-[var(--text)] transition-colors">Architecture</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">Dependency Map</span>
+        </nav>
+
+        <header class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-2.5 max-w-2xl">
+            <p class="text-xs font-semibold text-cyan-400">Configured Architecture Graph · Zero Fabricated Dependencies</p>
+            <h1 class="hero-title text-balance">
+              Project <span class="gradient-text">Dependency Map</span>
+            </h1>
+            <p class="section-subtitle">
+              Inspect how configured projects connect Frontend, Backend, Database, Authentication, Storage, APIs, Deployment, and Security layers—complete with zoom, pan, technology inspection, mobile vertical tree, and accessible dependency accordion.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+            <a href="projects.html" class="primary-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <i data-lucide="folder-kanban" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Browse Projects</span>
+            </a>
+            <a href="architecture.html" class="outline-button text-xs sm:text-sm py-2 px-4 min-h-[42px]">
+              <span>System Architecture</span>
+            </a>
+          </div>
+        </header>
+
+        <!-- Selectors & Layer Filter -->
+        <section class="dm-panel space-y-4" aria-label="Dependency map filters">
+          <div class="dm-controls-grid">
+            <div class="space-y-1">
+              <label for="dm-project-select" class="text-xs font-semibold text-[var(--text-secondary)]">Project Selector</label>
+              <select id="dm-project-select" class="dm-select"></select>
+            </div>
+            <div class="space-y-1">
+              <label for="dm-tech-select" class="text-xs font-semibold text-[var(--text-secondary)]">Technology Selector</label>
+              <select id="dm-tech-select" class="dm-select"></select>
+            </div>
+            <div class="space-y-1">
+              <label for="dm-layer-select" class="text-xs font-semibold text-[var(--text-secondary)]">Layer Filter</label>
+              <select id="dm-layer-select" class="dm-select"></select>
+            </div>
+          </div>
+
+          <div id="dm-layer-pills" class="dm-layer-filter-bar" role="group" aria-label="Architecture layer quick filters"></div>
+        </section>
+
+        <!-- Interactive Workbench -->
+        <div class="dm-workbench">
+
+          <div class="dm-canvas-frame">
+            <div class="dm-toolbar">
+              <span class="text-xs font-mono-tech text-[var(--muted)]">
+                Desktop: Drag to pan · Wheel or buttons to zoom · Click node to inspect
+              </span>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <button type="button" id="dm-zoom-in" class="dm-tool-btn" aria-label="Zoom in dependency graph">+</button>
+                <button type="button" id="dm-zoom-out" class="dm-tool-btn" aria-label="Zoom out dependency graph">−</button>
+                <button type="button" id="dm-reset-view" class="dm-tool-btn">Reset View</button>
+              </div>
+            </div>
+
+            <!-- Interactive SVG Graph (md+ screens) -->
+            <div class="hidden md:block relative">
+              <svg id="dm-svg-stage" class="dm-svg-stage" viewBox="0 0 860 420" role="img" aria-label="Interactive project dependency graph">
+                <g id="dm-svg-viewport"></g>
+              </svg>
+              <div id="dm-hover-tooltip" class="dm-hover-tooltip hidden" role="status"></div>
+            </div>
+
+            <!-- Mobile Vertical Dependency Tree (< md screens) -->
+            <div id="dm-mobile-tree" class="md:hidden dm-mobile-tree" aria-label="Mobile vertical dependency tree"></div>
+          </div>
+
+          <!-- Node / Technology Details Inspector -->
+          <aside id="dm-inspector-mount" class="dm-panel" aria-label="Selected node and technology details" aria-live="polite"></aside>
+
+        </div>
+
+        <!-- Accessible Expandable Alternative -->
+        <section class="dm-panel space-y-4" aria-labelledby="dm-accessible-heading">
+          <div class="space-y-1">
+            <h2 id="dm-accessible-heading" class="text-base sm:text-lg font-bold text-[var(--text)]">Accessible Expandable Dependency List</h2>
+            <p class="text-xs text-[var(--muted)]">
+              Keyboard-navigable and screen-reader-friendly structured breakdown presenting the exact same architecture layers, technologies, and relationships.
+            </p>
+          </div>
+          <div id="dm-accessible-list" class="space-y-2.5"></div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/profile.js"></script>
+  <script defer src="js/data/projects.js"></script>
+  <script defer src="js/data/skills.js"></script>
+  <script defer src="js/data/services.js"></script>
+  <script defer src="js/data/experience.js"></script>
+  <script defer src="js/data/certificates.js"></script>
+  <script defer src="js/data/blog.js"></script>
+  <script defer src="js/data/knowledge.js"></script>
+  <script defer src="js/data/decisions.js"></script>
+  <script defer src="js/data/components.js"></script>
+  <script defer src="js/data/github.js"></script>
+  <script defer src="js/data/index.js"></script>
+  <script defer src="js/projects.js"></script>
+  <script defer src="js/dependency-map.js"></script>
+  <script defer src="js/terminal.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

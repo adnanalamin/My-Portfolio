@@ -126,7 +126,17 @@ const portfolioConfig = {
   },
   // Optional: Configure service pricing packages here if you wish to publish rates in Client Mode.
   // Leave empty ([]) to show custom project-based scoping instead of fixed pricing cards.
-  pricing: []
+  pricing: [],
+  // Phase 54: Configurable real browser-verifiable system health checks
+  systemChecks: [
+    { name: "Portfolio Home Shell", url: "index.html", category: "Portfolio Pages", enabled: true },
+    { name: "Interactive Resume Sheet", url: "resume.html", category: "Portfolio Pages", enabled: true },
+    { name: "Developer Dashboard", url: "dashboard.html", category: "Portfolio Pages", enabled: true },
+    { name: "Brand Vector Favicon", url: "assets/icons/favicon.svg", category: "Static Assets", enabled: true },
+    { name: "PWA Web Manifest", url: "site.webmanifest", category: "Static Assets", enabled: true },
+    { name: "GitHub Public Rate-Limit API", url: "https://api.github.com/rate_limit", category: "Public APIs", enabled: true },
+    { name: "Custom Private Backend Endpoint", url: "", category: "Configured Endpoint", enabled: false }
+  ]
 };
 
 // Keep top-level aliases synchronized with portfolioConfig.brand so editing brand.* updates all modules
@@ -297,6 +307,12 @@ const siteRoutes = {
     { label: "Guided Tour", href: "tour.html" },
     { label: "Career Assistant", href: "career-assistant.html" },
     { label: "Requirement Analyzer", href: "requirement-analyzer.html" },
+    { label: "Resume Matcher", href: "resume-matcher.html" },
+    { label: "Dependency Map", href: "dependency-map.html" },
+    { label: "GitHub Universe", href: "github-universe.html" },
+    { label: "Coding Activity", href: "coding-activity.html" },
+    { label: "CLI Portfolio", href: "terminal.html" },
+    { label: "System Monitor", href: "system-monitor.html" },
     { label: "Contact", href: "contact.html" }
   ],
   detailRoutes: [
