@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard — AL AMIN Portfolio CMS</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/admin.css">
+  <script defer src="../js/config.js"></script>
+  <script defer src="../js/supabase-client.js"></script>
+  <script defer src="js/notifications.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/auth.js"></script>
+  <script defer src="js/permissions.js"></script>
+  <script defer src="js/database.js"></script>
+  <script defer src="js/schemas.js"></script>
+  <script defer src="js/router.js"></script>
+  <script defer src="js/admin.js"></script>
+</head>
+<body>
+  <div id="admin-shell" class="admin-shell">
+    <div id="admin-mobile-backdrop" class="admin-mobile-backdrop" aria-hidden="true"></div>
+
+    <!-- Left Navigation Sidebar -->
+    <aside id="admin-sidebar" class="admin-sidebar" aria-label="CMS Sidebar Navigation">
+      <div class="px-4 py-3.5 border-b border-[var(--admin-border)] flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center font-mono-tech text-xs font-bold text-indigo-300 shrink-0">AA</div>
+          <div class="sidebar-brand-copy min-w-0">
+            <p class="text-sm font-bold truncate">AL AMIN CMS</p>
+            <p class="text-[11px] text-[var(--admin-muted)] truncate">Portfolio Control</p>
+          </div>
+        </div>
+        <button type="button" id="admin-collapse-btn" class="hidden lg:inline-flex btn-ghost p-1.5 min-h-0" aria-label="Toggle sidebar width" title="Collapse sidebar">
+          <i data-lucide="panel-left-close" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <nav id="admin-sidebar-nav" class="sidebar-scroll" aria-label="CMS Modules"></nav>
+
+      <div class="p-3 border-t border-[var(--admin-border)] space-y-2">
+        <div class="sidebar-brand-copy px-2 py-1">
+          <p id="admin-profile-email" class="text-xs font-medium truncate">Verifying...</p>
+          <p id="admin-profile-role" class="text-[11px] font-mono-tech text-[var(--admin-primary)]">Admin</p>
+        </div>
+        <button type="button" id="admin-logout-btn" class="admin-nav-link text-rose-400 hover:bg-rose-500/10">
+          <i data-lucide="log-out" class="w-4 h-4 shrink-0"></i>
+          <span class="sidebar-label">Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Column -->
+    <div class="admin-main-wrap">
+      <header class="admin-topbar">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <button type="button" id="admin-mobile-menu-btn" class="lg:hidden btn-secondary btn-icon-touch p-2" aria-label="Open navigation menu">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+          <nav id="admin-breadcrumb" aria-label="Breadcrumb" class="text-xs sm:text-sm truncate flex items-center gap-1.5">
+            <span>Overview</span>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2 relative">
+          <form id="topbar-search-form" class="hidden md:flex items-center">
+            <input id="topbar-search-input" type="search" class="admin-input py-1.5 text-xs w-56" placeholder="Global CMS search..." aria-label="Global CMS search">
+          </form>
+
+          <button type="button" id="admin-theme-toggle" class="btn-secondary btn-icon-touch text-xs py-1.5 px-2.5" aria-label="Toggle dark or light theme">
+            <i data-lucide="sun-moon" class="w-4 h-4"></i>
+            <span id="admin-theme-label" class="hidden sm:inline">Light Mode</span>
+          </button>
+
+          <div class="relative">
+            <button type="button" id="admin-notif-btn" class="btn-secondary btn-icon-touch p-2 relative" aria-label="Admin notifications">
+              <i data-lucide="bell" class="w-4 h-4"></i>
+              <span id="admin-notif-badge" class="hidden absolute -top-1 -right-1 px-1.5 py-0.2 rounded-full bg-indigo-500 text-white text-[10px] font-mono-tech font-bold">0</span>
+            </button>
+            <div id="admin-notif-popover" class="hidden absolute right-0 mt-2 w-80 max-w-[90vw] admin-card shadow-xl z-40 overflow-hidden">
+              <div class="px-3 py-2.5 border-b border-[var(--admin-border)] flex items-center justify-between">
+                <span class="text-xs font-bold">Notifications</span>
+                <button type="button" id="admin-notif-mark-read" class="text-[11px] text-[var(--admin-primary)] hover:underline">Mark all read</button>
+              </div>
+              <div id="admin-notif-list" class="max-h-72 overflow-y-auto">
+                <p class="text-xs text-[var(--admin-muted)] p-3 text-center">No recent admin notifications.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="../index.html" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex btn-secondary text-xs py-1.5">Public Site ↗</a>
+        </div>
+      </header>
+
+      <main id="admin-workspace" class="flex-1 p-4 sm:p-6 max-w-[1440px] w-full mx-auto">
+        <div class="admin-card p-6 text-sm text-[var(--admin-muted)]">Verifying administrator credentials...</div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Shared Modal Dialog -->
+  <div id="admin-modal-backdrop" class="admin-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+    <div id="admin-modal-panel" class="admin-modal-panel">
+      <div class="px-5 py-3.5 border-b border-[var(--admin-border)] flex items-center justify-between gap-2">
+        <h2 id="admin-modal-title" class="text-sm font-bold">Editor</h2>
+        <button type="button" id="admin-modal-close" class="btn-ghost p-1 min-h-0 text-lg leading-none" aria-label="Close modal">&times;</button>
+      </div>
+      <div id="admin-modal-body" class="admin-modal-body"></div>
+      <div id="admin-modal-footer" class="px-5 py-3.5 border-t border-[var(--admin-border)] hidden"></div>
+    </div>
+  </div>
+</body>
+</html>

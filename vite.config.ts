@@ -25,7 +25,7 @@ export default defineConfig(() => {
             return;
           }
 
-          for (const dir of ['css', 'js', 'assets']) {
+          for (const dir of ['css', 'js', 'assets', 'admin', 'supabase']) {
             const srcPath = path.resolve(rootDir, dir);
             const destPath = path.resolve(distDir, dir);
             if (fs.existsSync(srcPath)) {

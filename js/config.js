@@ -95,12 +95,18 @@ const portfolioConfig = {
     upwork: ""
   },
   contactForm: {
-    provider: "demo", // Supported: "formspree" | "emailjs" | "api" | "demo"
+    provider: "demo", // Supported: "supabase" | "formspree" | "emailjs" | "api" | "demo"
     formspreeEndpoint: "",
     emailjsServiceId: "",
     emailjsTemplateId: "",
     emailjsPublicKey: "",
     backendApiUrl: ""
+  },
+  supabase: {
+    url: "", // Public Supabase Project URL (https://your-project.supabase.co)
+    anonKey: "", // Public anon key ONLY — never place service_role key in client config
+    storageBucket: "portfolio-media",
+    cacheTtlMinutes: 5
   },
   assistant: {
     mode: "local", // Supported: "local" (rule-based static engine) | "backend" (future server proxy)

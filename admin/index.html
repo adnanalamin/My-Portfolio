@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AL AMIN Admin CMS</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/admin.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="../js/config.js"></script>
+  <script defer src="../js/supabase-client.js"></script>
+  <script defer src="js/auth.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        if (!window.AdminAuth || !window.AdminAuth.isConfigured()) {
+          window.location.replace("login.html");
+          return;
+        }
+        const state = await window.AdminAuth.getCurrentAdminSession();
+        window.location.replace(state && state.session && state.adminProfile ? "dashboard.html" : "login.html");
+      } catch (_err) {
+        window.location.replace("login.html");
+      }
+    });
+  </script>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+  <main class="admin-card p-6 max-w-sm w-full text-center space-y-3">
+    <p class="text-sm font-semibold">Checking Admin CMS session...</p>
+    <p class="text-xs text-[var(--admin-muted)]">Redirecting to login or dashboard.</p>
+    <noscript>
+      <p class="text-xs text-rose-400">JavaScript is required for the Admin CMS. <a href="login.html" class="underline">Go to Login</a>.</p>
+    </noscript>
+  </main>
+</body>
+</html>

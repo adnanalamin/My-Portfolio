@@ -1155,7 +1155,24 @@
     if (window.PortfolioAnimations) {
       window.PortfolioAnimations.init();
     }
+
+    if (window.PortfolioContentLoader && typeof window.PortfolioContentLoader.hydrate === "function") {
+      window.PortfolioContentLoader.hydrate().catch(() => {});
+    }
   }
+
+  document.addEventListener("portfolio:cms-hydrated", () => {
+    bindConfigValues();
+    bindResumeDownload();
+    if (window.PortfolioBrand && typeof window.PortfolioBrand.bindBrandDom === "function") {
+      window.PortfolioBrand.bindBrandDom(document);
+    }
+    if (window.PortfolioProjects && typeof window.PortfolioProjects.init === "function") window.PortfolioProjects.init();
+    if (window.PortfolioSkills && typeof window.PortfolioSkills.init === "function") window.PortfolioSkills.init();
+    if (window.PortfolioBlog && typeof window.PortfolioBlog.init === "function") window.PortfolioBlog.init();
+    if (window.PortfolioTestimonials && typeof window.PortfolioTestimonials.init === "function") window.PortfolioTestimonials.init();
+    refreshIcons();
+  });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bootstrap);

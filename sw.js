@@ -7,7 +7,7 @@
  * - Stale-while-revalidate for static local CSS, JS, and SVG/PNG assets.
  */
 
-const CACHE_NAME = "alamin-portfolio-shell-v11";
+const CACHE_NAME = "alamin-portfolio-shell-v12";
 const PRECACHE_URLS = [
   "./",
   "./index.html",
@@ -165,6 +165,10 @@ const PRECACHE_URLS = [
   "./js/data/github.js",
   "./js/data/index.js",
   "./js/animations.js",
+  "./js/cache.js",
+  "./js/supabase-client.js",
+  "./js/data-service.js",
+  "./js/content-loader.js",
   "./js/main.js",
   "./assets/icons/favicon.svg",
   "./assets/icons/pwa-192x192.png",
@@ -218,9 +222,10 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Strictly skip cross-origin traffic, Vite dev modules, and dynamic API routes
+  // Strictly skip cross-origin traffic, /admin/* CMS routes, Vite dev modules, and dynamic API routes
   if (reqUrl.origin !== self.location.origin) return;
   if (
+    reqUrl.pathname.startsWith("/admin/") ||
     reqUrl.pathname.startsWith("/api/") ||
     reqUrl.pathname.startsWith("/@") ||
     reqUrl.pathname.startsWith("/node_modules/")

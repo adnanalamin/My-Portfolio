@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Sign In — AL AMIN Portfolio CMS</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/admin.css">
+  <script defer src="../js/config.js"></script>
+  <script defer src="../js/supabase-client.js"></script>
+  <script defer src="js/notifications.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/auth.js"></script>
+  <script defer src="js/admin.js"></script>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-6">
+  <header class="max-w-md w-full mx-auto flex items-center justify-between py-2">
+    <a href="../index.html" class="text-xs font-medium text-[var(--admin-muted)] hover:text-[var(--admin-text)]">&larr; Back to Public Portfolio</a>
+    <button type="button" id="admin-theme-toggle" class="btn-secondary text-xs py-1.5 min-h-[34px]">
+      <span id="admin-theme-label">Light Mode</span>
+    </button>
+  </header>
+
+  <main id="admin-login-root" class="max-w-md w-full mx-auto my-6">
+    <div class="admin-card p-6 sm:p-7 space-y-5">
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between gap-2">
+          <span class="font-mono-tech text-xs text-[var(--admin-primary)] font-semibold uppercase tracking-wider">Portfolio CMS</span>
+          <span class="status-badge status-published">RLS Protected</span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-bold tracking-tight">Administrator Sign In</h1>
+        <p class="text-xs sm:text-sm text-[var(--admin-muted)]">Authorized admin accounts only. Public account registration is disabled.</p>
+      </div>
+
+      <div id="login-setup-banner" class="hidden admin-panel p-3.5 border-amber-500/40 space-y-2 text-xs">
+        <p class="font-semibold text-amber-300">Supabase Project Not Connected Yet</p>
+        <p class="text-[var(--admin-text-secondary)]">Connect your Supabase Project URL and public anon key (or configure <code class="font-mono-tech">js/config.js</code>) to sign in.</p>
+        <button type="button" id="open-supabase-setup-btn" class="btn-secondary text-xs w-full">Configure Supabase Connection</button>
+      </div>
+
+      <div id="login-status-banner" class="hidden" role="alert"></div>
+
+      <form id="admin-login-form" class="space-y-4">
+        <div>
+          <label class="admin-label" for="login-email">Admin Email</label>
+          <input id="login-email" type="email" class="admin-input" autocomplete="email" placeholder="admin@yourdomain.com" required>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="admin-label mb-0" for="login-password">Password</label>
+            <button type="button" id="toggle-password-visibility" class="text-xs text-[var(--admin-muted)] hover:text-[var(--admin-text)]">Show</button>
+          </div>
+          <input id="login-password" type="password" class="admin-input" autocomplete="current-password" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit" id="login-submit-btn" class="btn-primary w-full">Sign In to Admin CMS</button>
+      </form>
+
+      <div class="pt-3 border-t border-[var(--admin-border)] flex items-center justify-between text-xs">
+        <button type="button" id="forgot-password-trigger" class="text-[var(--admin-muted)] hover:text-[var(--admin-text)] underline">Forgot password?</button>
+        <span class="text-[var(--admin-muted)]">DB Role Verified</span>
+      </div>
+
+      <div id="password-reset-box" class="hidden admin-panel p-3.5 space-y-2.5">
+        <p class="text-xs font-semibold">Reset Admin Password</p>
+        <input id="reset-email-input" type="email" class="admin-input text-xs" placeholder="Enter admin email">
+        <button type="button" id="send-reset-btn" class="btn-secondary text-xs w-full">Send Password Reset Email</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="max-w-md w-full mx-auto text-center text-[11px] text-[var(--admin-muted)] py-2">
+    AL AMIN Portfolio OS — Supabase Auth &amp; PostgreSQL RLS
+  </footer>
+
+  <!-- Shared Modal Shell -->
+  <div id="admin-modal-backdrop" class="admin-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+    <div id="admin-modal-panel" class="admin-modal-panel">
+      <div class="px-5 py-3.5 border-b border-[var(--admin-border)] flex items-center justify-between gap-2">
+        <h2 id="admin-modal-title" class="text-sm font-bold">Dialog</h2>
+        <button type="button" id="admin-modal-close" class="btn-ghost p-1 min-h-0 text-lg leading-none" aria-label="Close modal">&times;</button>
+      </div>
+      <div id="admin-modal-body" class="admin-modal-body"></div>
+      <div id="admin-modal-footer" class="px-5 py-3.5 border-t border-[var(--admin-border)] hidden"></div>
+    </div>
+  </div>
+</body>
+</html>

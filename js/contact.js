@@ -153,6 +153,17 @@ const PortfolioContact = (() => {
     const formCfg = config.contactForm || {};
     const provider = String(formCfg.provider || "demo").toLowerCase();
 
+    if (
+      (provider === "supabase" || (provider === "demo" && window.PortfolioSupabase && window.PortfolioSupabase.isConfigured())) &&
+      window.PortfolioSupabase &&
+      window.PortfolioSupabase.isConfigured()
+    ) {
+      return window.PortfolioSupabase.submitContact({
+        ...payload,
+        sourcePage: window.location.pathname.split("/").pop() || "contact.html"
+      });
+    }
+
     if (provider === "formspree" && formCfg.formspreeEndpoint) {
       const response = await fetch(formCfg.formspreeEndpoint, {
         method: "POST",
