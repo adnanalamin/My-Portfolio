@@ -270,6 +270,54 @@
   animation-delay: var(--card-delay, 0ms);
 }
 
+/* Phase 66: Visual Website Builder Section Entrance Presets */
+@keyframes pbSlideLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(20px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pbSlideRight {
+  from {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.pb-rendered-section[data-pb-anim="fade-up"] {
+  animation: fadeInUp var(--pb-anim-ms, 320ms) var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) both;
+  animation-delay: var(--pb-anim-delay, 0ms);
+}
+
+.pb-rendered-section[data-pb-anim="fade-in"] {
+  animation: fadeIn var(--pb-anim-ms, 320ms) var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) both;
+  animation-delay: var(--pb-anim-delay, 0ms);
+}
+
+.pb-rendered-section[data-pb-anim="slide-left"] {
+  animation: pbSlideLeft var(--pb-anim-ms, 320ms) var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) both;
+  animation-delay: var(--pb-anim-delay, 0ms);
+}
+
+.pb-rendered-section[data-pb-anim="slide-right"] {
+  animation: pbSlideRight var(--pb-anim-ms, 320ms) var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) both;
+  animation-delay: var(--pb-anim-delay, 0ms);
+}
+
+.pb-rendered-section[data-pb-anim="zoom-in"] {
+  animation: scaleIn var(--pb-anim-ms, 320ms) var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) both;
+  animation-delay: var(--pb-anim-delay, 0ms);
+}
+
 /* Reduced Motion Accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,

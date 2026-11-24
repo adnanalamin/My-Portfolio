@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Backup, Restore &amp; Version Recovery — AL AMIN Portfolio CMS</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/admin.css">
+  <script defer src="../js/config.js"></script>
+  <script defer src="../js/supabase-client.js"></script>
+  <script defer src="js/notifications.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/auth.js"></script>
+  <script defer src="js/permissions.js"></script>
+  <script defer src="js/database.js"></script>
+  <script defer src="js/command-center.js"></script>
+  <script defer src="js/backup.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="admin-topbar flex-wrap">
+    <div class="flex items-center gap-2.5 min-w-0">
+      <a href="dashboard.html" class="btn-secondary text-xs py-1.5">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Dashboard</span>
+      </a>
+      <div class="min-w-0">
+        <p class="text-sm font-bold truncate">Backup, Restore &amp; Version Recovery Center</p>
+        <p id="backup-admin-identity" class="text-[11px] font-mono-tech text-[var(--admin-muted)] truncate">Verifying admin session...</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+      <button type="button" data-open-command-palette class="btn-secondary text-xs py-1.5" title="Command Palette (Ctrl+K)">
+        <i data-lucide="command" class="w-3.5 h-3.5"></i>
+        <span class="hidden sm:inline font-mono-tech">Ctrl+K</span>
+      </button>
+      <a href="dashboard.html#/version_history" class="btn-secondary text-xs py-1.5">Full Version History</a>
+      <a href="dashboard.html#/media_library" class="btn-secondary text-xs py-1.5">Media Assets</a>
+      <button type="button" id="backup-theme-toggle" class="btn-ghost text-xs py-1.5">
+        <span id="backup-theme-label">Light Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="backup-workspace" class="flex-1 p-4 sm:p-6 max-w-[1440px] w-full mx-auto space-y-6">
+    <div class="admin-card p-6 text-sm text-[var(--admin-muted)]">Verifying administrator session and loading Backup &amp; Recovery Center...</div>
+  </main>
+
+  <!-- Shared Modal Dialog -->
+  <div id="admin-modal-backdrop" class="admin-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+    <div id="admin-modal-panel" class="admin-modal-panel">
+      <div class="px-5 py-3.5 border-b border-[var(--admin-border)] flex items-center justify-between gap-2">
+        <h2 id="admin-modal-title" class="text-sm font-bold">Backup &amp; Recovery</h2>
+        <button type="button" id="admin-modal-close" class="btn-ghost p-1 min-h-0 text-lg leading-none" aria-label="Close modal">&times;</button>
+      </div>
+      <div id="admin-modal-body" class="admin-modal-body"></div>
+      <div id="admin-modal-footer" class="px-5 py-3.5 border-t border-[var(--admin-border)] hidden"></div>
+    </div>
+  </div>
+</body>
+</html>

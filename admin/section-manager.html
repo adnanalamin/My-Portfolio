@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Section Manager — AL AMIN Portfolio CMS</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/admin.css">
+  <script defer src="../js/config.js"></script>
+  <script defer src="../js/supabase-client.js"></script>
+  <script defer src="../js/cache.js"></script>
+  <script defer src="../js/section-renderer.js"></script>
+  <script defer src="js/notifications.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/auth.js"></script>
+  <script defer src="js/permissions.js"></script>
+  <script defer src="js/database.js"></script>
+  <script defer src="js/command-center.js"></script>
+  <script defer src="js/section-manager.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="admin-topbar flex-wrap">
+    <div class="flex items-center gap-2.5">
+      <a href="dashboard.html" class="btn-secondary text-xs py-1.5">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Dashboard</span>
+      </a>
+      <span class="text-sm font-bold">Section Manager</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button type="button" data-open-command-palette class="btn-secondary text-xs py-1.5" title="Command Palette (Ctrl+K)">
+        <i data-lucide="command" class="w-3.5 h-3.5"></i>
+        <span class="hidden sm:inline font-mono-tech">Ctrl+K</span>
+      </button>
+      <a href="page-builder.html" class="btn-primary text-xs py-1.5">Open Visual Builder</a>
+      <button type="button" id="sm-theme-toggle" class="btn-ghost text-xs py-1.5">
+        <span id="sm-theme-label">Light Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 p-4 sm:p-6 max-w-[1440px] w-full mx-auto space-y-4">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <div>
+        <h1 class="text-xl font-bold">Global Page Sections</h1>
+        <p class="text-xs sm:text-sm text-[var(--admin-muted)] mt-0.5">Manage all sections configured across public pages in <code class="font-mono-tech">public.page_sections</code>.</p>
+      </div>
+      <button type="button" id="sm-create-btn" class="btn-primary">+ Create Section</button>
+    </div>
+
+    <div class="admin-card p-3.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
+      <input id="sm-search" type="search" class="admin-input text-xs" placeholder="Search title, key, page...">
+      <select id="sm-page-filter" class="admin-select text-xs" aria-label="Filter by page"></select>
+      <select id="sm-type-filter" class="admin-select text-xs" aria-label="Filter by section type"></select>
+      <select id="sm-status-filter" class="admin-select text-xs" aria-label="Filter by publish status">
+        <option value="all">All Statuses</option>
+        <option value="published">Published</option>
+        <option value="scheduled">Scheduled</option>
+        <option value="draft">Draft</option>
+        <option value="archived">Archived</option>
+      </select>
+      <select id="sm-enabled-filter" class="admin-select text-xs" aria-label="Filter by enabled state">
+        <option value="all">Enabled &amp; Disabled</option>
+        <option value="enabled">Enabled Only</option>
+        <option value="disabled">Disabled Only</option>
+      </select>
+    </div>
+
+    <div id="sm-bulk-bar" class="hidden admin-panel px-4 py-2.5 flex flex-wrap items-center justify-between gap-2">
+      <span id="sm-bulk-count" class="text-xs font-semibold">0 selected</span>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="btn-secondary text-xs py-1 min-h-0" data-sm-bulk="enable">Enable</button>
+        <button type="button" class="btn-secondary text-xs py-1 min-h-0" data-sm-bulk="disable">Disable</button>
+        <button type="button" class="btn-secondary text-xs py-1 min-h-0" data-sm-bulk="published">Publish</button>
+        <button type="button" class="btn-secondary text-xs py-1 min-h-0" data-sm-bulk="draft">Move to Draft</button>
+        <button type="button" class="btn-danger text-xs py-1 min-h-0" data-sm-bulk="delete">Delete</button>
+      </div>
+    </div>
+
+    <div id="sm-list-mount"></div>
+  </main>
+
+  <div id="admin-modal-backdrop" class="admin-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+    <div id="admin-modal-panel" class="admin-modal-panel">
+      <div class="px-5 py-3.5 border-b border-[var(--admin-border)] flex items-center justify-between gap-2">
+        <h2 id="admin-modal-title" class="text-sm font-bold">Section Editor</h2>
+        <button type="button" id="admin-modal-close" class="btn-ghost p-1 min-h-0 text-lg leading-none" aria-label="Close modal">&times;</button>
+      </div>
+      <div id="admin-modal-body" class="admin-modal-body"></div>
+      <div id="admin-modal-footer" class="px-5 py-3.5 border-t border-[var(--admin-border)] hidden"></div>
+    </div>
+  </div>
+</body>
+</html>

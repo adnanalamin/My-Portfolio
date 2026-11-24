@@ -26,7 +26,7 @@ Complete setup guide for connecting the centralized Admin CMS (`/admin/`) and li
 
 ## 3. Run SQL Migrations (Tables, RLS, Storage, Triggers)
 
-In your Supabase Dashboard, open **SQL Editor → New Query** and run these three scripts in exact order:
+In your Supabase Dashboard, open **SQL Editor → New Query** and run these six scripts in exact order:
 
 1. `supabase/migrations/001_initial_schema.sql`
    - Creates all portfolio content, feature, settings, media, inquiry, security, and audit log tables.
@@ -37,6 +37,24 @@ In your Supabase Dashboard, open **SQL Editor → New Query** and run these thre
    - Adds DB-level `prevent_contact_spam()` trigger on `contact_submissions` and `protect_system_pages()` trigger on `site_pages`.
 3. `supabase/migrations/003_seed_initial_data.sql`
    - Seeds baseline `website_settings`, `profile`, `github_settings`, `coding_activity_settings`, core `projects`, and core `site_pages`.
+4. `supabase/migrations/004_visual_page_builder.sql`
+   - Creates `public.page_sections` (16-component CHECK constraint, structured JSONB config, public read restricted to `status = 'published' AND enabled = true`) and `public.page_builder_versions` (immutable version history snapshots for draft/publish/restore workflows).
+5. `supabase/migrations/005_version_history_and_scheduled_publishing.sql`
+   - Creates immutable `public.content_version_history` and enforces append-only immutability on `content_version_history` and `admin_audit_logs`.
+   - Attaches automatic `capture_content_version()` and `sync_publish_timestamps()` triggers across all 30 CMS tables, tightens all public reads strictly to `status = 'published'`, and creates `publish_due_scheduled_content()`, `restore_content_version()`, `get_scheduler_status()`, and `list_scheduled_content()`.
+   - Registers the `pg_cron` job `alamin-publish-scheduled-content` (every minute) if `pg_cron` is enabled.
+6. `supabase/migrations/006_advanced_dam.sql`
+   - Creates `public.media_folders` (folder organization with admin-only RLS), upgrades `public.media_assets` with DAM metadata (`caption`, `description`, `tags`, `width`, `height`, `duration_seconds`, `optimization_info`, `folder_id`), enforces `validate_media_asset_safety()` blocking executables, expands `portfolio-media` Storage policies (Images, Videos, PDFs, Documents up to 50 MB), and adds `check_media_usage()` for published-content deletion warnings.
+
+### Optional: Trusted Scheduled Edge Function (if `pg_cron` is unavailable on your plan)
+
+If `pg_cron` is not enabled in your Supabase project, deploy `supabase/functions/publish-scheduled-content/index.ts` and trigger it on a cron schedule (Supabase Scheduled Functions, GitHub Actions cron, etc.):
+
+1. Set secrets in Supabase Edge Functions: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and a strong random `CRON_PUBLISH_SECRET`.
+2. Deploy: `supabase functions deploy publish-scheduled-content`
+3. Invoke with header `Authorization: Bearer <CRON_PUBLISH_SECRET>` on a 1–5 minute schedule.
+
+> Scheduled content is **never** published by public visitors opening the website—it is always published server-side by an authorized database job or scheduled backend call.
 
 ---
 

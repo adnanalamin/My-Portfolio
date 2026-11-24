@@ -860,8 +860,8 @@
 
     media_library: {
       table: "media_assets",
-      title: "Media Library",
-      subtitle: "Upload validated images, certificates, and PDFs to Supabase Storage with usage reference checks.",
+      title: "Digital Asset Management",
+      subtitle: "Manage folders, upload & optimize images/videos/PDFs/documents, inspect usage, replace binaries, and protect live assets.",
       icon: "images",
       customModule: "media"
     },
@@ -888,8 +888,40 @@
       subtitle: "Export JSON content snapshots or validate and restore content without silent overwrites.",
       icon: "hard-drive-download",
       customModule: "backup"
+    },
+
+    version_history: {
+      table: "content_version_history",
+      title: "Version History",
+      subtitle: "Immutable record-level snapshots across every content module with diff inspection and non-destructive restore.",
+      icon: "history",
+      customModule: "version_history"
+    },
+
+    scheduled_publishing: {
+      table: "content_version_history",
+      title: "Scheduled Publishing & Cron",
+      subtitle: "Manage future scheduled releases across all modules executed automatically by server-side Supabase Cron.",
+      icon: "clock",
+      customModule: "scheduled_publishing"
     }
   };
+
+  Object.values(SCHEMAS).forEach((schema) => {
+    if (!Array.isArray(schema.fields)) return;
+    const statusField = schema.fields.find((f) => f.name === "status");
+    if (!statusField) return;
+    if (Array.isArray(statusField.options) && !statusField.options.includes("scheduled")) {
+      statusField.options = [...statusField.options, "scheduled"];
+    }
+    if (!schema.fields.some((f) => f.name === "publish_at")) {
+      schema.fields.push({
+        name: "publish_at",
+        label: "Scheduled Publish At (Server Cron)",
+        type: "datetime"
+      });
+    }
+  });
 
   window.AdminSchemas = {
     STATUS_OPTIONS,

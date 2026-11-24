@@ -42,6 +42,23 @@
     };
   }
 
+  function canPerformAction(adminProfile, action = "read") {
+    if (!adminProfile || adminProfile.is_active !== true) {
+      return { allowed: false, reason: "Active administrator account required." };
+    }
+    const role = String(adminProfile.role || "").toLowerCase();
+    if (role !== "admin" && role !== "super_admin") {
+      return { allowed: false, reason: "Insufficient role permissions for this operation." };
+    }
+    const allowedActions = new Set([
+      "read", "search", "create", "edit", "publish", "unpublish", "archive", "restore", "delete", "backup"
+    ]);
+    if (!allowedActions.has(String(action || "").toLowerCase())) {
+      return { allowed: false, reason: `Unsupported permission action "${action}".` };
+    }
+    return { allowed: true, reason: "" };
+  }
+
   function formatRoleBadge(role) {
     const clean = role === "super_admin" ? "Super Admin" : "Admin";
     return clean;
@@ -51,6 +68,7 @@
     requireAuthorizedAdmin,
     isSuperAdmin,
     canDeleteRecord,
+    canPerformAction,
     formatRoleBadge
   };
 })();

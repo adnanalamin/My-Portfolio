@@ -95,17 +95,18 @@
     const pd = (window.PortfolioData = window.PortfolioData || {});
     let offlineHit = false;
 
-    const [settingsRes, profileRes, projRes, skillRes, certRes, techRes, roadRes] = await Promise.all([
+    const [settingsRes, profileRes, projRes, skillRes, certRes, techRes, roadRes, pageSectionsRes] = await Promise.all([
       ds.fetchPublicCollection("website_settings", { orderBy: "id" }),
       ds.fetchPublicCollection("profile", { orderBy: "updated_at", ascending: false }),
       ds.fetchPublicCollection("projects"),
       ds.fetchPublicCollection("skills"),
       ds.fetchPublicCollection("certificates"),
       ds.fetchPublicCollection("technologies"),
-      ds.fetchPublicCollection("learning_items")
+      ds.fetchPublicCollection("learning_items"),
+      ds.fetchPublicCollection("page_sections", { orderBy: "sort_order", ascending: true })
     ]);
 
-    [settingsRes, profileRes, projRes, skillRes, certRes, techRes, roadRes].forEach((r) => {
+    [settingsRes, profileRes, projRes, skillRes, certRes, techRes, roadRes, pageSectionsRes].forEach((r) => {
       if (r && r.offline) offlineHit = true;
     });
 
@@ -131,6 +132,31 @@
     if (Array.isArray(roadRes.data) && roadRes.data.length > 0 && roadRes.source !== "static") {
       pd.learningRoadmap = roadRes.data;
       pd.getLearningRoadmap = () => roadRes.data;
+    }
+
+    if (
+      Array.isArray(pageSectionsRes.data) &&
+      pageSectionsRes.data.length > 0 &&
+      window.PortfolioSectionRegistry
+    ) {
+      const currentPageSlug = window.location.pathname.split("/").pop() || "index.html";
+      const pageSections = pageSectionsRes.data.filter(
+        (s) => s.page_slug === currentPageSlug && s.enabled !== false && s.status === "published"
+      );
+      if (pageSections.length > 0) {
+        let region = document.getElementById("cms-dynamic-sections");
+        if (!region) {
+          const mainEl = document.getElementById("main-content") || document.querySelector("main") || document.body;
+          region = document.createElement("div");
+          region.id = "cms-dynamic-sections";
+          region.className = "pb-dynamic-sections-region";
+          mainEl.appendChild(region);
+        }
+        region.innerHTML = window.PortfolioSectionRegistry.renderPage(pageSections, {
+          previewMode: "live",
+          interactive: false
+        });
+      }
     }
 
     if (offlineHit) {

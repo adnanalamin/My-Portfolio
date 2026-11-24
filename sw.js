@@ -7,7 +7,7 @@
  * - Stale-while-revalidate for static local CSS, JS, and SVG/PNG assets.
  */
 
-const CACHE_NAME = "alamin-portfolio-shell-v12";
+const CACHE_NAME = "alamin-portfolio-shell-v13";
 const PRECACHE_URLS = [
   "./",
   "./index.html",
@@ -168,6 +168,7 @@ const PRECACHE_URLS = [
   "./js/cache.js",
   "./js/supabase-client.js",
   "./js/data-service.js",
+  "./js/section-renderer.js",
   "./js/content-loader.js",
   "./js/main.js",
   "./assets/icons/favicon.svg",

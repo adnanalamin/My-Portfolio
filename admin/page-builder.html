@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Visual Website Builder — AL AMIN Portfolio CMS</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@500;700&family=Outfit:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/admin.css">
+  <script defer src="../js/config.js"></script>
+  <script defer src="../js/supabase-client.js"></script>
+  <script defer src="../js/cache.js"></script>
+  <script defer src="../js/data/profile.js"></script>
+  <script defer src="../js/data/projects.js"></script>
+  <script defer src="../js/data/skills.js"></script>
+  <script defer src="../js/data/services.js"></script>
+  <script defer src="../js/data/blog.js"></script>
+  <script defer src="../js/data/index.js"></script>
+  <script defer src="../js/section-renderer.js"></script>
+  <script defer src="js/notifications.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/auth.js"></script>
+  <script defer src="js/permissions.js"></script>
+  <script defer src="js/database.js"></script>
+  <script defer src="js/command-center.js"></script>
+  <script defer src="js/page-builder.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Studio Top Toolbar -->
+  <header class="admin-topbar flex-wrap">
+    <div class="flex flex-wrap items-center gap-2.5 min-w-0">
+      <a href="dashboard.html" class="btn-secondary text-xs py-1.5 px-2.5">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="section-manager.html" class="btn-ghost text-xs py-1.5 px-2.5">Section Manager</a>
+      <div class="h-5 w-px bg-[var(--admin-border)] hidden sm:block"></div>
+      <select id="pb-page-select" class="admin-select text-xs w-56 py-1.5" aria-label="Target portfolio page"></select>
+      <span id="pb-dirty-badge" class="status-badge status-published">Ready</span>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-2">
+      <!-- Viewport Preview Switcher -->
+      <div class="inline-flex items-center p-0.5 rounded-lg bg-[var(--admin-bg)] border border-[var(--admin-border)]" role="group" aria-label="Viewport preview width">
+        <button type="button" data-pb-viewport="desktop" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-[var(--admin-primary)] text-white">Desktop</button>
+        <button type="button" data-pb-viewport="tablet" class="px-2.5 py-1 text-xs font-semibold rounded-md">Tablet</button>
+        <button type="button" data-pb-viewport="mobile" class="px-2.5 py-1 text-xs font-semibold rounded-md">Mobile</button>
+      </div>
+
+      <button type="button" data-open-command-palette class="btn-secondary text-xs py-1.5" title="Command Palette (Ctrl+K)">
+        <i data-lucide="command" class="w-3.5 h-3.5"></i>
+        <span class="hidden sm:inline font-mono-tech">Ctrl+K</span>
+      </button>
+      <button type="button" id="pb-versions-btn" class="btn-secondary text-xs py-1.5">
+        <i data-lucide="history" class="w-4 h-4"></i>
+        <span>Versions</span>
+      </button>
+      <button type="button" id="pb-save-draft" class="btn-secondary text-xs py-1.5">Save Draft</button>
+      <button type="button" id="pb-schedule-btn" class="btn-secondary text-xs py-1.5">Schedule</button>
+      <button type="button" id="pb-publish-btn" class="btn-primary text-xs py-1.5">Publish</button>
+      <button type="button" id="pb-theme-toggle" class="btn-ghost text-xs py-1.5">
+        <span id="pb-theme-label">Light Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 3-Pane Visual Builder Workspace -->
+  <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 min-h-0">
+    <!-- Left Pane: Section Registry & Drag-and-Drop Outline -->
+    <aside class="lg:col-span-3 border-b lg:border-b-0 lg:border-r border-[var(--admin-border)] bg-[var(--admin-surface)] p-3.5 space-y-4 overflow-y-auto lg:max-h-[calc(100vh-62px)]">
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <h1 class="text-xs font-bold uppercase tracking-wider text-[var(--admin-muted)]">Add Safe Section</h1>
+          <span class="text-[11px] font-mono-tech text-[var(--admin-muted)]">16 types</span>
+        </div>
+        <input id="pb-palette-search" type="search" class="admin-input text-xs py-1.5" placeholder="Filter components...">
+        <div id="pb-palette-list" class="grid grid-cols-2 gap-1.5"></div>
+      </div>
+
+      <div class="pt-3 border-t border-[var(--admin-border)] space-y-2">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-[var(--admin-muted)]">Section Order (Drag &amp; Drop)</h2>
+        </div>
+        <div id="pb-outline-list" class="space-y-2"></div>
+      </div>
+    </aside>
+
+    <!-- Center Pane: Interactive Responsive Canvas Preview -->
+    <main class="lg:col-span-6 p-4 sm:p-6 overflow-y-auto bg-[var(--admin-bg)] lg:max-h-[calc(100vh-62px)]">
+      <div id="pb-canvas-frame" class="mx-auto bg-[var(--admin-surface)] border border-[var(--admin-border-strong)] rounded-xl overflow-hidden transition-all min-h-[420px]"></div>
+    </main>
+
+    <!-- Right Pane: Section Content, Style, Layout, Animation & Visibility Inspector -->
+    <aside class="lg:col-span-3 border-t lg:border-t-0 lg:border-l border-[var(--admin-border)] bg-[var(--admin-surface)] p-3.5 overflow-y-auto lg:max-h-[calc(100vh-62px)]">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-[var(--admin-muted)] mb-3">Section Inspector</h2>
+      <div id="pb-inspector-body"></div>
+    </aside>
+  </div>
+
+  <!-- Shared Modal Dialog -->
+  <div id="admin-modal-backdrop" class="admin-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+    <div id="admin-modal-panel" class="admin-modal-panel">
+      <div class="px-5 py-3.5 border-b border-[var(--admin-border)] flex items-center justify-between gap-2">
+        <h2 id="admin-modal-title" class="text-sm font-bold">Dialog</h2>
+        <button type="button" id="admin-modal-close" class="btn-ghost p-1 min-h-0 text-lg leading-none" aria-label="Close modal">&times;</button>
+      </div>
+      <div id="admin-modal-body" class="admin-modal-body"></div>
+      <div id="admin-modal-footer" class="px-5 py-3.5 border-t border-[var(--admin-border)] hidden"></div>
+    </div>
+  </div>
+</body>
+</html>

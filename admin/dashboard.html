@@ -22,6 +22,8 @@
   <script defer src="js/database.js"></script>
   <script defer src="js/schemas.js"></script>
   <script defer src="js/router.js"></script>
+  <script defer src="js/media-manager.js"></script>
+  <script defer src="js/command-center.js"></script>
   <script defer src="js/admin.js"></script>
 </head>
 <body>
@@ -71,8 +73,13 @@
 
         <div class="flex items-center gap-2 relative">
           <form id="topbar-search-form" class="hidden md:flex items-center">
-            <input id="topbar-search-input" type="search" class="admin-input py-1.5 text-xs w-56" placeholder="Global CMS search..." aria-label="Global CMS search">
+            <input id="topbar-search-input" type="search" class="admin-input py-1.5 text-xs w-52" placeholder="Global CMS search..." aria-label="Global CMS search">
           </form>
+
+          <button type="button" data-open-command-palette class="btn-secondary btn-icon-touch text-xs py-1.5 px-2.5" aria-label="Open Command Center Palette (Ctrl+K)" title="Command Palette (Ctrl+K / Cmd+K)">
+            <i data-lucide="command" class="w-4 h-4"></i>
+            <span class="hidden sm:inline font-mono-tech">Ctrl+K</span>
+          </button>
 
           <button type="button" id="admin-theme-toggle" class="btn-secondary btn-icon-touch text-xs py-1.5 px-2.5" aria-label="Toggle dark or light theme">
             <i data-lucide="sun-moon" class="w-4 h-4"></i>

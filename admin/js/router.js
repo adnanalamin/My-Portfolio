@@ -7,7 +7,7 @@
     {
       title: "Overview",
       items: [
-        { key: "overview", label: "Dashboard Overview", icon: "layout-dashboard" },
+        { key: "overview", label: "Command Center", icon: "layout-dashboard" },
         { key: "global-search", label: "Global Search", icon: "search" }
       ]
     },
@@ -29,6 +29,8 @@
     {
       title: "Pages & Features",
       items: [
+        { key: "page_builder", label: "Visual Page Builder", icon: "layout-template", href: "page-builder.html" },
+        { key: "section_manager", label: "Section Manager", icon: "rows-3", href: "section-manager.html" },
         { key: "site_pages", label: "Page Manager", icon: "file-cog" },
         { key: "navigation_items", label: "Navigation Manager", icon: "menu" },
         { key: "office_areas", label: "Digital Office", icon: "building-2" },
@@ -54,12 +56,14 @@
       items: [
         { key: "media_library", label: "Media Library", icon: "images" },
         { key: "contact_submissions", label: "Contact Messages", icon: "mail" },
+        { key: "version_history", label: "Version History", icon: "history" },
+        { key: "scheduled_publishing", label: "Scheduled Publishing", icon: "clock" },
         { key: "website_settings", label: "Website Settings", icon: "sliders" },
         { key: "seo_settings", label: "SEO Manager", icon: "search-check" },
         { key: "theme_settings", label: "Theme Manager", icon: "palette" },
         { key: "security_settings", label: "Security", icon: "shield-check" },
         { key: "audit_logs", label: "Audit Log", icon: "scroll-text" },
-        { key: "backup_restore", label: "Backup & Restore", icon: "hard-drive-download" }
+        { key: "backup_restore", label: "Backup & Recovery", icon: "hard-drive-download", href: "backup.html" }
       ]
     },
     {
@@ -77,20 +81,46 @@
         return { sectionTitle: section.title, ...found };
       }
     }
-    return { sectionTitle: "Overview", key: "overview", label: "Dashboard Overview", icon: "layout-dashboard" };
+    return { sectionTitle: "Overview", key: "overview", label: "Command Center", icon: "layout-dashboard" };
+  }
+
+  function parseHash() {
+    const raw = String(window.location.hash || "").replace(/^#\/?/, "").trim();
+    const qIdx = raw.indexOf("?");
+    if (qIdx === -1) {
+      return { routePart: raw, params: new URLSearchParams() };
+    }
+    return {
+      routePart: raw.slice(0, qIdx).trim(),
+      params: new URLSearchParams(raw.slice(qIdx + 1))
+    };
   }
 
   function getActiveRouteKey() {
-    const hash = String(window.location.hash || "").replace(/^#\/?/, "").trim();
-    if (!hash) return "overview";
-    const meta = findRouteMeta(hash);
+    const { routePart } = parseHash();
+    if (!routePart) return "overview";
+    const meta = findRouteMeta(routePart);
     return meta.key;
   }
 
-  function navigateTo(routeKey) {
+  function getRouteParams() {
+    return parseHash().params;
+  }
+
+  function navigateTo(routeKey, paramsObj = null) {
     const clean = findRouteMeta(routeKey).key;
-    if (window.location.hash !== `#/${clean}`) {
-      window.location.hash = `#/${clean}`;
+    let queryStr = "";
+    if (paramsObj && typeof paramsObj === "object") {
+      const sp = new URLSearchParams();
+      Object.entries(paramsObj).forEach(([k, v]) => {
+        if (v !== undefined && v !== null && String(v) !== "") sp.set(k, String(v));
+      });
+      const serialized = sp.toString();
+      if (serialized) queryStr = `?${serialized}`;
+    }
+    const targetHash = `#/${clean}${queryStr}`;
+    if (window.location.hash !== targetHash) {
+      window.location.hash = targetHash;
     } else {
       window.dispatchEvent(new HashChangeEvent("hashchange"));
     }
@@ -100,6 +130,7 @@
     NAV_SECTIONS,
     findRouteMeta,
     getActiveRouteKey,
+    getRouteParams,
     navigateTo
   };
 })();
