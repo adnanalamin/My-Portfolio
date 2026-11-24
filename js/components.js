@@ -554,6 +554,11 @@ function loadFooter() {
           <a href="coding-activity.html" class="hover:text-[var(--text)] transition-colors">Coding Activity</a>
           <a href="terminal.html" class="hover:text-[var(--text)] transition-colors">CLI Portfolio</a>
           <a href="system-monitor.html" class="hover:text-[var(--text)] transition-colors">System Monitor</a>
+          <a href="health.html" class="hover:text-[var(--text)] transition-colors">Health</a>
+          <a href="tech-radar.html" class="hover:text-[var(--text)] transition-colors">Tech Radar</a>
+          <a href="learning-roadmap.html" class="hover:text-[var(--text)] transition-colors">Roadmap</a>
+          <a href="coding-lab.html" class="hover:text-[var(--text)] transition-colors">Coding Lab</a>
+          <a href="achievements.html" class="hover:text-[var(--text)] transition-colors">Achievements</a>
           <button type="button" data-open-terminal class="hover:text-[var(--text)] transition-colors bg-transparent border-0 p-0 cursor-pointer text-xs text-cyan-400 font-semibold">Open Terminal</button>
           <a href="contact.html" class="hover:text-[var(--text)] transition-colors">Contact</a>
           <a href="404.html" class="hover:text-[var(--text)] transition-colors">404</a>

@@ -329,7 +329,12 @@ const PortfolioUX = (() => {
       { label: "GitHub Contribution Universe", href: "github-universe.html" },
       { label: "Live Coding Activity", href: "coding-activity.html" },
       { label: "Interactive CLI Portfolio", href: "terminal.html" },
-      { label: "Real-Time System Monitor", href: "system-monitor.html" }
+      { label: "Real-Time System Monitor", href: "system-monitor.html" },
+      { label: "Website Health Dashboard", href: "health.html" },
+      { label: "Interactive Technology Radar", href: "tech-radar.html" },
+      { label: "Technology Learning Roadmap", href: "learning-roadmap.html" },
+      { label: "Coding Challenge Lab", href: "coding-lab.html" },
+      { label: "Achievements & Certifications", href: "achievements.html" }
     ];
 
     const seenPages = new Set();

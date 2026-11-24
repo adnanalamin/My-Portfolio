@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Health Dashboard — AL AMIN</title>
+  <meta name="description" content="Client-side portfolio health audit covering links, navigation, images, configuration, meta tags, accessibility basics, scripts, and browser performance timing.">
+  <meta name="keywords" content="Website Health Dashboard, Client-Side Audit, Accessibility Check, Meta Tag Audit, Performance Timing, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/health.html">
+  <meta property="og:title" content="Website Health Dashboard — AL AMIN">
+  <meta property="og:description" content="Real client-side website health diagnostics without fabricated Lighthouse scores.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/health.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Website Health Dashboard — AL AMIN">
+  <meta name="twitter:description" content="Inspect DOM links, SEO metadata, assets, A11y basics, and real Navigation/Resource timing.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/health.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section hd-shell" id="health-dashboard-root">
+      <div class="container space-y-6 sm:space-y-8">
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)] hd-no-print">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="system-monitor.html" class="hover:text-[var(--text)] transition-colors">System Monitor</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">Website Health</span>
+        </nav>
+
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-3 max-w-2xl">
+            <span class="badge">Phase 55 · Browser Health Diagnostics</span>
+            <h1 class="hero-title">
+              Website <span class="gradient-text">Health Dashboard</span>
+            </h1>
+            <p class="section-subtitle">
+              Real client-side audit inspecting DOM links, navigation, assets, configuration, meta tags, accessibility basics, and live Browser Timing APIs. Unmeasurable metrics report "Not available"—zero fabricated scores.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 hd-no-print">
+            <button type="button" id="hd-run-btn" class="primary-button text-xs py-2 px-4 min-h-[40px]">
+              <i data-lucide="play" class="w-4 h-4"></i>
+              <span>Run Audit</span>
+            </button>
+            <button type="button" id="hd-rerun-btn" class="secondary-button text-xs py-2 px-4 min-h-[40px]">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+              <span>Re-run</span>
+            </button>
+            <button type="button" id="hd-copy-btn" class="outline-button text-xs py-2 px-4 min-h-[40px]">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+              <span>Copy Report</span>
+            </button>
+            <button type="button" id="hd-print-btn" class="outline-button text-xs py-2 px-4 min-h-[40px]">
+              <i data-lucide="printer" class="w-4 h-4"></i>
+              <span>Print Report</span>
+            </button>
+          </div>
+        </div>
+
+        <p id="hd-ran-at" class="text-xs font-mono-tech text-[var(--muted)]" aria-live="polite"></p>
+
+        <!-- Summary Counters -->
+        <div id="hd-summary" class="hd-summary-grid"></div>
+
+        <!-- Browser Timing APIs -->
+        <section class="hd-panel space-y-3" aria-labelledby="hd-perf-heading">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 id="hd-perf-heading" class="text-base sm:text-lg font-bold text-[var(--text)]">Browser Performance Timing</h2>
+            <span class="text-xs font-mono-tech text-cyan-400">PerformanceNavigationTiming &amp; ResourceTiming</span>
+          </div>
+          <div id="hd-perf" class="hd-perf-grid"></div>
+        </section>
+
+        <!-- Findings Filter & List -->
+        <section class="hd-panel space-y-4" aria-labelledby="hd-findings-heading">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <h2 id="hd-findings-heading" class="text-base sm:text-lg font-bold text-[var(--text)]">Audit Findings &amp; Recommendations</h2>
+            <div class="flex flex-wrap items-center gap-1.5 hd-no-print" role="group" aria-label="Filter findings by status">
+              <button type="button" class="hd-filter-tab is-active" data-hd-filter="ALL">All</button>
+              <button type="button" class="hd-filter-tab" data-hd-filter="PASS">PASS</button>
+              <button type="button" class="hd-filter-tab" data-hd-filter="WARNING">WARNING</button>
+              <button type="button" class="hd-filter-tab" data-hd-filter="ERROR">ERROR</button>
+              <button type="button" class="hd-filter-tab" data-hd-filter="NOT CHECKED">NOT CHECKED</button>
+            </div>
+          </div>
+
+          <div id="hd-findings" class="grid grid-cols-1 lg:grid-cols-2 gap-3.5" aria-live="polite"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/health.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

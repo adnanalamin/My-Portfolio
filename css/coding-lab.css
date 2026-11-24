@@ -1,0 +1,118 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 58: Coding Challenge Lab
+   Mobile-first editor, sandboxed preview iframe, test runner & console output
+   ========================================================================== */
+
+.cl-shell {
+  overflow-x: clip;
+}
+
+.cl-panel {
+  border-radius: 1.15rem;
+  border: 1px solid var(--border);
+  background: var(--glass-card-bg);
+  padding: 1.15rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.cl-challenge-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.72rem 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.42);
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+html.light .cl-challenge-btn {
+  background: #ffffff;
+}
+
+.cl-challenge-btn.is-active,
+.cl-challenge-btn:hover {
+  border-color: #22d3ee;
+  background: rgba(6, 182, 212, 0.08);
+}
+
+.cl-lang-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.48rem;
+  border-radius: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  color: #22d3ee;
+}
+
+.cl-editor-textarea {
+  width: 100%;
+  min-height: 270px;
+  resize: vertical;
+  padding: 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: #060a14;
+  color: #e2e8f0;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+html.light .cl-editor-textarea {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.cl-sandbox-frame {
+  width: 100%;
+  height: 230px;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: #ffffff;
+}
+
+.cl-console-box {
+  min-height: 110px;
+  max-height: 210px;
+  overflow-y: auto;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: #050811;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.cl-test-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.16rem 0.5rem;
+  border-radius: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.cl-test-badge[data-status="PASS"] {
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+}
+
+.cl-test-badge[data-status="FAIL"] {
+  color: #fb7185;
+  background: rgba(244, 63, 94, 0.16);
+  border: 1px solid rgba(251, 113, 133, 0.4);
+}
+
+.cl-test-badge[data-status="READY"] {
+  color: #94a3b8;
+  background: rgba(100, 116, 139, 0.14);
+  border: 1px solid rgba(148, 163, 184, 0.32);
+}

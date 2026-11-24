@@ -7,7 +7,7 @@
  * - Stale-while-revalidate for static local CSS, JS, and SVG/PNG assets.
  */
 
-const CACHE_NAME = "alamin-portfolio-shell-v10";
+const CACHE_NAME = "alamin-portfolio-shell-v11";
 const PRECACHE_URLS = [
   "./",
   "./index.html",
@@ -63,6 +63,11 @@ const PRECACHE_URLS = [
   "./css/coding-activity.css",
   "./css/terminal.css",
   "./css/system-monitor.css",
+  "./css/health.css",
+  "./css/tech-radar.css",
+  "./css/learning-roadmap.css",
+  "./css/coding-lab.css",
+  "./css/achievements.css",
   "./project-architect.html",
   "./project-estimator.html",
   "./project-request.html",
@@ -90,6 +95,11 @@ const PRECACHE_URLS = [
   "./coding-activity.html",
   "./terminal.html",
   "./system-monitor.html",
+  "./health.html",
+  "./tech-radar.html",
+  "./learning-roadmap.html",
+  "./coding-lab.html",
+  "./achievements.html",
   "./js/config.js",
   "./js/theme.js",
   "./js/brand.js",
@@ -135,12 +145,19 @@ const PRECACHE_URLS = [
   "./js/coding-activity.js",
   "./js/terminal.js",
   "./js/system-monitor.js",
+  "./js/health.js",
+  "./js/tech-radar.js",
+  "./js/learning-roadmap.js",
+  "./js/coding-lab.js",
+  "./js/achievements.js",
   "./js/data/profile.js",
   "./js/data/projects.js",
   "./js/data/skills.js",
   "./js/data/services.js",
   "./js/data/experience.js",
   "./js/data/certificates.js",
+  "./js/data/tech-radar.js",
+  "./js/data/learning-roadmap.js",
   "./js/data/blog.js",
   "./js/data/knowledge.js",
   "./js/data/decisions.js",

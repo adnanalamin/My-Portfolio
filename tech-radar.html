@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Technology Radar — AL AMIN</title>
+  <meta name="description" content="Explore AL AMIN's configured technology stack mapped across Frontend, Backend, Database, and DevOps / Tools quadrants and Core to Exploring rings.">
+  <meta name="keywords" content="Technology Radar, Frontend, Backend, Database, DevOps, MERN Stack, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/tech-radar.html">
+  <meta property="og:title" content="Interactive Technology Radar — AL AMIN">
+  <meta property="og:description" content="Interactive quadrant and ring visualization derived strictly from configured portfolio technologies.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/tech-radar.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Interactive Technology Radar — AL AMIN">
+  <meta name="twitter:description" content="Interactive technology radar with search, quadrant/ring filters, detail panel, and accessible list.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/tech-radar.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section tr-shell" id="tech-radar-root">
+      <div class="container space-y-6 sm:space-y-8">
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="skills.html" class="hover:text-[var(--text)] transition-colors">Skills</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">Technology Radar</span>
+        </nav>
+
+        <div class="space-y-3 max-w-3xl">
+          <span class="badge">Phase 56 · Centralized Stack Radar</span>
+          <h1 class="hero-title">
+            Interactive <span class="gradient-text">Technology Radar</span>
+          </h1>
+          <p class="section-subtitle">
+            Visualizing Frontend, Backend, Database, and DevOps / Tools technologies from centralized portfolio data across Core, Active, Learning, and Exploring rings—no fabricated percentages.
+          </p>
+        </div>
+
+        <!-- Filters -->
+        <div class="tr-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+          <div class="lg:col-span-5">
+            <label for="tr-search" class="sr-only">Search technologies</label>
+            <input id="tr-search" type="search" class="tr-input w-full" placeholder="Search technology, project, or skill...">
+          </div>
+          <div class="lg:col-span-3">
+            <label for="tr-quadrant-filter" class="sr-only">Filter by quadrant</label>
+            <select id="tr-quadrant-filter" class="tr-select w-full">
+              <option value="All">All Quadrants</option>
+              <option value="Frontend">Frontend</option>
+              <option value="Backend">Backend</option>
+              <option value="Database">Database</option>
+              <option value="DevOps / Tools">DevOps / Tools</option>
+            </select>
+          </div>
+          <div class="lg:col-span-2">
+            <label for="tr-ring-filter" class="sr-only">Filter by ring</label>
+            <select id="tr-ring-filter" class="tr-select w-full">
+              <option value="All">All Rings</option>
+              <option value="Core">Core</option>
+              <option value="Active">Active</option>
+              <option value="Learning">Learning</option>
+              <option value="Exploring">Exploring</option>
+            </select>
+          </div>
+          <div class="lg:col-span-2 flex items-center justify-between sm:justify-end gap-2">
+            <button type="button" id="tr-reset" class="outline-button text-xs py-2 px-3.5 min-h-[42px] w-full sm:w-auto">Reset</button>
+          </div>
+        </div>
+
+        <p id="tr-count" class="text-xs font-mono-tech text-[var(--muted)]"></p>
+
+        <!-- Radar SVG + Detail Panel -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 tr-panel hidden sm:block">
+            <div class="tr-radar-stage">
+              <svg id="tr-radar-svg" class="tr-radar-svg" viewBox="0 0 640 640" role="img" aria-label="Interactive technology radar chart across 4 quadrants and 4 rings"></svg>
+              <div id="tr-tooltip" class="tr-tooltip hidden" role="status"></div>
+            </div>
+          </div>
+
+          <aside class="lg:col-span-5 tr-panel space-y-4" aria-label="Selected technology details">
+            <div id="tr-detail-panel"></div>
+          </aside>
+        </div>
+
+        <!-- Accessible Mobile & Screen-Reader List -->
+        <section class="tr-panel space-y-4" aria-labelledby="tr-list-heading">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 id="tr-list-heading" class="text-base sm:text-lg font-bold text-[var(--text)]">Accessible Technology Directory</h2>
+            <span class="text-xs text-[var(--muted)]">Full keyboard &amp; mobile directory view</span>
+          </div>
+          <div id="tr-accessible-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/tech-radar.js"></script>
+  <script defer src="js/tech-radar.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

@@ -313,6 +313,11 @@ const siteRoutes = {
     { label: "Coding Activity", href: "coding-activity.html" },
     { label: "CLI Portfolio", href: "terminal.html" },
     { label: "System Monitor", href: "system-monitor.html" },
+    { label: "Website Health", href: "health.html" },
+    { label: "Technology Radar", href: "tech-radar.html" },
+    { label: "Learning Roadmap", href: "learning-roadmap.html" },
+    { label: "Coding Challenge Lab", href: "coding-lab.html" },
+    { label: "Achievements", href: "achievements.html" },
     { label: "Contact", href: "contact.html" }
   ],
   detailRoutes: [

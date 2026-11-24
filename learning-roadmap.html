@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technology Learning Roadmap — AL AMIN</title>
+  <meta name="description" content="Honest developer learning roadmap showing Completed, Active, Planned, and Exploring tracks linked directly to real portfolio projects.">
+  <meta name="keywords" content="Learning Roadmap, Full-Stack Developer Roadmap, MERN, Next.js, PostgreSQL, TypeScript, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/learning-roadmap.html">
+  <meta property="og:title" content="Technology Learning Roadmap — AL AMIN">
+  <meta property="og:description" content="Project-connected engineering growth roadmap across Completed, Active, Planned, and Exploring stages.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/learning-roadmap.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Technology Learning Roadmap — AL AMIN">
+  <meta name="twitter:description" content="Honest technology growth tracks tied directly to real case studies.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/learning-roadmap.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section lr-shell" id="learning-roadmap-root">
+      <div class="container space-y-6 sm:space-y-8">
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="tech-radar.html" class="hover:text-[var(--text)] transition-colors">Technology Radar</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">Learning Roadmap</span>
+        </nav>
+
+        <div class="space-y-3 max-w-3xl">
+          <span class="badge">Phase 57 · Honest Growth Timeline</span>
+          <h1 class="hero-title">
+            Technology <span class="gradient-text">Learning Roadmap</span>
+          </h1>
+          <p class="section-subtitle">
+            Transparent engineering roadmap tracking Completed, Active, Planned, and Exploring technologies alongside the real portfolio projects where they are applied.
+          </p>
+        </div>
+
+        <!-- Status Distribution -->
+        <div id="lr-progress-summary" class="grid grid-cols-2 lg:grid-cols-4 gap-3"></div>
+
+        <!-- Filters -->
+        <div class="lr-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+          <div class="lg:col-span-5">
+            <label for="lr-search" class="sr-only">Search roadmap tracks</label>
+            <input id="lr-search" type="search" class="lr-input w-full" placeholder="Search technology, objective, or project...">
+          </div>
+          <div class="lg:col-span-3">
+            <label for="lr-category-filter" class="sr-only">Filter by category</label>
+            <select id="lr-category-filter" class="lr-select w-full">
+              <option value="All">All Categories</option>
+              <option value="Frontend">Frontend</option>
+              <option value="Full-Stack">Full-Stack</option>
+              <option value="Backend">Backend</option>
+              <option value="Database">Database</option>
+              <option value="DevOps / Tools">DevOps / Tools</option>
+            </select>
+          </div>
+          <div class="lg:col-span-2">
+            <label for="lr-status-filter" class="sr-only">Filter by status</label>
+            <select id="lr-status-filter" class="lr-select w-full">
+              <option value="All">All Statuses</option>
+              <option value="Completed">Completed</option>
+              <option value="Active">Active</option>
+              <option value="Planned">Planned</option>
+              <option value="Exploring">Exploring</option>
+            </select>
+          </div>
+          <div class="lg:col-span-2 flex justify-end">
+            <button type="button" id="lr-reset" class="outline-button text-xs py-2 px-3.5 min-h-[42px] w-full sm:w-auto">Reset</button>
+          </div>
+        </div>
+
+        <p id="lr-count" class="text-xs font-mono-tech text-[var(--muted)]"></p>
+
+        <!-- Vertical Roadmap + Detail Inspector -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7">
+            <div id="lr-timeline" class="lr-timeline"></div>
+          </div>
+          <aside class="lg:col-span-5 lr-panel lg:sticky lg:top-24" aria-label="Selected roadmap item details">
+            <div id="lr-detail-panel"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/learning-roadmap.js"></script>
+  <script defer src="js/learning-roadmap.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

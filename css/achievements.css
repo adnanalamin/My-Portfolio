@@ -1,0 +1,93 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 59: Achievement & Certification System
+   Badge-style cards, filters, lightbox & print support
+   ========================================================================== */
+
+.ach-shell {
+  overflow-x: clip;
+}
+
+.ach-panel {
+  border-radius: 1.15rem;
+  border: 1px solid var(--border);
+  background: var(--glass-card-bg);
+  padding: 1.15rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.ach-input,
+.ach-select {
+  min-height: 42px;
+  padding: 0.45rem 0.78rem;
+  border-radius: 0.65rem;
+  border: 1px solid var(--border);
+  background: rgba(5, 8, 22, 0.78);
+  color: var(--text);
+  font-size: 0.84rem;
+}
+
+html.light .ach-input,
+html.light .ach-select {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.ach-badge-card {
+  position: relative;
+  border-radius: 1.05rem;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.48);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+html.light .ach-badge-card {
+  background: #ffffff;
+}
+
+.ach-badge-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.55);
+}
+
+.ach-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  background: rgba(99, 102, 241, 0.14);
+  color: #818cf8;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ach-badge-card:hover {
+    transform: none;
+  }
+}
+
+@media print {
+  header#site-header,
+  footer#site-footer,
+  .ach-no-print,
+  #back-to-top-btn,
+  .assistant-fab,
+  .terminal-fab {
+    display: none !important;
+  }
+
+  body,
+  .ach-panel,
+  .ach-badge-card {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: none !important;
+  }
+}

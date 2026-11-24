@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Coding Challenge Lab — AL AMIN</title>
+  <meta name="description" content="Solve interactive HTML, CSS, and JavaScript coding challenges inside a strictly sandboxed browser preview with automated test verification.">
+  <meta name="keywords" content="Coding Challenge Lab, JavaScript Exercises, HTML CSS Challenges, Sandboxed Runner, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/coding-lab.html">
+  <meta property="og:title" content="Interactive Coding Challenge Lab — AL AMIN">
+  <meta property="og:description" content="Practice frontend and JavaScript problem solving inside an isolated client-side iframe sandbox.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/coding-lab.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Interactive Coding Challenge Lab — AL AMIN">
+  <meta name="twitter:description" content="Interactive coding challenges with instant preview, hints, solutions, and automated tests.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/coding-lab.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section cl-shell" id="coding-lab-root">
+      <div class="container space-y-6 sm:space-y-8">
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)]">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="playground.html" class="hover:text-[var(--text)] transition-colors">Code Playground</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">Coding Challenge Lab</span>
+        </nav>
+
+        <div class="space-y-3 max-w-3xl">
+          <span class="badge">Phase 58 · Sandboxed Interactive Challenges</span>
+          <h1 class="hero-title">
+            Coding <span class="gradient-text">Challenge Lab</span>
+          </h1>
+          <p class="section-subtitle">
+            Solve HTML, CSS, and JavaScript challenges locally inside a strictly isolated <code class="font-mono-tech text-cyan-400">sandbox="allow-scripts"</code> preview. Nothing is sent over the network and parent state stays protected.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Sidebar Challenge Selector -->
+          <aside class="lg:col-span-4 cl-panel space-y-4" aria-label="Challenge directory">
+            <div class="flex flex-wrap items-center gap-1.5" role="group" aria-label="Filter challenges by language">
+              <button type="button" class="hd-filter-tab is-active" data-cl-cat="All">All</button>
+              <button type="button" class="hd-filter-tab" data-cl-cat="JavaScript">JavaScript</button>
+              <button type="button" class="hd-filter-tab" data-cl-cat="HTML">HTML</button>
+              <button type="button" class="hd-filter-tab" data-cl-cat="CSS">CSS</button>
+            </div>
+            <div id="cl-challenge-list" class="space-y-2"></div>
+          </aside>
+
+          <!-- Main Editor, Controls, Preview & Tests -->
+          <div class="lg:col-span-8 space-y-5">
+            <div class="cl-panel space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <p id="cl-active-cat" class="text-xs font-mono-tech text-cyan-400"></p>
+                  <h2 id="cl-active-title" class="text-lg sm:text-xl font-bold text-[var(--text)]"></h2>
+                </div>
+                <span id="cl-editor-field-label" class="text-xs font-mono-tech text-[var(--muted)]">solution.js</span>
+              </div>
+
+              <p id="cl-active-prompt" class="text-sm text-[var(--text-secondary)] leading-relaxed"></p>
+              <p class="text-xs text-[var(--muted)]"><strong class="text-indigo-400">Expected:</strong> <span id="cl-active-expected"></span></p>
+
+              <label for="cl-code-editor" class="sr-only">Challenge code editor</label>
+              <textarea id="cl-code-editor" class="cl-editor-textarea" spellcheck="false"></textarea>
+
+              <div class="flex flex-wrap items-center gap-2">
+                <button type="button" id="cl-run-btn" class="primary-button text-xs py-2 px-4 min-h-[40px]">
+                  <i data-lucide="play" class="w-4 h-4"></i>
+                  <span>Run</span>
+                </button>
+                <button type="button" id="cl-test-btn" class="secondary-button text-xs py-2 px-4 min-h-[40px]">
+                  <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                  <span>Test</span>
+                </button>
+                <button type="button" id="cl-reset-btn" class="outline-button text-xs py-2 px-3.5 min-h-[40px]">
+                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                  <span>Reset</span>
+                </button>
+                <button type="button" id="cl-hint-btn" class="outline-button text-xs py-2 px-3.5 min-h-[40px]">
+                  <i data-lucide="lightbulb" class="w-3.5 h-3.5"></i>
+                  <span>Hint</span>
+                </button>
+                <button type="button" id="cl-solution-btn" class="outline-button text-xs py-2 px-3.5 min-h-[40px]">
+                  <i data-lucide="code-2" class="w-3.5 h-3.5"></i>
+                  <span>Solution</span>
+                </button>
+              </div>
+
+              <div id="cl-hint-box" class="hidden p-3.5 rounded-lg border border-amber-400/35 bg-amber-500/10 space-y-1"></div>
+              <div id="cl-solution-box" class="hidden p-3.5 rounded-lg border border-emerald-400/35 bg-emerald-500/10"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="cl-panel space-y-3">
+                <h3 class="text-sm font-bold text-[var(--text)]">Sandboxed Live Preview</h3>
+                <iframe
+                  id="cl-sandbox-iframe"
+                  class="cl-sandbox-frame"
+                  sandbox="allow-scripts"
+                  title="Sandboxed coding challenge output"
+                ></iframe>
+              </div>
+
+              <div class="cl-panel space-y-3">
+                <h3 class="text-sm font-bold text-[var(--text)]">Automated Test Cases</h3>
+                <div id="cl-tests" class="space-y-2" aria-live="polite"></div>
+              </div>
+            </div>
+
+            <div class="cl-panel space-y-2">
+              <h3 class="text-sm font-bold text-[var(--text)]">Console Output</h3>
+              <div id="cl-console" class="cl-console-box" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/coding-lab.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

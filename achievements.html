@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievements &amp; Certifications — AL AMIN</title>
+  <meta name="description" content="Verified certifications, training credentials, and downloadable SVG certificates from centralized portfolio records.">
+  <meta name="keywords" content="Achievements, Certifications, Full-Stack MERN Credential, React Certificate, AL AMIN">
+  <meta name="author" content="AL AMIN">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/achievements.html">
+  <meta property="og:title" content="Achievements &amp; Certifications — AL AMIN">
+  <meta property="og:description" content="Badge-style credential showcase with category/year filters, lightbox viewer, and print/download options.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AL AMIN Portfolio">
+  <meta property="og:url" content="https://example.com/achievements.html">
+  <meta property="og:image" content="assets/images/profile.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Achievements &amp; Certifications — AL AMIN">
+  <meta name="twitter:description" content="Filterable credentials, lightbox preview, and downloadable SVG certificates.">
+  <meta name="twitter:image" content="assets/images/profile.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050816">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/achievements.css">
+</head>
+<body class="ambient-backdrop bg-grid-pattern">
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header id="site-header"></header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="section ach-shell" id="achievements-root">
+      <div class="container space-y-6 sm:space-y-8">
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs sm:text-sm text-[var(--muted)] ach-no-print">
+          <a href="index.html" class="hover:text-[var(--text)] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="certificates.html" class="hover:text-[var(--text)] transition-colors">Certificates</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[var(--text-secondary)]">Achievements</span>
+        </nav>
+
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div class="space-y-3 max-w-2xl">
+            <span class="badge">Phase 59 · Verified Credentials Only</span>
+            <h1 class="hero-title">
+              Achievements &amp; <span class="gradient-text">Certifications</span>
+            </h1>
+            <p class="section-subtitle">
+              Badge-styled credentials sourced strictly from configured portfolio records—zero fabricated awards or placeholder verification links.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 ach-no-print">
+            <button type="button" id="ach-print-btn" class="outline-button text-xs py-2 px-4 min-h-[40px]">
+              <i data-lucide="printer" class="w-4 h-4"></i>
+              <span>Print Sheet</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="ach-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center ach-no-print">
+          <div class="lg:col-span-6">
+            <label for="ach-search" class="sr-only">Search certifications</label>
+            <input id="ach-search" type="search" class="ach-input w-full" placeholder="Search title, issuer, ID, or skill...">
+          </div>
+          <div class="lg:col-span-3">
+            <label for="ach-category-filter" class="sr-only">Filter by category</label>
+            <select id="ach-category-filter" class="ach-select w-full">
+              <option value="All">All Categories</option>
+              <option value="Full-Stack">Full-Stack</option>
+              <option value="Backend">Backend</option>
+              <option value="Frontend">Frontend</option>
+              <option value="UI/UX">UI/UX</option>
+            </select>
+          </div>
+          <div class="lg:col-span-3">
+            <label for="ach-year-filter" class="sr-only">Filter by year</label>
+            <select id="ach-year-filter" class="ach-select w-full">
+              <option value="All">All Years</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="ach-count" class="text-xs font-mono-tech text-[var(--muted)]"></p>
+
+        <!-- Badge Cards Grid -->
+        <div id="ach-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Accessible Lightbox -->
+  <div id="ach-lightbox" class="lightbox-backdrop" role="dialog" aria-modal="true" aria-label="Certificate lightbox preview" aria-hidden="true">
+    <div class="lightbox-panel p-4 sm:p-6 space-y-4">
+      <div class="flex items-center justify-between gap-3">
+        <p id="ach-lightbox-caption" class="text-sm font-semibold text-[var(--text)] truncate"></p>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="ach-lightbox-download" href="#" download class="outline-button text-xs py-1.5 px-3 min-h-[38px]">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>Download</span>
+          </a>
+          <button type="button" id="ach-lightbox-close" class="icon-button" aria-label="Close preview">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+      <div class="rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--background)]">
+        <img id="ach-lightbox-img" src="assets/images/certificates/fullstack-mern.svg" alt="Certificate preview" class="w-full max-h-[68dvh] object-contain mx-auto">
+      </div>
+      <div class="flex items-center justify-between gap-3">
+        <button type="button" id="ach-lightbox-prev" class="secondary-button text-xs py-2 px-4 min-h-[40px]">Previous</button>
+        <button type="button" id="ach-lightbox-next" class="secondary-button text-xs py-2 px-4 min-h-[40px]">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/modes.js"></script>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/data/certificates.js"></script>
+  <script defer src="js/achievements.js"></script>
+  <script defer src="js/assistant.js"></script>
+  <script defer src="js/ux.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

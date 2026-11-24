@@ -14,6 +14,9 @@
       credentialId: "MERN-2025-01",
       image: "assets/images/certificates/fullstack-mern.svg",
       downloadFile: "AL_AMIN_FullStack_MERN_Certificate.svg",
+      verificationUrl: "",
+      description:
+        "Completed intensive full-stack engineering training covering MongoDB data modeling, Express REST APIs, React UI architecture, and Node.js deployment.",
       skills: ["MongoDB", "Express", "React", "Node.js", "JWT Auth", "REST API"]
     },
     {
@@ -25,6 +28,9 @@
       credentialId: "BE-2025-04",
       image: "assets/images/certificates/backend-api.svg",
       downloadFile: "AL_AMIN_Backend_API_Certificate.svg",
+      verificationUrl: "",
+      description:
+        "Focused on scalable Express services, Mongoose schemas, PostgreSQL relational queries, request validation, and API security.",
       skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "Postman", "Security"]
     },
     {
@@ -36,6 +42,9 @@
       credentialId: "FE-2024-08",
       image: "assets/images/certificates/frontend-react.svg",
       downloadFile: "AL_AMIN_Frontend_React_Certificate.svg",
+      verificationUrl: "",
+      description:
+        "Focused on modern JavaScript, React component composition, Redux state workflows, and modular Tailwind CSS UI systems.",
       skills: ["HTML5", "CSS3", "JavaScript", "React", "Redux", "Tailwind CSS"]
     },
     {
@@ -47,6 +56,9 @@
       credentialId: "UI-2024-11",
       image: "assets/images/certificates/responsive-ui.svg",
       downloadFile: "AL_AMIN_Responsive_UI_Certificate.svg",
+      verificationUrl: "",
+      description:
+        "Built multi-breakpoint responsive layouts (320px–2560px), accessible keyboard navigation, and dark/light design tokens.",
       skills: ["Responsive Design", "Figma", "CSS Grid", "WCAG", "Performance"]
     }
   ];

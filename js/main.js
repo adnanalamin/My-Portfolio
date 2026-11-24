@@ -1111,6 +1111,11 @@
     if (window.PortfolioGitHubUniverse) window.PortfolioGitHubUniverse.init();
     if (window.PortfolioCodingActivity) window.PortfolioCodingActivity.init();
     if (window.PortfolioSystemMonitor) window.PortfolioSystemMonitor.init();
+    if (window.PortfolioHealth) window.PortfolioHealth.init();
+    if (window.PortfolioTechRadar) window.PortfolioTechRadar.init();
+    if (window.PortfolioLearningRoadmap) window.PortfolioLearningRoadmap.init();
+    if (window.PortfolioCodingLab) window.PortfolioCodingLab.init();
+    if (window.PortfolioAchievements) window.PortfolioAchievements.init();
     if (window.PortfolioTerminalEngine) {
       window.PortfolioTerminalEngine.init();
     } else if (typeof document !== "undefined") {

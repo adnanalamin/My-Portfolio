@@ -1,0 +1,139 @@
+/* ==========================================================================
+   AL AMIN Portfolio — Phase 56: Interactive Technology Radar
+   4 Quadrants × 4 Rings SVG Radar + Accessible List + Detail Panel
+   ========================================================================== */
+
+.tr-shell {
+  overflow-x: clip;
+}
+
+.tr-panel {
+  border-radius: 1.15rem;
+  border: 1px solid var(--border);
+  background: var(--glass-card-bg);
+  padding: 1.15rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.tr-input,
+.tr-select {
+  min-height: 42px;
+  padding: 0.45rem 0.78rem;
+  border-radius: 0.65rem;
+  border: 1px solid var(--border);
+  background: rgba(5, 8, 22, 0.78);
+  color: var(--text);
+  font-size: 0.84rem;
+}
+
+html.light .tr-input,
+html.light .tr-select {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.tr-radar-stage {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+}
+
+.tr-radar-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tr-blip {
+  cursor: pointer;
+  transition: transform 160ms ease, opacity 160ms ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.tr-blip:hover,
+.tr-blip:focus-visible,
+.tr-blip.is-selected {
+  transform: scale(1.22);
+}
+
+.tr-tooltip {
+  position: absolute;
+  z-index: 20;
+  pointer-events: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  background: rgba(5, 8, 22, 0.94);
+  color: #f8fafc;
+  font-size: 0.75rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  max-width: 220px;
+}
+
+html.light .tr-tooltip {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.tr-ring-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.16rem 0.52rem;
+  border-radius: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+}
+
+.tr-ring-badge[data-ring="Core"] {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.42);
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.tr-ring-badge[data-ring="Active"] {
+  color: #22d3ee;
+  border-color: rgba(34, 211, 238, 0.42);
+  background: rgba(6, 182, 212, 0.12);
+}
+
+.tr-ring-badge[data-ring="Learning"] {
+  color: #818cf8;
+  border-color: rgba(129, 140, 248, 0.42);
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.tr-ring-badge[data-ring="Exploring"] {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.42);
+  background: rgba(245, 158, 11, 0.12);
+}
+
+.tr-list-card {
+  border-radius: 0.9rem;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.42);
+  padding: 0.85rem 1rem;
+  text-align: left;
+  width: 100%;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+html.light .tr-list-card {
+  background: #ffffff;
+}
+
+.tr-list-card.is-selected,
+.tr-list-card:hover {
+  border-color: #22d3ee;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr-blip {
+    transition: none;
+  }
+}
